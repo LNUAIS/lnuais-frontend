@@ -56,8 +56,7 @@ export default function Home() {
               AI Isn't the Future <span className="text-soot-glue">You Are</span>
             </h1>
             <p className="text-lg sm:text-xl text-soot-glue mb-6 sm:mb-8 leading-relaxed px-4 sm:px-0">
-              Join Linnaeus University's premier AI community. We're a passionate group of students, researchers, and
-              innovators exploring the frontiers of artificial intelligence.
+        Become part of Linnaeus University's AI community, a network of students, researchers, and innovators dedicated to advancing the field of artificial intelligence.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center px-4 sm:px-0">
               <Button
@@ -94,8 +93,7 @@ export default function Home() {
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">What We're About</h2>
             <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4 sm:px-0">
-              We are a student-driven organization at Linnaeus University dedicated to advancing artificial intelligence
-              knowledge, fostering innovation, and building a community of AI enthusiasts.
+             A student-driven organization at Linnaeus University focused on advancing AI knowledge, fostering innovation, and connecting enthusiasts
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">

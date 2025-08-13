@@ -53,8 +53,8 @@ export default function Courses() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-soot-glue mb-4">AI & ML Courses at LNU</h1>
           <p className="text-lg sm:text-xl text-soot-glue max-w-3xl mx-auto px-4 sm:px-0">
-            Discover artificial intelligence and machine learning courses offered at Linnaeus University, Sweden. Build
-            your expertise with our comprehensive academic programs.
+            Discover artificial intelligence and machine learning courses offered in <br></br>
+            Linnaeus University, Växjö Sweden.
           </p>
         </div>
       </section>
@@ -111,7 +111,7 @@ export default function Courses() {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {/* Computer Science - AI Track (Bachelor's) */}
+            {/*(Bachelor's) */}
             <Card className="bg-gray-800 border-2 border-gray-700 hover:border-buttercup transition-colors">
               <CardHeader>
                 <div className="flex items-center justify-between mb-2">
@@ -121,26 +121,25 @@ export default function Courses() {
                     English
                   </div>
                 </div>
-                <CardTitle className="text-white">Computer Science - AI Track</CardTitle>
+                <CardTitle className="text-white">Introduction to Machine Learning</CardTitle>
                 <CardDescription className="text-gray-300">
-                  Bachelor's program with specialization in artificial intelligence and machine learning.
-                </CardDescription>
+Gain a solid foundation in machine learning concepts, an ideal course for beginners eager to start their journey into Machine Learning."                </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Calendar className="h-4 w-4 mr-2" />3 years • 180 ECTS
+                  <Calendar className="h-4 w-4 mr-2" />30 Mar, 2026 - 07 Jun, 2026 • 7.5 ECTS
                 </div>
                 <div className="flex items-center text-sm text-gray-300 mb-2">
                   <Clock className="h-4 w-4 mr-2" />
-                  Full-time • Campus Växjö
+                  Half-time • Campus Växjö
                 </div>
                 <div className="flex items-center text-sm text-gray-300 mb-4">
                   <Users className="h-4 w-4 mr-2" />
-                  Application: January 15
+                  Application: August 15
                 </div>
                 <Button className="w-full bg-buttercup hover:bg-yellow-400 text-soot-glue font-semibold" asChild>
                   <a
-                    href="https://lnu.se/en/education/programmes/"
+                    href="https://lnu.se/en/course/introduction-to-machine-learning/vaxjo-international-part-time-spring/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center"
@@ -150,7 +149,7 @@ export default function Courses() {
                 </Button>
               </CardContent>
             </Card>
-            {/* Data Science Master's */}
+            {/* Master's */}
             <Card className="bg-gray-800 border-2 border-gray-700 hover:border-buttercup transition-colors">
               <CardHeader>
                 <div className="flex items-center justify-between mb-2">
@@ -160,26 +159,26 @@ export default function Courses() {
                     English
                   </div>
                 </div>
-                <CardTitle className="text-white">Data Science</CardTitle>
+                <CardTitle className="text-white">Deep Machine Learning</CardTitle>
                 <CardDescription className="text-gray-300">
-                  Master's program focusing on big data analytics, machine learning, and AI applications.
+                  Focuses on neural networks, CNNs, and optimization methods. Learn to build and train deep models.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Calendar className="h-4 w-4 mr-2" />2 years • 120 ECTS
+                  <Calendar className="h-4 w-4 mr-2" />30 Mar, 2026 - 07 Jun, 2026 • 5 ECTS
                 </div>
                 <div className="flex items-center text-sm text-gray-300 mb-2">
                   <Clock className="h-4 w-4 mr-2" />
-                  Full-time • Campus Växjö
+                  33% • Campus Växjö
                 </div>
                 <div className="flex items-center text-sm text-gray-300 mb-4">
                   <Users className="h-4 w-4 mr-2" />
-                  Application: January 15
+                  Application: October 15
                 </div>
                 <Button className="w-full bg-buttercup hover:bg-yellow-400 text-soot-glue font-semibold" asChild>
                   <a
-                    href="https://lnu.se/en/education/programmes/"
+                    href="https://lnu.se/en/course/deep-machine-learning/vaxjo-exchange-part-time-spring/?utm_source=chatgpt.com"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center"
@@ -189,7 +188,7 @@ export default function Courses() {
                 </Button>
               </CardContent>
             </Card>
-            {/* Machine Learning Course */}
+            {/* Masters Course */}
             <Card className="bg-gray-800 border-2 border-gray-700 hover:border-buttercup transition-colors">
               <CardHeader>
                 <div className="flex items-center justify-between mb-2">
@@ -199,26 +198,26 @@ export default function Courses() {
                     English
                   </div>
                 </div>
-                <CardTitle className="text-white">Machine Learning</CardTitle>
+                <CardTitle className="text-white">Deep Reinforcement Learning</CardTitle>
                 <CardDescription className="text-gray-300">
                   Advanced course covering supervised and unsupervised learning algorithms.
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Calendar className="h-4 w-4 mr-2" />1 semester • 7.5 ECTS
+                  <Calendar className="h-4 w-4 mr-2" />10 Nov, 2025 - 18 Jan, 2026 • 7.5 ECTS
                 </div>
                 <div className="flex items-center text-sm text-gray-300 mb-2">
                   <Clock className="h-4 w-4 mr-2" />
-                  Period 1 • Autumn
+                  Half-time • Campus Växjö
                 </div>
                 <div className="flex items-center text-sm text-gray-300 mb-4">
                   <Users className="h-4 w-4 mr-2" />
-                  Prerequisites: Programming
+                  Application: January 15
                 </div>
                 <Button className="w-full bg-buttercup hover:bg-yellow-400 text-soot-glue font-semibold" asChild>
                   <a
-                    href="https://lnu.se/en/education/courses/"
+                    href="https://lnu.se/en/course/deep-reinforcement-learning/vaxjo-international-part-time-autumn/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center"
@@ -228,7 +227,7 @@ export default function Courses() {
                 </Button>
               </CardContent>
             </Card>
-            {/* Artificial Intelligence Course */}
+            {/* Bachelors Course */}
             <Card className="bg-gray-800 border-2 border-gray-700 hover:border-buttercup transition-colors">
               <CardHeader>
                 <div className="flex items-center justify-between mb-2">

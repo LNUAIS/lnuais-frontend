@@ -61,9 +61,7 @@ export default function About() {
           <div className="text-center mb-12 sm:mb-16">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-6">Our Mission</h2>
             <p className="text-lg sm:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed px-4 sm:px-0">
-              The LNU AI Society exists to democratize artificial intelligence education, foster innovation, and build a
-              vibrant community of AI enthusiasts at Linnaeus University. We believe that AI should be accessible to
-              everyone, regardless of their background or experience level.
+              The LNU AI Society exists to foster innovation and build a vibrant community of AI enthusiasts at Linnaeus University.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -76,7 +74,7 @@ export default function About() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-300 text-center">
-                  Providing high-quality AI education through workshops, courses, and hands-on learning experiences.
+                  Supporting AI learning through guidance, resources, and workshops
                 </p>
               </CardContent>
             </Card>
@@ -103,7 +101,7 @@ export default function About() {
               </CardHeader>
               <CardContent>
                 <p className="text-gray-300 text-center">
-                  Building lasting connections between students, researchers, and industry professionals in AI.
+                  Building connections between students, researchers, and industry professionals in AI.
                 </p>
               </CardContent>
             </Card>

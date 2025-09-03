@@ -53,7 +53,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-soot-glue mb-4 sm:mb-6">
-              AI Isn't the Future <span className="text-soot-glue">You Are</span>
+              A community dedicated to the research and continuos learning of AI <span className="text-soot-glue"></span>
             </h1>
             <p className="text-lg sm:text-xl text-soot-glue mb-6 sm:mb-8 leading-relaxed px-4 sm:px-0">
         Become part of Linnaeus University's AI community, a network of students, researchers, and innovators dedicated to advancing the field of artificial intelligence.

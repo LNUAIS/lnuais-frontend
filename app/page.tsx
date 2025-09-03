@@ -52,9 +52,12 @@ export default function Home() {
       <section className="bg-buttercup py-12 sm:py-20 lg:py-32">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-soot-glue mb-4 sm:mb-6">
-              A community dedicated to the research and continuos learning of AI <span className="text-soot-glue"></span>
-            </h1>
+            <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-soot-glue mb-4 sm:mb-6 max-w-3xl mx-auto text-center">
+  A community dedicated to AI research and continuous learning
+</h1>
+
+
+
             <p className="text-lg sm:text-xl text-soot-glue mb-6 sm:mb-8 leading-relaxed px-4 sm:px-0">
         Become part of Linnaeus University's AI community, a network of students, researchers, and innovators dedicated to advancing the field of artificial intelligence.
             </p>

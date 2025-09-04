@@ -116,11 +116,11 @@ export default function Courses() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/*(Bachelor's) */}
-            <Card className="bg-gray-800 border-2 border-gray-700 hover:border-yellow-400 transition-colors">
-              <CardHeader>
+            <Card className="bg-gray-800 border-2 border-gray-700 hover:border-yellow-400 transition-colors flex flex-col h-full">
+              <CardHeader className="flex-shrink-0">
                 <div className="flex items-center justify-between mb-2">
-                  <Badge style={{ backgroundColor: "#5D4FB1" }} className="text-white">
-                    Bachelor's
+                  <Badge style={{ backgroundColor: "#007340" }} className="text-white">
+                    Bachelor's Level
                   </Badge>
                   <div className="flex items-center text-sm text-gray-300">
                     <Globe className="h-4 w-4 mr-1" />
@@ -133,21 +133,23 @@ export default function Courses() {
                   their journey into Machine Learning.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  30 Mar, 2026 - 07 Jun, 2026 • 7.5 ECTS
-                </div>
-                <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Clock className="h-4 w-4 mr-2" />
-                  Half-time • Campus Växjö
-                </div>
-                <div className="flex items-center text-sm text-gray-300 mb-4">
-                  <Users className="h-4 w-4 mr-2" />
-                  Application: August 15
+              <CardContent className="flex-grow flex flex-col">
+                <div className="flex-grow">
+                  <div className="flex items-center text-sm text-gray-300 mb-2">
+                    <Calendar className="h-4 w-4 mr-2" />
+                    30 Mar, 2026 - 07 Jun, 2026 • 7.5 ECTS
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300 mb-2">
+                    <Clock className="h-4 w-4 mr-2" />
+                    Half-time • Campus Växjö
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300 mb-4">
+                    <Users className="h-4 w-4 mr-2" />
+                    Application: August 15
+                  </div>
                 </div>
                 <Button
-                  className="w-full text-black font-semibold hover:bg-yellow-300"
+                  className="w-full text-black font-semibold hover:bg-yellow-300 mt-auto"
                   style={{ backgroundColor: "#FFE000" }}
                   asChild
                 >
@@ -163,11 +165,11 @@ export default function Courses() {
               </CardContent>
             </Card>
             {/* Master's */}
-            <Card className="bg-gray-800 border-2 border-gray-700 hover:border-yellow-400 transition-colors">
-              <CardHeader>
+            <Card className="bg-gray-800 border-2 border-gray-700 hover:border-yellow-400 transition-colors flex flex-col h-full">
+              <CardHeader className="flex-shrink-0">
                 <div className="flex items-center justify-between mb-2">
-                  <Badge style={{ backgroundColor: "#007340" }} className="text-white">
-                    Master's
+                  <Badge style={{ backgroundColor: "#A62186" }} className="text-white">
+                    Master's Level
                   </Badge>
                   <div className="flex items-center text-sm text-gray-300">
                     <Globe className="h-4 w-4 mr-1" />
@@ -179,26 +181,28 @@ export default function Courses() {
                   Focuses on neural networks, CNNs, and optimization methods. Learn to build and train deep models.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  30 Mar, 2026 - 07 Jun, 2026 • 5 ECTS
-                </div>
-                <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Clock className="h-4 w-4 mr-2" />
-                  33% • Campus Växjö
-                </div>
-                <div className="flex items-center text-sm text-gray-300 mb-4">
-                  <Users className="h-4 w-4 mr-2" />
-                  Application: October 15
+              <CardContent className="flex-grow flex flex-col">
+                <div className="flex-grow">
+                  <div className="flex items-center text-sm text-gray-300 mb-2">
+                    <Calendar className="h-4 w-4 mr-2" />
+                    30 Mar, 2026 - 07 Jun, 2026 • 5 ECTS
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300 mb-2">
+                    <Clock className="h-4 w-4 mr-2" />
+                    33% • Campus Växjö
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300 mb-4">
+                    <Users className="h-4 w-4 mr-2" />
+                    Application: October 15
+                  </div>
                 </div>
                 <Button
-                  className="w-full text-black font-semibold hover:bg-yellow-300"
+                  className="w-full text-black font-semibold hover:bg-yellow-300 mt-auto"
                   style={{ backgroundColor: "#FFE000" }}
                   asChild
                 >
                   <a
-                    href="https://lnu.se/en/course/deep-machine-learning/vaxjo-exchange-part-time-spring/?utm_source=chatgpt.com"
+                    href="https://lnu.se/en/course/deep-machine-learning/vaxjo-exchange-part-time-spring/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center"
@@ -209,8 +213,8 @@ export default function Courses() {
               </CardContent>
             </Card>
             {/* Masters Course */}
-            <Card className="bg-gray-800 border-2 border-gray-700 hover:border-yellow-400 transition-colors">
-              <CardHeader>
+            <Card className="bg-gray-800 border-2 border-gray-700 hover:border-yellow-400 transition-colors flex flex-col h-full">
+              <CardHeader className="flex-shrink-0">
                 <div className="flex items-center justify-between mb-2">
                   <Badge style={{ backgroundColor: "#A62186" }} className="text-white">
                     Master's Level
@@ -225,21 +229,23 @@ export default function Courses() {
                   Advanced course covering supervised and unsupervised learning algorithms.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Calendar className="h-4 w-4 mr-2" />
-                  10 Nov, 2025 - 18 Jan, 2026 • 7.5 ECTS
-                </div>
-                <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Clock className="h-4 w-4 mr-2" />
-                  Half-time • Campus Växjö
-                </div>
-                <div className="flex items-center text-sm text-gray-300 mb-4">
-                  <Users className="h-4 w-4 mr-2" />
-                  Application: January 15
+              <CardContent className="flex-grow flex flex-col">
+                <div className="flex-grow">
+                  <div className="flex items-center text-sm text-gray-300 mb-2">
+                    <Calendar className="h-4 w-4 mr-2" />
+                    10 Nov, 2025 - 18 Jan, 2026 • 7.5 ECTS
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300 mb-2">
+                    <Clock className="h-4 w-4 mr-2" />
+                    Half-time • Campus Växjö
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300 mb-4">
+                    <Users className="h-4 w-4 mr-2" />
+                    Application: January 15
+                  </div>
                 </div>
                 <Button
-                  className="w-full text-black font-semibold hover:bg-yellow-300"
+                  className="w-full text-black font-semibold hover:bg-yellow-300 mt-auto"
                   style={{ backgroundColor: "#FFE000" }}
                   asChild
                 >
@@ -255,8 +261,8 @@ export default function Courses() {
               </CardContent>
             </Card>
             {/* Bachelors Course */}
-            <Card className="bg-gray-800 border-2 border-gray-700 hover:border-yellow-400 transition-colors">
-              <CardHeader>
+            <Card className="bg-gray-800 border-2 border-gray-700 hover:border-yellow-400 transition-colors flex flex-col h-full">
+              <CardHeader className="flex-shrink-0">
                 <div className="flex items-center justify-between mb-2">
                   <Badge style={{ backgroundColor: "#007340" }} className="text-white">
                     Bachelor's Level
@@ -266,30 +272,32 @@ export default function Courses() {
                     English
                   </div>
                 </div>
-                <CardTitle className="text-white">Artificial Intelligence</CardTitle>
+                <CardTitle className="text-white">Applied Machine learning</CardTitle>
                 <CardDescription className="text-gray-300">
-                  Introduction to AI concepts, search algorithms, and knowledge representation.
+                  Applied machine learning techniques to extract meaningful insights and value from large, diverse datasets using appropriate algorithms and approaches.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Calendar className="h-4 w-4 mr-2" />1 semester • 7.5 ECTS
-                </div>
-                <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Clock className="h-4 w-4 mr-2" />
-                  Period 2 • Spring
-                </div>
-                <div className="flex items-center text-sm text-gray-300 mb-4">
-                  <Users className="h-4 w-4 mr-2" />
-                  Prerequisites: Mathematics
+              <CardContent className="flex-grow flex flex-col">
+                <div className="flex-grow">
+                  <div className="flex items-center text-sm text-gray-300 mb-2">
+                    <Calendar className="h-4 w-4 mr-2" />1 semester • 7.5 ECTS
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300 mb-2">
+                    <Clock className="h-4 w-4 mr-2" />
+                    Period 2 • Spring
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300 mb-4">
+                    <Users className="h-4 w-4 mr-2" />
+                    Prerequisites: Mathematics
+                  </div>
                 </div>
                 <Button
-                  className="w-full text-black font-semibold hover:bg-yellow-300"
+                  className="w-full text-black font-semibold hover:bg-yellow-300 mt-auto"
                   style={{ backgroundColor: "#FFE000" }}
                   asChild
                 >
                   <a
-                    href="https://lnu.se/en/education/courses/"
+                    href="https://lnu.se/en/education/contract-education/utveckla-dig-sjalv/digitalisering-och-it/applied-machine-learning/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center"
@@ -299,42 +307,44 @@ export default function Courses() {
                 </Button>
               </CardContent>
             </Card>
-            {/* Deep Learning Course */}
-            <Card className="bg-gray-800 border-2 border-gray-700 hover:border-yellow-400 transition-colors">
-              <CardHeader>
+            {/* Statistical machine learning */}
+            <Card className="bg-gray-800 border-2 border-gray-700 hover:border-yellow-400 transition-colors flex flex-col h-full">
+              <CardHeader className="flex-shrink-0">
                 <div className="flex items-center justify-between mb-2">
-                  <Badge style={{ backgroundColor: "#A62186" }} className="text-white">
-                    Master's Level
+                  <Badge style={{ backgroundColor: "#007340" }} className="text-white">
+                    Bachelor's Level
                   </Badge>
                   <div className="flex items-center text-sm text-gray-300">
                     <Globe className="h-4 w-4 mr-1" />
                     English
                   </div>
                 </div>
-                <CardTitle className="text-white">Deep Learning</CardTitle>
+                <CardTitle className="text-white">Statistical machine learning</CardTitle>
                 <CardDescription className="text-gray-300">
-                  Advanced neural networks, CNNs, RNNs, and modern deep learning architectures.
+                  An introductory course combining statistical learning theory with hands-on machine learning practice using R, Keras, and TensorFlow on real-world datasets.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Calendar className="h-4 w-4 mr-2" />1 semester • 7.5 ECTS
-                </div>
-                <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Clock className="h-4 w-4 mr-2" />
-                  Period 2 • Spring
-                </div>
-                <div className="flex items-center text-sm text-gray-300 mb-4">
-                  <Users className="h-4 w-4 mr-2" />
-                  Prerequisites: ML Course
+              <CardContent className="flex-grow flex flex-col">
+                <div className="flex-grow">
+                  <div className="flex items-center text-sm text-gray-300 mb-2">
+                    <Calendar className="h-4 w-4 mr-2" />1 semester • 7.5 ECTS
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300 mb-2">
+                    <Clock className="h-4 w-4 mr-2" />
+                    Period 1 • Autumn
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300 mb-4">
+                    <Users className="h-4 w-4 mr-2" />
+                    Prerequisites: Statistics 15 credits 
+                  </div>
                 </div>
                 <Button
-                  className="w-full text-black font-semibold hover:bg-yellow-300"
+                  className="w-full text-black font-semibold hover:bg-yellow-300 mt-auto"
                   style={{ backgroundColor: "#FFE000" }}
                   asChild
                 >
                   <a
-                    href="https://lnu.se/en/education/courses/"
+                    href="https://lnu.se/en/course/data-mining/vaxjo-international-part-time-autumn/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center"
@@ -345,10 +355,10 @@ export default function Courses() {
               </CardContent>
             </Card>
             {/* Data Mining Course */}
-            <Card className="bg-gray-800 border-2 border-gray-700 hover:border-yellow-400 transition-colors">
-              <CardHeader>
+            <Card className="bg-gray-800 border-2 border-gray-700 hover:border-yellow-400 transition-colors flex flex-col h-full">
+              <CardHeader className="flex-shrink-0">
                 <div className="flex items-center justify-between mb-2">
-                  <Badge style={{ backgroundColor: "#007340" }} className="text-white">
+                  <Badge style={{ backgroundColor: "#A62186" }} className="text-white">
                     Master's Level
                   </Badge>
                   <div className="flex items-center text-sm text-gray-300">
@@ -361,25 +371,27 @@ export default function Courses() {
                   Techniques for discovering patterns in large datasets using statistical and ML methods.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Calendar className="h-4 w-4 mr-2" />1 semester • 7.5 ECTS
-                </div>
-                <div className="flex items-center text-sm text-gray-300 mb-2">
-                  <Clock className="h-4 w-4 mr-2" />
-                  Period 1 • Autumn
-                </div>
-                <div className="flex items-center text-sm text-gray-300 mb-4">
-                  <Users className="h-4 w-4 mr-2" />
-                  Prerequisites: Statistics
+              <CardContent className="flex-grow flex flex-col">
+                <div className="flex-grow">
+                  <div className="flex items-center text-sm text-gray-300 mb-2">
+                    <Calendar className="h-4 w-4 mr-2" />1 semester • 7.5 ECTS
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300 mb-2">
+                    <Clock className="h-4 w-4 mr-2" />
+                    Period 1 • Autumn
+                  </div>
+                  <div className="flex items-center text-sm text-gray-300 mb-4">
+                    <Users className="h-4 w-4 mr-2" />
+                    Prerequisites: Statistics
+                  </div>
                 </div>
                 <Button
-                  className="w-full text-black font-semibold hover:bg-yellow-300"
+                  className="w-full text-black font-semibold hover:bg-yellow-300 mt-auto"
                   style={{ backgroundColor: "#FFE000" }}
                   asChild
                 >
                   <a
-                    href="https://lnu.se/en/education/courses/"
+                    href="https://lnu.se/en/course/data-mining/vaxjo-international-part-time-autumn/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center"

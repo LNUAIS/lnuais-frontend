@@ -11,8 +11,8 @@ const karla = Karla({
 
 export const metadata: Metadata = {
   title: "LNU AI Society",
-  description: "Created with v0",
-  generator: "v0.dev",
+  description: "LNU AI Society - Explore AI at LNU.",
+  generator: "",
 }
 
 export default function RootLayout({

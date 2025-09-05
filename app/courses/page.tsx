@@ -319,7 +319,7 @@ export default function Courses() {
                     English
                   </div>
                 </div>
-                <CardTitle className="text-white">Statistical machine learning</CardTitle>
+                <CardTitle className="text-white">Advanced Statistical machine learning</CardTitle>
                 <CardDescription className="text-gray-300">
                   An introductory course combining statistical learning theory with hands-on machine learning practice using R, Keras, and TensorFlow on real-world datasets.
                 </CardDescription>
@@ -344,7 +344,7 @@ export default function Courses() {
                   asChild
                 >
                   <a
-                    href="https://lnu.se/en/course/data-mining/vaxjo-international-part-time-autumn/"
+                    href="https://lnu.se/kurs/avancerad-statistisk-maskininlarning/vaxjo-distans-engelska-ht/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center"

@@ -2,12 +2,14 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import Link from "next/link"
 import { MobileNav } from "@/components/mobile-nav"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Calendar, Users, Brain, Zap, ArrowRight, BookOpen, Newspaper, Settings } from "lucide-react"
 
 export default function Events() {
   return (
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#232326', color: 'white' }}>
      {/* Navigation */}
-      <nav className="border-b border-gray-700 sticky top-0 z-50" style={{ backgroundColor: '#232326' }}>
+      <nav className="bg-soot-glue border-b border-gray-700 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <Link href="/" className="flex items-center space-x-3">
@@ -21,29 +23,51 @@ export default function Events() {
               <span className="text-xl font-bold text-white">LNU AI Society</span>
             </Link>
             <div className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-white font-medium transition-colors" style={{ ':hover': { color: '#FFE000' } }}>
+              <Link href="/" className="text-white hover:text-buttercup transition-colors font-medium">
                 Home
               </Link>
-              <Link href="/about" className="text-white transition-colors" style={{ ':hover': { color: '#FFE000' } }}>
+              <Link href="/about" className="text-white hover:text-buttercup transition-colors">
                 About
               </Link>
-              <Link href="/courses" className="text-white transition-colors" style={{ ':hover': { color: '#FFE000' } }}>
+              <Link href="/courses" className="text-white hover:text-buttercup transition-colors">
                 Courses
               </Link>
-              <Link href="/events" className="text-white transition-colors" style={{ ':hover': { color: '#FFE000' } }}>
+              <Link href="/events" className="text-white hover:text-buttercup transition-colors">
                 Events
               </Link>
-              <Link href="/news" className="text-white transition-colors" style={{ ':hover': { color: '#FFE000' } }}>
+              <Link href="/news" className="text-white hover:text-buttercup transition-colors">
                 News
               </Link>
-              <Link href="https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header" target="_blank" rel="noopener noreferrer">
-                <Button className="font-semibold transition-colors" style={{ backgroundColor: '#FFE000', color: '#232326' }}>Join Us</Button>
-              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="text-white hover:text-buttercup hover:bg-gray-800">
+                    <Settings className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-gray-900 border-gray-700">
+                  <DropdownMenuItem asChild className="cursor-pointer">
+                    <a
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-buttercup w-full"
+                    >
+                      Join Us
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild className="cursor-pointer">
+                    <Link href="/documents" className="text-white hover:text-buttercup w-full">
+                      Documents
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
             <MobileNav currentPath="/" />
           </div>
         </div>
       </nav>
+
 
       {/* Events Hero */}
       <section className="py-12 sm:py-16" style={{ backgroundColor: '#FFE000' }}>
@@ -55,85 +79,7 @@ export default function Events() {
       {/* Upcoming Events */}
       <section className="py-12 sm:py-20 flex-1" style={{ backgroundColor: '#232326' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-12" style={{ color: '#FFE000' }}>Upcoming Events</h2>
-          
-          {/* Event Card */}
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-700 hover:border-[#FFE000] transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,224,0,0.1)]">
-              {/* Event Header */}
-              <div className="bg-gradient-to-r from-[#FFE000] to-[#FFF200] p-6">
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                  <div>
-                    <h3 className="text-2xl sm:text-3xl font-bold text-[#232326] mb-2">
-                      Entrepreneurship & AI: Building the Future
-                    </h3>
-                    <p className="text-[#232326]/80 font-medium">
-                      An Interactive Lecture with Studeni's Founders
-                    </p>
-                  </div>
-                  <div className="flex-shrink-0 text-right">
-                    <div className="text-[#232326] font-bold text-lg">September 24, 2025</div>
-                    <div className="text-[#232326]/80 font-medium">14:00 CET</div>
-                    <div className="text-[#232326]/80 font-medium">D0070V, D Building</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Event Content */}
-              <div className="p-6 sm:p-8">
-                <div className="mb-6">
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    <span className="px-3 py-1 bg-[#FFE000] text-[#232326] rounded-full text-sm font-semibold">
-                      MIT CSAIL Backed
-                    </span>
-                    <span className="px-3 py-1 bg-blue-600 text-white rounded-full text-sm font-semibold">
-                      Startup Founders
-                    </span>
-                    <span className="px-3 py-1 bg-green-600 text-white rounded-full text-sm font-semibold">
-                      AI Innovation
-                    </span>
-                  </div>
-                  
-                  <p className="text-gray-300 text-lg leading-relaxed mb-4">
-                    We're excited to welcome <strong className="text-[#FFE000]">Granit Doroci (CEO)</strong> and <strong className="text-[#FFE000]">Rihards Okmanis (CPO)</strong>, founders of Studeni, a startup backed by MIT CSAIL.
-                  </p>
-                  
-                  <p className="text-gray-300 leading-relaxed mb-4">
-                    Studeni was created to help students organize, plan, and succeed in their studies. In this interactive lecture, Granit and Rihards will share the story of founding their company, the challenges they faced as entrepreneurs, and the lessons they learned while scaling in a competitive market.
-                  </p>
-                  
-                  <p className="text-gray-300 leading-relaxed mb-6">
-                    They will also host a free-form dialogue with the audience to gather feedback on how to improve their product. Expect practical insights on how artificial intelligence shapes their daily operations and decision making, delivers value to users, and drives growth.
-                  </p>
-                  
-                  <div className="bg-gray-800 rounded-lg p-4 mb-6 border-l-4 border-[#FFE000]">
-                    <p className="text-gray-200 italic">
-                      "Their experience shows that AI can be more than a tool. It can be the foundation for building innovative solutions with real-world impact."
-                    </p>
-                  </div>
-                  
-                  <p className="text-[#FFE000] font-semibold mb-6">
-                    ✨ Stay to the end for a special announcement!
-                  </p>
-                </div>
-
-                {/* Registration Button */}
-                <div className="flex justify-center">
-                  <Link 
-                    href="https://luma.com/6gsa4wzq?fbclid=PAZXh0bgNhZW0CMTEAAafVoDQhFLp5oRrOpyuBDyHqbKFuamMGNCi-7jWSGXBSKJ0vR1IKlhFqKHfCSw_aem_xigrHpiyPSMM5vJ19d4MPg" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="inline-block"
-                  >
-                    <Button className="text-lg px-8 py-3 font-bold transition-all duration-300 transform hover:scale-105 hover:shadow-lg" 
-                           style={{ backgroundColor: '#FFE000', color: '#232326' }}>
-                      Register Now - Free Event
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-12" style={{ color: '#FFE000' }}>No Upcoming Events</h2>
         </div>
       </section>
 

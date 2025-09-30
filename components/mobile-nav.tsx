@@ -1,94 +1,103 @@
 "use client"
 
 import { useState } from "react"
+import { Menu, X, Settings } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Menu, X } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 interface MobileNavProps {
-  currentPath?: string
+  currentPath: string
 }
 
-export function MobileNav({ currentPath = "/" }: MobileNavProps) {
+export function MobileNav({ currentPath }: MobileNavProps) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const toggleMenu = () => setIsOpen(!isOpen)
-
-  const navItems = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/courses", label: "Courses" },
-    { href: "/events", label: "Events" },
-    { href: "/news", label: "News" },
-  ]
-
   return (
-    <>
-      {/* Mobile menu button */}
-      <div className="md:hidden">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={toggleMenu}
-          className="text-white hover:text-buttercup hover:bg-gray-800"
-        >
-          {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </Button>
-      </div>
+    <div className="md:hidden">
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={() => setIsOpen(!isOpen)}
+        className="text-white hover:text-buttercup hover:bg-gray-800"
+      >
+        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+      </Button>
 
-      {/* Mobile menu overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 md:hidden">
-          <div className="fixed inset-0 bg-black/50" onClick={toggleMenu} />
-          <div className="fixed top-0 right-0 h-full w-64 bg-soot-glue border-l border-gray-700 shadow-xl">
-            <div className="flex items-center justify-between p-4 border-b border-gray-700">
-              <Link href="/" className="flex items-center space-x-2" onClick={toggleMenu}>
-                <Image
-                  src="/images/logo-symbol.png"
-                  alt="LNU AI Society Logo"
-                  width={32}
-                  height={32}
-                  className="h-8 w-auto"
-                />
-                <span className="text-lg font-bold text-white">LNU AI Society</span>
-              </Link>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={toggleMenu}
-                className="text-white hover:text-buttercup hover:bg-gray-800"
-              >
-                <X className="h-5 w-5" />
-              </Button>
-            </div>
-            <nav className="p-4">
-              <div className="space-y-4">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`block text-lg transition-colors ${
-                      currentPath === item.href ? "text-buttercup font-medium" : "text-white hover:text-buttercup"
-                    }`}
-                    onClick={toggleMenu}
+        <div className="absolute top-16 left-0 right-0 bg-soot-glue border-b border-gray-700 py-4 px-4 space-y-4 z-50">
+          <Link
+            href="/"
+            className="block text-white hover:text-buttercup transition-colors"
+            onClick={() => setIsOpen(false)}
+          >
+            Home
+          </Link>
+          <Link
+            href="/about"
+            className="block text-white hover:text-buttercup transition-colors"
+            onClick={() => setIsOpen(false)}
+          >
+            About
+          </Link>
+          <Link
+            href="/courses"
+            className="block text-white hover:text-buttercup transition-colors"
+            onClick={() => setIsOpen(false)}
+          >
+            Courses
+          </Link>
+          <Link
+            href="/events"
+            className="block text-white hover:text-buttercup transition-colors"
+            onClick={() => setIsOpen(false)}
+          >
+            Events
+          </Link>
+          <Link
+            href="/news"
+            className="block text-white hover:text-buttercup transition-colors"
+            onClick={() => setIsOpen(false)}
+          >
+            News
+          </Link>
+          <div className="pt-2 border-t border-gray-700">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="w-full justify-start text-white hover:text-buttercup hover:bg-gray-800"
+                >
+                  <Settings className="h-5 w-5 mr-2" />
+                  Settings
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="bg-gray-900 border-gray-700 w-56">
+                <DropdownMenuItem asChild className="cursor-pointer">
+                  <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white hover:text-buttercup w-full"
+                    onClick={() => setIsOpen(false)}
                   >
-                    {item.label}
+                    Join Us
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="cursor-pointer">
+                  <Link
+                    href="/documents"
+                    className="text-white hover:text-buttercup w-full"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    Documents
                   </Link>
-                ))}
-                <div className="pt-4">
-                  <Button 
-  className="bg-buttercup hover:bg-yellow-400 text-soot-glue font-semibold"
-  onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header', '_blank')}
->
-  Join Us
-</Button>
-                </div>
-              </div>
-            </nav>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }

@@ -1,8 +1,82 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import Link from "next/link"
 import { MobileNav } from "@/components/mobile-nav"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Calendar, Settings, ChevronLeft, ChevronRight } from "lucide-react"
+import { useState } from "react"
+
+function ImageCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const images = [
+    {
+      src: "/pictures/event-post-first-page-1.png",
+      alt: "Studeni Event - Discount Code"
+    },
+    {
+      src: "/pictures/event-post-second-page-1.png",
+      alt: "Studeni Event - Presentation"
+    },
+    {
+      src: "/pictures/event-post-third-page-1.png",
+      alt: "Studeni Event - Team Photo"
+    }
+  ]
+
+  const goToPrevious = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1))
+  }
+
+  const goToNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1))
+  }
+
+  return (
+    <div className="relative w-full h-full group bg-gray-900">
+      <Image
+        src={images[currentIndex].src}
+        alt={images[currentIndex].alt}
+        fill
+        className="object-contain"
+        priority
+      />
+      
+      {/* Navigation Buttons */}
+      <button
+        onClick={goToPrevious}
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+        aria-label="Previous image"
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </button>
+      
+      <button
+        onClick={goToNext}
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+        aria-label="Next image"
+      >
+        <ChevronRight className="h-6 w-6" />
+      </button>
+
+      {/* Dots Indicator */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all ${
+              index === currentIndex ? "bg-buttercup w-6" : "bg-white/50 hover:bg-white/70"
+            }`}
+            aria-label={`Go to image ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 export default function News() {
   return (
@@ -37,15 +111,32 @@ export default function News() {
               <Link href="/news" className="text-white hover:text-buttercup transition-colors">
                 News
               </Link>
-              <Link
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button className="bg-buttercup hover:bg-yellow-400 text-soot-glue font-semibold">Join Us</Button>
-              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="text-white hover:text-buttercup hover:bg-gray-800">
+                    <Settings className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-gray-900 border-gray-700">
+                  <DropdownMenuItem asChild className="cursor-pointer">
+                    <a
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-buttercup w-full"
+                    >
+                      Join Us
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild className="cursor-pointer">
+                    <Link href="/documents" className="text-white hover:text-buttercup w-full">
+                      Documents
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
-            <MobileNav currentPath="/" />
+            <MobileNav currentPath="/news" />
           </div>
         </div>
       </nav>
@@ -70,19 +161,57 @@ export default function News() {
               Discover the most recent updates from the world of AI and our society activities.
             </p>
           </div>
+
           {/* Featured Article */}
-          {/* TODO: Add more featured articles here if needed */}
-          <Card className="mb-8 sm:mb-12 border-2 border-gray-700 hover:border-buttercup transition-colors bg-gray-800 text-white">
-            {/* featured article content */}
+          <Card className="mb-8 sm:mb-12 border-2 border-gray-700 hover:border-buttercup transition-colors bg-gray-800 text-white overflow-hidden">
+            <div className="grid md:grid-cols-2 gap-0">
+              {/* Image Carousel */}
+              <div className="relative h-64 md:h-full min-h-[300px] bg-gray-900">
+                <ImageCarousel />
+              </div>
+              
+              {/* Content */}
+              <CardContent className="p-6 sm:p-8">
+                <div className="flex items-center gap-2 text-buttercup text-sm mb-3">
+                  <Calendar className="h-4 w-4" />
+                  <span>September 2025</span>
+                  <span className="mx-2">•</span>
+                  <span className="bg-buttercup/20 px-2 py-1 rounded text-xs font-semibold">FIRST EVENT</span>
+                </div>
+                
+                <h3 className="text-2xl sm:text-3xl font-bold text-buttercup mb-4">
+                  Our First Event: A Conversation with Studeni Founders
+                </h3>
+                
+                <p className="text-gray-300 mb-4 leading-relaxed">
+                  We were honored to welcome Granit Doroci (CEO) and Rihards Okmanis (CPO), founders of Studeni, a startup backed by MIT CSAIL. They shared their entrepreneurial journey and insights on leveraging AI for innovation.
+                </p>
+                
+                <p className="text-gray-300 mb-4 leading-relaxed">
+                  The session highlighted practical applications of AI in product development, along with valuable lessons on resilience and adaptability in building impactful solutions.
+                </p>
+                
+                <div className="bg-gray-900 border border-buttercup/30 rounded-lg p-4 mb-4">
+                  <p className="text-sm text-gray-300">
+                    <strong className="text-buttercup">Special Offer:</strong> Studeni is offering our community free access to their platform for one month. Join their Discord for updates and internship opportunities!
+                  </p>
+                </div>
+                
+                <p className="text-gray-400 text-sm italic">
+                  Thank you to Granit and Rihards for their time, and to all participants who made our first event a success.
+                </p>
+              </CardContent>
+            </div>
           </Card>
+
           {/* News Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* TODO: Add more news cards here dynamically */}
             {/* Example News Card */}
             {/* <Card>...</Card> */}
           </div>
+          
           <div className="text-center mt-8 sm:mt-12">
-            <Button className="bg-soot-glue hover:bg-gray-800 text-buttercup font-semibold">Load More Articles</Button>
           </div>
         </div>
       </section>
@@ -96,7 +225,6 @@ export default function News() {
               Interested in joining or staying up-to-date with LNU AI Society? Fill out the form below to get involved!
             </p>
           </div>
-          {/* TODO: Replace with embedded form if needed */}
           <Card className="max-w-xl mx-auto bg-gray-800 border-2 border-gray-700 hover:border-buttercup transition-colors text-white text-center">
             <CardContent className="p-6 sm:p-8">
               <p className="text-base sm:text-lg text-gray-300 mb-4 sm:mb-6">Click the button below to register</p>
@@ -151,7 +279,7 @@ export default function News() {
                   className="text-white/80 hover:text-yellow-400 transition-colors"
                 >
                   <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                   </svg>
                 </a>
               </div>

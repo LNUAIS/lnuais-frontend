@@ -1,10 +1,11 @@
 "use client"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Calendar, Users, Brain, Zap, ArrowRight, BookOpen, Newspaper } from "lucide-react"
+import { Calendar, Users, Brain, Zap, ArrowRight, BookOpen, Newspaper, Settings } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { MobileNav } from "@/components/mobile-nav"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 
 export default function Home() {
   return (
@@ -39,13 +40,30 @@ export default function Home() {
               <Link href="/news" className="text-white hover:text-buttercup transition-colors">
                 News
               </Link>
-              <Link
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button className="bg-buttercup hover:bg-yellow-400 text-soot-glue font-semibold">Join Us</Button>
-              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="text-white hover:text-buttercup hover:bg-gray-800">
+                    <Settings className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-gray-900 border-gray-700">
+                  <DropdownMenuItem asChild className="cursor-pointer">
+                    <a
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-buttercup w-full"
+                    >
+                      Join Us
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild className="cursor-pointer">
+                    <Link href="/documents" className="text-white hover:text-buttercup w-full">
+                      Documents
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
             <MobileNav currentPath="/" />
           </div>
@@ -93,65 +111,69 @@ export default function Home() {
         </div>
       </section>
 
-      {/* What We're About Section */}
-      <section className="py-12 sm:py-20 bg-soot-glue">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">What We're About</h2>
-            <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4 sm:px-0">
-              A student-driven organization at Linnaeus University focused on advancing AI knowledge, fostering
-              innovation, and connecting enthusiasts
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            <Card className="bg-gray-900 border-2 border-gray-700 hover:border-buttercup transition-colors">
-              <CardHeader className="text-center">
-                <Brain className="h-12 w-12 text-crocus mx-auto mb-4" />
-                <CardTitle className="text-white">Learn</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300 text-center">
-                  Workshops, seminars, and hands-on sessions covering machine learning, deep learning, and AI
-                  applications.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="bg-gray-900 border-2 border-gray-700 hover:border-buttercup transition-colors">
-              <CardHeader className="text-center">
-                <Users className="h-12 w-12 text-ivy mx-auto mb-4" />
-                <CardTitle className="text-white">Connect</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300 text-center">
-                  Network with like-minded students, researchers, and industry professionals in the AI field.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="bg-gray-900 border-2 border-gray-700 hover:border-buttercup transition-colors">
-              <CardHeader className="text-center">
-                <Zap className="h-12 w-12 text-azalea mx-auto mb-4" />
-                <CardTitle className="text-white">Innovate</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300 text-center">
-                  Participate in hackathons, research projects, and collaborative initiatives to push AI boundaries.
-                </p>
-              </CardContent>
-            </Card>
-            <Card className="bg-gray-900 border-2 border-gray-700 hover:border-buttercup transition-colors">
-              <CardHeader className="text-center">
-                <Calendar className="h-12 w-12 text-crocus mx-auto mb-4" />
-                <CardTitle className="text-white">Engage</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-300 text-center">
-                  Regular meetups, guest lectures, and social events to build lasting connections in the AI community.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+     {/* What We're About Section */}
+<section className="py-12 sm:py-20 bg-soot-glue">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center mb-12 sm:mb-16">
+      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">What We're About</h2>
+      <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4 sm:px-0">
+        A student-driven organization at Linnaeus University focused on advancing AI knowledge, fostering
+        innovation, and connecting enthusiasts
+      </p>
+    </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+      <Card className="bg-gray-900 border-2 border-gray-700 transition-colors">
+        <CardHeader className="text-center">
+          <Brain className="h-12 w-12 text-crocus mx-auto mb-4" />
+          <CardTitle className="text-white">Learn</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-gray-300 text-center">
+            Workshops, seminars, and hands-on sessions covering machine learning, deep learning, and AI
+            applications.
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-gray-900 border-2 border-gray-700 transition-colors">
+        <CardHeader className="text-center">
+          <Users className="h-12 w-12 text-ivy mx-auto mb-4" />
+          <CardTitle className="text-white">Connect</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-gray-300 text-center">
+            Network with like-minded students, researchers, and industry professionals in the AI field.
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-gray-900 border-2 border-gray-700 transition-colors">
+        <CardHeader className="text-center">
+          <Zap className="h-12 w-12 text-azalea mx-auto mb-4" />
+          <CardTitle className="text-white">Innovate</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-gray-300 text-center">
+            Participate in hackathons, research projects, and collaborative initiatives to push AI boundaries.
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-gray-900 border-2 border-gray-700 transition-colors">
+        <CardHeader className="text-center">
+          <Calendar className="h-12 w-12 text-crocus mx-auto mb-4" />
+          <CardTitle className="text-white">Engage</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="text-gray-300 text-center">
+            Regular meetups, guest lectures, and social events to build lasting connections in the AI community.
+          </p>
+        </CardContent>
+      </Card>
+    </div>
+  </div>
+</section>
+
 
       {/* Quick Links Section */}
       <section className="py-12 sm:py-20 bg-gray-800">

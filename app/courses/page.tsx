@@ -5,11 +5,14 @@ import { Clock, Users, BookOpen, Star, ExternalLink, Calendar, Globe } from "luc
 import Image from "next/image"
 import Link from "next/link"
 import { MobileNav } from "@/components/mobile-nav"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import {  Brain, Zap, ArrowRight, Newspaper, Settings } from "lucide-react"
+
 
 export default function Courses() {
   return (
     <div className="min-h-screen bg-soot-glue text-white">
-      {/* Navigation */}
+       {/* Navigation */}
       <nav className="bg-soot-glue border-b border-gray-700 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -39,13 +42,30 @@ export default function Courses() {
               <Link href="/news" className="text-white hover:text-buttercup transition-colors">
                 News
               </Link>
-              <Link
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button className="bg-buttercup hover:bg-yellow-400 text-soot-glue font-semibold">Join Us</Button>
-              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="text-white hover:text-buttercup hover:bg-gray-800">
+                    <Settings className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-gray-900 border-gray-700">
+                  <DropdownMenuItem asChild className="cursor-pointer">
+                    <a
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-white hover:text-buttercup w-full"
+                    >
+                      Join Us
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild className="cursor-pointer">
+                    <Link href="/documents" className="text-white hover:text-buttercup w-full">
+                      Documents
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
             <MobileNav currentPath="/" />
           </div>

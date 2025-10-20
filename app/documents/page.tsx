@@ -11,7 +11,7 @@ import { Calendar, Users, Brain, Zap, BookOpen, Newspaper, Settings } from "luci
 
 export default function DocumentsArchive() {
   return (
-    <div className="min-h-screen bg-soot-glue">
+    <div className="min-h-screen bg-soot-glue flex flex-col">
       {/* Navigation */}
       <nav className="bg-soot-glue border-b border-gray-700 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -60,7 +60,7 @@ export default function DocumentsArchive() {
       </section>
 
       {/* Content Section */}
-      <section className="py-12 sm:py-20">
+      <section className="py-12 sm:py-20 flex-grow">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="bg-gray-900 border-2 border-gray-700 mb-8">
             <CardContent className="p-8">
@@ -96,7 +96,7 @@ export default function DocumentsArchive() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black py-12 mt-20">
+      <footer className="bg-black py-12 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
             <div className="flex justify-center md:justify-start w-full md:w-auto">

@@ -69,7 +69,7 @@ export function MobileNav({ currentPath }: MobileNavProps) {
                   className="w-full justify-start text-white hover:text-buttercup hover:bg-gray-800"
                 >
                   <Settings className="h-5 w-5 mr-2" />
-                  Settings
+                  
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="start" className="bg-gray-900 border-gray-700 w-56">

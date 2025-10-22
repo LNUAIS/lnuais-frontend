@@ -7,34 +7,19 @@ import Link from "next/link"
 import { MobileNav } from "@/components/mobile-nav"
 
 export default function DocumentsList() {
-const bylaws = {
-  title: "Bylaws of LNU AI Society",
-  description: "Official bylaws governing the LNU AI Society",
-  date: "2025-01-15",
-  path: "/documents/BylawsofLNUAISociety.pdf", 
-}
+  const bylaws = {
+    title: "Bylaws of LNU AI Society",
+    description: "Official bylaws governing the LNU AI Society",
+    date: "2025-01-15",
+    path: "/documents/BylawsofLNUAISociety.pdf", 
+  }
 
-
-  const meetingDocuments = [
-    {
-      title: "Annual General Meeting 2025",
-      description: "Minutes from the 2025 Annual General Meeting",
-      date: "2025-03-20",
-      path: "/documents/meetings/agm-2025.pdf",
-    },
-    {
-      title: "Board Meeting - January 2025",
-      description: "Minutes from the January 2025 board meeting",
-      date: "2025-01-10",
-      path: "/documents/meetings/board-jan-2025.pdf",
-    },
-    {
-      title: "Board Meeting - February 2025",
-      description: "Minutes from the February 2025 board meeting",
-      date: "2025-02-14",
-      path: "/documents/meetings/board-feb-2025.pdf",
-    },
-  ]
+  const annualMeetingAgenda = {
+    title: "Annual Meeting Agenda 2025",
+    description: "Agenda for the 2025 Annual General Meeting",
+    date: "2025-03-20",
+    path: "/documents/Agenda.pdf",
+  }
 
   return (
     <div className="min-h-screen bg-soot-glue flex flex-col">
@@ -94,78 +79,61 @@ const bylaws = {
         </div>
       </section>
 
-      {/* Bylaws Section */}
+      {/* Documents Section */}
       <section className="py-12 flex-grow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">Statutory Documents</h2>
-          <Card className="bg-gray-900 border-2 border-gray-700 hover:border-buttercup transition-colors">
-            <CardHeader>
-              <div className="flex items-start justify-between">
-                <div className="flex items-start space-x-4">
-                  <FileText className="h-8 w-8 text-buttercup mt-1" />
-                  <div>
-                    <CardTitle className="text-white text-xl mb-2">{bylaws.title}</CardTitle>
-                    <p className="text-gray-300">{bylaws.description}</p>
-                    <div className="flex items-center text-gray-400 text-sm mt-2">
-                      <Calendar className="h-4 w-4 mr-2" />
-                      <span>Latest Revision: Wednesday, May 14, 2025</span>
-                    </div>
-                  </div>
-                </div>
-                <Button
-                  size="sm"
-                  className="bg-buttercup hover:bg-yellow-400 text-soot-glue font-semibold"
-                  onClick={() => window.open(bylaws.path, "_blank")}
-                >
-                  <Download className="h-4 w-4 mr-2" />
-                  Download
-                </Button>
-              </div>
-            </CardHeader>
-          </Card>
-        </div>
-      </section>
-
-      {/* Meeting Documents Section 
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-6">Meeting Documents</h2>
           <div className="space-y-4">
-            {meetingDocuments.map((doc, index) => (
-              <Card
-                key={index}
-                className="bg-gray-900 border-2 border-gray-700 hover:border-buttercup transition-colors"
-              >
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start space-x-4">
-                      <FileText className="h-6 w-6 text-crocus mt-1" />
-                      <div>
-                        <h3 className="text-white text-lg font-semibold mb-1">{doc.title}</h3>
-                        <p className="text-gray-300 text-sm mb-2">{doc.description}</p>
-                        <div className="flex items-center text-gray-400 text-sm">
-                          <Calendar className="h-4 w-4 mr-2" />
-                          <span>{new Date(doc.date).toLocaleDateString()}</span>
-                        </div>
+            <Card className="bg-gray-900 border-2 border-gray-700 hover:border-buttercup transition-colors">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex items-start space-x-4">
+                    <FileText className="h-8 w-8 text-buttercup mt-1" />
+                    <div>
+                      <CardTitle className="text-white text-xl mb-2">{bylaws.title}</CardTitle>
+                      <p className="text-gray-300">{bylaws.description}</p>
+                      <div className="flex items-center text-gray-400 text-sm mt-2">
+                        <Calendar className="h-4 w-4 mr-2" />
+                        <span>Latest Revision: Wednesday, October 21, 2025</span>
                       </div>
                     </div>
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="border-buttercup text-buttercup hover:bg-buttercup hover:text-soot-glue bg-transparent"
-                      onClick={() => window.open(doc.path, "_blank")}
-                    >
-                      <Download className="h-4 w-4 mr-2" />
-                      Download
-                    </Button>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                  <Button
+                    size="sm"
+                    className="bg-buttercup hover:bg-yellow-400 text-soot-glue font-semibold"
+                    onClick={() => window.open(bylaws.path, "_blank")}
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Download
+                  </Button>
+                </div>
+              </CardHeader>
+            </Card>
+
+            <Card className="bg-gray-900 border-2 border-gray-700 hover:border-buttercup transition-colors">
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <div className="flex items-start space-x-4">
+                    <FileText className="h-8 w-8 text-buttercup mt-1" />
+                    <div>
+                      <CardTitle className="text-white text-xl mb-2">{annualMeetingAgenda.title}</CardTitle>
+                      <p className="text-gray-300">{annualMeetingAgenda.description}</p>                      
+                    </div>
+                  </div>
+                  <Button
+                    size="sm"
+                    className="bg-buttercup hover:bg-yellow-400 text-soot-glue font-semibold"
+                    onClick={() => window.open(annualMeetingAgenda.path, "_blank")}
+                  >
+                    <Download className="h-4 w-4 mr-2" />
+                    Download
+                  </Button>
+                </div>
+              </CardHeader>
+            </Card>
           </div>
         </div>
       </section>
-      */}
 
       {/* Footer */}
       <footer className="bg-black py-12 mt-auto">

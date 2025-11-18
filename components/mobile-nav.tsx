@@ -27,13 +27,6 @@ export function MobileNav({ currentPath }: MobileNavProps) {
       {isOpen && (
         <div className="absolute top-16 left-0 right-0 bg-soot-glue border-b border-gray-700 py-4 px-4 space-y-4 z-50">
           <Link
-            href="/"
-            className="block text-white hover:text-buttercup transition-colors"
-            onClick={() => setIsOpen(false)}
-          >
-            Home
-          </Link>
-          <Link
             href="/about"
             className="block text-white hover:text-buttercup transition-colors"
             onClick={() => setIsOpen(false)}
@@ -62,39 +55,13 @@ export function MobileNav({ currentPath }: MobileNavProps) {
             News
           </Link>
           <div className="pt-2 border-t border-gray-700">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="w-full justify-start text-white hover:text-buttercup hover:bg-gray-800"
-                >
-                  <Settings className="h-5 w-5 mr-2" />
-                  
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="start" className="bg-gray-900 border-gray-700 w-56">
-                <DropdownMenuItem asChild className="cursor-pointer">
-                  <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white hover:text-buttercup w-full"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Join Us
-                  </a>
-                </DropdownMenuItem>
-                <DropdownMenuItem asChild className="cursor-pointer">
-                  <Link
-                    href="/documents"
-                    className="text-white hover:text-buttercup w-full"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Documents
-                  </Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <Link 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header"
+                target="_blank"
+                className="inline-block px-4 py-1.5 text-white border-2 border-[#FFE000] bg-[#232326] rounded-2xl transition-colors duration-300 hover:text-[#FFE000]"
+              >
+                Join Us
+              </Link>
           </div>
         </div>
       )}

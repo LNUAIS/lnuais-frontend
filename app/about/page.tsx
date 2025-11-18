@@ -26,9 +26,6 @@ export default function About() {
               <span className="text-xl font-bold text-white">LNU AI Society</span>
             </Link>
             <div className="hidden md:flex items-center space-x-8">
-              <Link href="/" className="text-white hover:text-buttercup transition-colors font-medium">
-                Home
-              </Link>
               <Link href="/about" className="text-white hover:text-buttercup transition-colors">
                 About
               </Link>
@@ -41,30 +38,13 @@ export default function About() {
               <Link href="/news" className="text-white hover:text-buttercup transition-colors">
                 News
               </Link>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="text-white hover:text-buttercup hover:bg-gray-800">
-                    <Settings className="h-5 w-5" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="bg-gray-900 border-gray-700">
-                  <DropdownMenuItem asChild className="cursor-pointer">
-                    <a
-                      href="https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-white hover:text-buttercup w-full"
-                    >
-                      Join Us
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild className="cursor-pointer">
-                    <Link href="/documents" className="text-white hover:text-buttercup w-full">
-                      Documents
-                    </Link>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <Link 
+                href="https://docs.google.com/forms/d/e/1FAIpQLSdpGScG5keRrPnXk3q-qDLXzQoC4Ij8i4bUT7ir-KTeFB4m4A/viewform?usp=header"
+                target="_blank"
+                className="inline-block px-4 py-1.5 text-white border-2 border-[#FFE000] bg-[#232326] rounded-2xl transition-colors duration-300 hover:text-[#FFE000]"
+              >
+                Join Us
+              </Link>
             </div>
             <MobileNav currentPath="/" />
           </div>

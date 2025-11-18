@@ -315,6 +315,72 @@ export default function About() {
                 </div>
               </CardContent>
             </Card>
+            {/* Kemal */}
+            <Card className="bg-gray-900 border-2 border-gray-700 hover:border-buttercup transition-colors text-center">
+              <CardHeader>
+                <div className="w-24 h-24 bg-azalea rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-soot-glue">KC</span>
+                </div>
+                <CardTitle className="text-white">Kemal Cikota</CardTitle>
+                <CardDescription className="text-gray-400">Head of Business Relations</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 mb-4">Managing partnerships and external business relationships.</p>
+                <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-3">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="p-2 bg-transparent border-gray-600 text-gray-300 hover:bg-gray-800"
+                    asChild
+                  >
+                    <a href="mailto:kemal@lnuais.com">Email</a>
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="p-2 bg-transparent border-gray-600 text-gray-300 hover:bg-gray-800"
+                    asChild
+                  >
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                      LinkedIn
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+            {/* Armin */}
+            <Card className="bg-gray-900 border-2 border-gray-700 hover:border-buttercup transition-colors text-center">
+              <CardHeader>
+                <div className="w-24 h-24 bg-azalea rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl font-bold text-soot-glue">AG</span>
+                </div>
+                <CardTitle className="text-white">Armin Coco Grbovic</CardTitle>
+                <CardDescription className="text-gray-400">Treasurer</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-gray-300 mb-4">Managing finances, budgets, and financial planning.</p>
+                <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-3">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="p-2 bg-transparent border-gray-600 text-gray-300 hover:bg-gray-800"
+                    asChild
+                  >
+                    <a href="mailto:armin@lnuais.com">Email</a>
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="p-2 bg-transparent border-gray-600 text-gray-300 hover:bg-gray-800"
+                    asChild
+                  >
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                      LinkedIn
+                    </a>
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>

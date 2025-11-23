@@ -41,7 +41,7 @@ p {
 }
 
 .hero p {
-  max-width: 75ch;
+  max-width: 85ch;
   font-size: 24px;
   font-weight: 500;
   margin: 0 auto; /* centers horizontally */
@@ -291,4 +291,168 @@ footer p {
   position: relative;
   filter: brightness(0) invert(1);
   top: 0.2rem;
+}
+
+/*signup card*/
+.signup-card {
+  max-width: 83rem;
+}
+
+.signup-form {
+  margin-top: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #fcfbf8;
+  font-weight: 500;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #404040;
+  background-color: #2a2a2e;
+  color: #fcfbf8;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+  outline: none;
+  border-color: #ffe000;
+}
+
+small {
+  display: block;
+  margin-top: 0.25rem;
+  color: #a0a0a0;
+  font-size: 0.8rem;
+}
+
+.radio-group {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.radio-option input[type="radio"] {
+  margin: 0;
+  margin-right: 0.5rem;
+}
+
+.radio-label {
+  color: #fcfbf8;
+}
+
+.checkbox-group {
+  margin-top: 1.5rem;
+}
+
+.checkbox-option {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+}
+
+.checkbox-option input[type="checkbox"] {
+  margin: 0;
+  margin-right: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.checkbox-label {
+  color: #fcfbf8;
+  line-height: 1.4;
+}
+
+.full-width {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.signup-footer {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #404040;
+}
+
+.signup-footer p {
+  margin: 0;
+}
+
+.link {
+  color: #ffe000;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: #fdecb2;
+  text-decoration: underline;
+}
+
+.signup-form button[type="submit"] {
+  border: 1px solid #404040;
+  background-color: #2a2a2e;
+  color: #fcfbf8;
+  border-radius: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Inter", sans-serif;
+}
+
+.signup-form button[type="submit"]:hover {
+  background-color: #ffe000;
+  color: #232326;
+}
+
+input[type="password"] {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #404040;
+  background-color: #2a2a2e;
+  color: #fcfbf8;
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input[type="password"]:focus {
+  outline: none;
+  border-color: #ffe000;
 }

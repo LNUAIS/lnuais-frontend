@@ -38,75 +38,37 @@
       </div>
 
       <div class="card signup-card">
-        <h2>Create Your Account</h2>
-        <p>
-          Fill in your details to join our community and start your AI journey.
-        </p>
+        <h2>Reset Your Password</h2>
 
         <form class="signup-form">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="firstName">First Name</label>
-              <input type="text" id="firstName" name="firstName" required />
-            </div>
-            <div class="form-group">
-              <label for="lastName">Last Name</label>
-              <input type="text" id="lastName" name="lastName" required />
-            </div>
-          </div>
-
           <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" required />
-            <small
-              >We'll use this to send you updates and event invitations</small
-            >
+            <small>The email address you entered when registering.</small>
+          </div>
+
+          <!--NOTE: we should probably assign ID's like new-password and new-password-confirm, etc. here-->
+          <div class="form-group">
+            <label for="password">New Password</label>
+            <input type="password" id="password" name="password" required />
+            <small>Enter your new password.</small>
           </div>
 
           <div class="form-group">
-            <label for="programme">Programme</label>
-            <input type="text" id="programme" name="programme" required />
-            <small>Helps us verify you're a student at LNU</small>
-          </div>
-
-          <div class="form-group">
-            <label for="experience">AI/ML Experience Level</label>
-            <div class="radio-group">
-              <label class="radio-option">
-                <input type="radio" name="experience" value="beginner" />
-                <span class="radio-label">Beginner</span>
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="experience" value="intermediate" />
-                <span class="radio-label">Intermediate</span>
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="experience" value="advanced" />
-                <span class="radio-label">Advanced</span>
-              </label>
-            </div>
-          </div>
-
-          <div class="form-group checkbox-group">
-            <label class="checkbox-option">
-              <input type="checkbox" name="terms" required />
-              <span class="checkbox-label"
-                >I agree to the
-                <a href="#" class="link">Terms of Service</a> and
-                <a href="#" class="link">Privacy Policy</a></span
-              >
-            </label>
+            <label for="password">Confirm Password</label>
+            <input type="password" id="password" name="password" required />
+            <small>Confirm your new password.</small>
           </div>
 
           <button type="submit" class="primary full-width">
-            Join The Community
+            Reset My Password
           </button>
         </form>
 
         <div class="signup-footer">
-          <p>
-            Already have an account?
-            <a href="signin.html" class="link">Sign in here</a>
+          <p> Re-read our
+            <a href="#" class="link">Terms of Service</a> and
+            <a href="#" class="link">Privacy Policy</a></span
           </p>
         </div>
       </div>

@@ -171,3 +171,13 @@ body {
   color: #232326;
   border-color: #ffe000;
 }
+
+.course-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  vertical-align: middle;
+  position: relative;
+  top: -0.14rem; /*because of some wierd spacing issues*/
+  filter: brightness(0) invert(1);
+  opacity: 50%;
+}

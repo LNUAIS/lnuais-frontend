@@ -122,3 +122,12 @@ body {
   color: #232326;
   border-color: #ffe000;
 }
+
+.event-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  vertical-align: middle;
+  position: relative;
+  top: -0.14rem; /*because of some wierd spacing issues*/
+  color: #ffe000;
+}

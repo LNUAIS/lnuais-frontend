@@ -15,8 +15,7 @@ body {
   background-attachment: scroll;
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
-
-  background-color: black;
+  background-color: #232326;
 }
 
 h1,
@@ -208,7 +207,7 @@ p {
 
 .navbar {
   display: flex;
-  background: #232326aa;
+  background: #1c1c1caa;
   border-color: #232326aa;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);

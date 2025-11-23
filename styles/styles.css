@@ -9,14 +9,14 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100vh;
-  background-color: #1c1c1c;
-  background-image: url("../images/background-taller-grain.png");
-  background-size: 100% auto;
-  background-position: top center;
+  background: linear-gradient(to bottom right, #ffe000, #fdecb2, #ffe000);
   background-repeat: no-repeat;
+  background-position: top center;
   background-attachment: scroll;
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
+
+  background-color: black;
 }
 
 h1,
@@ -24,7 +24,7 @@ h2,
 h3,
 h4,
 p {
-  color: #1c1c1c;
+  color: #232326;
 }
 
 .container {
@@ -54,11 +54,10 @@ p {
   padding-left: 2rem;
   padding-right: 2rem;
   padding-bottom: 2rem;
-  margin-top: 10rem;
-  position: center;
+  margin-top: 5rem;
   max-width: 83rem;
   border-radius: 1.5rem;
-  background-color: #1e1e1e;
+  background-color: #232326;
   filter: drop-shadow(0 0 3rem #111111aa);
 }
 
@@ -91,7 +90,7 @@ p {
   flex: 1;
   min-width: 10rem;
   padding: 1.5rem;
-  background-color: #2a2a2a;
+  background-color: #2a2a2e;
   border-radius: 1rem;
   line-height: 1.4;
   border-style: solid;
@@ -120,21 +119,21 @@ p {
   cursor: pointer;
   transform: scale(1.002);
   filter: drop-shadow(0 0 1rem #111111);
-  border-color: #ffe000;
+  border-color: #5d4fb1;
 }
 
 .link-cards-2:hover {
   cursor: pointer;
   transform: scale(1.002);
   filter: drop-shadow(0 0 1rem #111111);
-  border-color: #cd1a3d;
+  border-color: #007340;
 }
 
 .link-cards-3:hover {
   cursor: pointer;
   transform: scale(1.002);
   filter: drop-shadow(0 0 1rem #111111);
-  border-color: #5b2a86;
+  border-color: #a62186;
 }
 
 .card-icon {
@@ -165,7 +164,7 @@ p {
 }
 
 .cta .primary {
-  background-color: #1c1c1c;
+  background-color: #232326;
   color: #fcfbf8;
   /*sliding arrow animation setup*/
   transition: 0.3s ease;
@@ -189,8 +188,8 @@ p {
 
 .cta .secondary {
   background-color: transparent;
-  color: #1c1c1c;
-  border-color: #1c1c1c;
+  color: #232326;
+  border-color: #232326;
   border-style: solid;
   border-width: 5px;
   transition: 0.3s ease;
@@ -202,15 +201,15 @@ p {
 }
 
 .secondary:hover {
-  background-color: #1c1c1c;
+  background-color: #232326;
   color: #fcfbf8;
   cursor: pointer;
 }
 
 .navbar {
   display: flex;
-  background: #1c1c1caa;
-  border-color: #1c1c1caa;
+  background: #232326aa;
+  border-color: #232326aa;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   width: 100%;
@@ -255,17 +254,12 @@ p {
   transition: 0.3s ease;
 }
 
-p:hover .highlight {
-  color: #ffe000;
-  background-color: #1c1c1c;
-}
-
 footer {
   margin: auto;
   display: flex;
   padding: 0 4rem;
   color: #fcfbf8;
-  background: #1c1c1c;
+  background: #232326;
   position: center;
   max-width: 85rem;
   border-radius: 1.5rem 1.5rem 0 0;

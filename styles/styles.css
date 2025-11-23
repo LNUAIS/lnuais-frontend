@@ -207,8 +207,8 @@ p {
 
 .navbar {
   display: flex;
-  background: #1c1c1caa;
-  border-color: #232326aa;
+  background: #111111aa;
+  border-color: #111111aa;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   width: 100%;
@@ -219,7 +219,7 @@ p {
   position: fixed;
   z-index: 999;
   border-style: solid;
-  border-bottom-color: #505050;
+  border-bottom-color: #303030;
   border-width: 1px;
 }
 
@@ -258,7 +258,7 @@ footer {
   display: flex;
   padding: 0 4rem;
   color: #fcfbf8;
-  background: #232326;
+  background: #111111;
   position: center;
   max-width: 85rem;
   border-radius: 1.5rem 1.5rem 0 0;
@@ -273,11 +273,12 @@ footer {
 
 footer h3,
 footer p {
-  color: #fcfbf8;
+  color: #ffe000;
   margin: 0; /*reset once again*/
 }
 
 footer p {
+  color: #fcfbf8;
   display: flex;
   align-items: center;
   gap: 0.5rem;

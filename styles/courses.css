@@ -1,0 +1,173 @@
+body {
+  background: #232326;
+}
+
+.courses-hero {
+  text-align: center;
+  padding-top: 7rem;
+  padding-bottom: 3rem;
+}
+
+.courses-hero h1 {
+  font-size: 70px;
+  font-weight: 700;
+  color: #fcfbf8;
+  margin-bottom: 1rem;
+}
+
+.courses-hero p {
+  font-size: 24px;
+  font-weight: 500;
+  color: #b0b0b0;
+  max-width: 75ch;
+  margin: 0 auto;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 83rem;
+  margin: 0 auto 4rem;
+}
+
+.course-card {
+  background-color: #2a2a2e;
+  border: 1px solid #404040;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 3rem #111111aa);
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.course-level {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0;
+  width: fit-content;
+}
+
+.course-level.bachelor {
+  background-color: #5d4fb1;
+  color: #fcfbf8;
+}
+
+.course-level.master {
+  background-color: #007340;
+  color: #fcfbf8;
+}
+
+.course-language {
+  color: #b0b0b0;
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.course-card h3 {
+  color: #fcfbf8;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+}
+
+.course-description {
+  color: #b0b0b0;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 0 1.5rem 0;
+  flex-grow: 1;
+}
+
+.course-details {
+  margin-bottom: 1.5rem;
+}
+
+.course-info {
+  color: #808080;
+  font-size: 14px;
+  margin: 0.4rem 0;
+}
+
+.course-button {
+  background-color: transparent;
+  color: #fcfbf8;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid #404040;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.course-button:hover {
+  background-color: #ffe000;
+  color: #232326;
+  border-color: #ffe000;
+}
+
+.divider {
+  max-width: 83rem;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #ffe00044, transparent);
+  margin: 5rem auto;
+}
+
+.important-note {
+  max-width: 83rem;
+  margin: 0 auto 0rem;
+  text-align: center;
+  background-color: #2a2a2e;
+  border: 1px solid #404040;
+  border-radius: 1rem;
+  padding: 2.5rem 2rem;
+}
+
+.important-note h2 {
+  color: #ffe000;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+}
+
+.important-note p {
+  color: #b0b0b0;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+}
+
+.portal-button {
+  display: inline-block;
+  background-color: transparent;
+  color: #fcfbf8;
+  text-decoration: none;
+  border: 1px solid #404040;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.portal-button:hover {
+  background-color: #ffe000;
+  color: #232326;
+  border-color: #ffe000;
+}

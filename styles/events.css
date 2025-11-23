@@ -1,0 +1,124 @@
+body {
+  background: #232326 !important;
+}
+
+.about-hero {
+  text-align: center;
+  padding-top: 7rem;
+  padding-bottom: 3rem;
+}
+
+.about-hero h1 {
+  font-size: 70px;
+  font-weight: 700;
+  color: #fcfbf8;
+  margin-bottom: 1rem;
+}
+
+.about-hero p {
+  font-size: 24px;
+  font-weight: 500;
+  color: #b0b0b0;
+  max-width: 75ch;
+  margin: 0 auto;
+}
+
+.divider {
+  max-width: 83rem;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #ffe00044, transparent);
+  margin: 5rem auto;
+}
+
+.events-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 83rem;
+  margin: 0 auto;
+}
+
+.event-card {
+  background-color: #2a2a2e;
+  border: 1px solid #404040;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  gap: 1.5rem;
+  filter: drop-shadow(0 0 3rem #111111aa);
+}
+
+.event-date {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ffe000, #ffd700);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  min-width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+}
+
+.date-day {
+  font-size: 28px;
+  font-weight: 700;
+  color: #232326;
+  line-height: 1;
+}
+
+.date-month {
+  font-size: 14px;
+  font-weight: 600;
+  color: #232326;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.event-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-content h3 {
+  color: #fcfbf8;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+}
+
+.event-time {
+  color: #ffe000;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 1rem 0;
+}
+
+.event-description {
+  color: #b0b0b0;
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 0 1.5rem 0;
+  flex-grow: 1;
+}
+
+.event-button {
+  background-color: transparent;
+  color: #fcfbf8;
+  border: 1px solid #404040;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: flex-start;
+}
+
+.event-button:hover {
+  background-color: #ffe000;
+  color: #232326;
+  border-color: #ffe000;
+}

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+    
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+      /* Dashboard specific styles */
+      .dashboard-container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        text-align: center;
+      }
+      .profile-pic {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+        border: 4px solid #f0f0f0;
+        object-fit: cover;
+      }
+      .welcome-text {
+        font-size: 2rem;
+        color: #333;
+        margin-bottom: 10px;
+      }
+      .user-email {
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 1.1rem;
+      }
+      .logout-btn {
+        background-color: #ff4b4b;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+        margin-top: 20px;
+      }
+      .logout-btn:hover {
+        background-color: #e04141;
+      }
+      .info-box {
+        margin-top: 20px; 
+        padding: 20px; 
+        background: #f9f9f9; 
+        border-radius: 8px;
+        text-align: left;
+      }
+    </style>
+
+    <title>Dashboard - LNU AI Society</title>
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <a href="/">
+        <img src="/images/logo.png" alt="Logo" class="logo" />
+      </a>
+      <ul class="menu">
+        <li class="item"><a href="events.html">Events</a></li>
+        <li class="item"><a href="courses.html">Courses</a></li>
+        <li class="item"><a href="news.html">News</a></li>
+        <li class="item"><a href="about.html">About</a></li>
+        </ul>
+    </nav>
+
+    <div id="loading" style="text-align:center; margin-top:100px;">
+        <h2>Verifying session...</h2>
+    </div>
+
+    <div id="dashboardContent" class="dashboard-container" style="display:none;">
+      <img id="profilePic" src="" alt="Profile" class="profile-pic" />
+      
+      <h1 class="welcome-text">Welcome, <span id="userName">User</span>!</h1>
+      <p class="user-email" id="userEmail">email@example.com</p>
+      
+      <div class="info-box">
+          <h3>Your Membership Status</h3>
+          <p><strong>Program:</strong> <span id="userProgram">Loading...</span></p>
+          <p><strong>Experience Level:</strong> <span id="userLevel">Loading...</span></p>
+      </div>
+
+      <button onclick="handleLogout()" class="logout-btn">Log Out</button>
+    </div>
+
+    <footer>
+      <h3>LNU AI Society</h3>
+      <div class="footer-items">
+        <p>
+          <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
+            <img src="images/linkedin.svg" alt="" class="footer-icon" />
+          </a>
+          <a href="https://www.instagram.com/lnuaisociety" target="_blank">
+            <img src="images/instagram.svg" alt="" class="footer-icon" />
+          </a>
+          © 2025 LNU AI Society.<br />All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+        // Used to generate a simple avatar if the user doesn't have a Google picture
+        const DEFAULT_AVATAR_URL = "https://ui-avatars.com/api/?background=random&name=";
+
+        async function checkSession() {
+            // 1. Check for Manual Login (Stored in LocalStorage)
+            const storedUser = localStorage.getItem('user');
+            
+            if (storedUser) {
+                console.log("Found manual session");
+                const user = JSON.parse(storedUser);
+                displayUser(user);
+                return;
+            }
+
+            // 2. Check for Google Login (Stored in Backend Cookie)
+            // We try to fetch the profile from the backend. 
+            // If the cookie is valid, the backend gives us the data.
+            try {
+                const response = await fetch('http://localhost:8080/users/profile', {
+                    method: 'GET',
+                    credentials: 'include' // CRITICAL: This sends the Session Cookie to backend
+                });
+
+                if (response.ok) {
+                    console.log("Found Google session");
+                    const googleUserData = await response.json();
+                    
+                    // Normalize Google data to match our manual user structure
+                    const user = {
+                        name: googleUserData.name,
+                        email: googleUserData.email,
+                        picture: googleUserData.picture, // Google sends a picture URL
+                        program: "N/A (Google Login)",
+                        level: "N/A"
+                    };
+                    displayUser(user);
+                } else {
+                    // 3. NO USER FOUND IN EITHER PLACE -> Redirect to Login
+                    console.log("No session found, redirecting...");
+                    window.location.href = "signin.html";
+                }
+            } catch (error) {
+                console.error("Session check failed", error);
+                window.location.href = "signin.html";
+            }
+        }
+
+        function displayUser(user) {
+            // Hide loading, show content
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('dashboardContent').style.display = 'block';
+
+            // Fill HTML with data
+            document.getElementById('userName').textContent = user.name;
+            document.getElementById('userEmail').textContent = user.email;
+            document.getElementById('userProgram').textContent = user.program || "N/A";
+            document.getElementById('userLevel').textContent = user.level || "N/A";
+
+            // Set profile picture
+            if (user.picture) {
+                document.getElementById('profilePic').src = user.picture;
+            } else {
+                // Generate initials avatar
+                document.getElementById('profilePic').src = DEFAULT_AVATAR_URL + user.name;
+            }
+        }
+
+        function handleLogout() {
+            // 1. Clear Local Storage (Manual Login)
+            localStorage.removeItem('user');
+
+            // 2. Clear Backend Cookie (Google Login)
+            // Redirecting to the Spring Security logout endpoint kills the cookie
+            window.location.href = "http://localhost:8080/logout"; 
+        }
+
+        checkSession();
+    </script>
+  </body>
+</html>

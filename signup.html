@@ -8,6 +8,29 @@
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+      
+      .google-btn {
+        background-color: #4285F4;
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px;
+        border-radius: 4px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .google-btn:hover { background-color: #357ae8; }
+      .divider { text-align: center; margin: 10px 0 20px 0; color: #666; font-size: 0.9rem; }
+      
+      .message-box {
+        padding: 10px; margin-bottom: 15px; border-radius: 4px; font-size: 0.9rem; display: none; text-align: center;
+      }
+      .message-box.error { background-color: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; }
     </style>
 
     <title>Sign Up - LNU AI Society</title>
@@ -15,10 +38,7 @@
 
   <body>
     <nav class="navbar">
-      <a href="/">
-        <img src="/images/logo.png" alt="Logo" class="logo" />
-      </a>
-
+      <a href="/"><img src="/images/logo.png" alt="Logo" class="logo" /></a>
       <ul class="menu">
         <li class="item"><a href="events.html">Events</a></li>
         <li class="item"><a href="courses.html">Courses</a></li>
@@ -31,101 +51,105 @@
     <div class="container">
       <div class="hero">
         <h1>Join the LNU AI Society</h1>
-        <p>
-          Become part of our growing community of AI enthusiasts at Linnaeus
-          University.
-          <span class="highlight">Shape the future</span> with us.
-        </p>
+        <p>Become part of our growing community. <span class="highlight">Shape the future</span> with us.</p>
       </div>
 
       <div class="card signup-card">
         <h2>Create Your Account</h2>
-        <p>
-          Fill in your details to join our community and start your AI journey.
-        </p>
+        <a href="http://localhost:8080/oauth2/authorization/google" class="google-btn">Sign up with Google</a>
+        <div class="divider">OR</div>
 
-        <form class="signup-form">
+        <div id="signupMessage" class="message-box"></div>
+
+        <form class="signup-form" id="signupForm">
           <div class="form-row">
-            <div class="form-group">
-              <label for="firstName">First Name</label>
-              <input type="text" id="firstName" name="firstName" required />
-            </div>
-            <div class="form-group">
-              <label for="lastName">Last Name</label>
-              <input type="text" id="lastName" name="lastName" required />
-            </div>
+            <div class="form-group"><label>First Name</label><input type="text" id="firstName" required /></div>
+            <div class="form-group"><label>Last Name</label><input type="text" id="lastName" required /></div>
           </div>
-
           <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required />
-            <small
-              >We'll use this to send you updates and event invitations</small
-            >
+            <label>Email Address</label><input type="email" id="email" required />
+            <small>We'll send a verification code to this email.</small>
           </div>
-
+          <div class="form-group"><label>Password</label><input type="password" id="password" required /></div>
+          <div class="form-group"><label>Programme</label><input type="text" id="programme" required /></div>
+          
           <div class="form-group">
-            <label for="programme">Programme</label>
-            <input type="text" id="programme" name="programme" required />
-            <small>Helps us verify you're a student at LNU</small>
-          </div>
-
-          <div class="form-group">
-            <label for="experience">AI/ML Experience Level</label>
+            <label>AI/ML Experience</label>
             <div class="radio-group">
-              <label class="radio-option">
-                <input type="radio" name="experience" value="beginner" />
-                <span class="radio-label">Beginner</span>
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="experience" value="intermediate" />
-                <span class="radio-label">Intermediate</span>
-              </label>
-              <label class="radio-option">
-                <input type="radio" name="experience" value="advanced" />
-                <span class="radio-label">Advanced</span>
-              </label>
+              <label class="radio-option"><input type="radio" name="experience" value="beginner" required /><span class="radio-label">Beginner</span></label>
+              <label class="radio-option"><input type="radio" name="experience" value="intermediate" /><span class="radio-label">Intermediate</span></label>
+              <label class="radio-option"><input type="radio" name="experience" value="advanced" /><span class="radio-label">Advanced</span></label>
             </div>
           </div>
 
           <div class="form-group checkbox-group">
             <label class="checkbox-option">
-              <input type="checkbox" name="terms" required />
-              <span class="checkbox-label"
-                >I agree to the
-                <a href="#" class="link">Terms of Service</a> and
-                <a href="#" class="link">Privacy Policy</a></span
-              >
+              <input type="checkbox" required />
+              <span class="checkbox-label">I agree to the <a href="#" class="link">Terms</a> and <a href="#" class="link">Privacy Policy</a></span>
             </label>
           </div>
 
-          <button type="submit" class="primary full-width">
-            Join The Community
-          </button>
+          <button type="submit" class="primary full-width" id="signupBtn">Join The Community</button>
         </form>
 
         <div class="signup-footer">
-          <p>
-            Already have an account?
-            <a href="signin.html" class="link">Sign in here</a>
-          </p>
+          <p>Already have an account? <a href="signin.html" class="link">Sign in here</a></p>
         </div>
       </div>
     </div>
 
-    <footer>
-      <h3>LNU AI Society</h3>
-      <div class="footer-items">
-        <p>
-          <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
-            <img src="images/linkedin.svg" alt="" class="footer-icon" />
-          </a>
-          <a href="https://www.instagram.com/lnuaisociety" target="_blank">
-            <img src="images/instagram.svg" alt="" class="footer-icon" />
-          </a>
-          © 2025 LNU AI Society.<br />All rights reserved.
-        </p>
-      </div>
-    </footer>
+    <script>
+      document.getElementById('signupForm').addEventListener('submit', async function(e) {
+        e.preventDefault(); 
+        
+        const btn = document.getElementById('signupBtn');
+        const msgBox = document.getElementById('signupMessage');
+        btn.textContent = "Creating Account...";
+        btn.disabled = true;
+        msgBox.style.display = 'none';
+
+        const firstName = document.getElementById('firstName').value;
+        const lastName = document.getElementById('lastName').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const programme = document.getElementById('programme').value;
+        const experienceInput = document.querySelector('input[name="experience"]:checked').value;
+
+        let backendLevel = "LOW";
+        if (experienceInput === "intermediate") backendLevel = "MID";
+        if (experienceInput === "advanced") backendLevel = "HIGH";
+
+        try {
+            const response = await fetch('http://localhost:8080/users/new_member', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name: firstName + " " + lastName,
+                    email: email,
+                    password: password,
+                    program: programme,
+                    level: backendLevel
+                })
+            });
+
+            if (response.ok) {
+                // SUCCESS: Save email to memory so verify.html knows who it is
+                localStorage.setItem('pendingEmail', email);
+                // Redirect to the new page
+                window.location.href = "verify.html";
+            } else {
+                throw new Error("Email likely already taken.");
+            }
+        } catch (error) {
+            msgBox.textContent = "Error: " + error.message;
+            msgBox.className = 'message-box error';
+            msgBox.style.display = 'block';
+            btn.textContent = "Join The Community";
+            btn.disabled = false;
+        }
+      });
+    </script>
+    
+    <script src="scripts/navbar.js"></script>
   </body>
 </html>

@@ -8,9 +8,54 @@
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+      
+      /* Google Button Styles */
+      .google-btn {
+        background-color: #4285F4;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        text-decoration: none;
+        padding: 12px;
+        border-radius: 4px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        border: none;
+        width: 100%;
+        box-sizing: border-box;
+        transition: background-color 0.2s;
+      }
+      .google-btn:hover {
+        background-color: #357ae8;
+      }
+      .google-icon {
+        width: 20px;
+        height: 20px;
+        background-color: white;
+        border-radius: 50%;
+        padding: 2px;
+      }
+
+      .divider {
+        text-align: center;
+        margin: 10px 0 20px 0;
+        color: #666;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+      .divider::before, .divider::after {
+        content: "";
+        flex: 1;
+        border-bottom: 1px solid #ddd;
+      }
     </style>
 
-    <title>Sign Up - LNU AI Society</title>
+    <title>Sign In - LNU AI Society</title>
   </head>
 
   <body>
@@ -30,18 +75,23 @@
 
     <div class="container">
       <div class="hero">
-        <h1>Join the LNU AI Society</h1>
+        <h1>Welcome Back</h1>
         <p>
-          Become part of our growing community of AI enthusiasts at Linnaeus
-          University.
-          <span class="highlight">Shape the future</span> with us.
+          Sign in to access your dashboard and continue your journey with the 
+          <span class="highlight">LNU AI Society</span>.
         </p>
       </div>
 
       <div class="card signup-card">
         <h2>Sign in to Your Account</h2>
 
-        <form class="signup-form">
+        <a href="http://localhost:8080/oauth2/authorization/google" class="google-btn">
+            Sign in with Google
+        </a>
+
+        <div class="divider">OR</div>
+
+        <form class="signup-form" id="signinForm">
           <div class="form-group">
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" required />
@@ -80,5 +130,62 @@
         </p>
       </div>
     </footer>
+
+    <script>
+    // Inside signin.html <script> tag
+
+document.getElementById('signinForm').addEventListener('submit', async function(e) {
+    e.preventDefault(); 
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const submitBtn = this.querySelector('button[type="submit"]');
+    
+    submitBtn.textContent = "Signing in...";
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch('http://localhost:8080/users/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email, password: password })
+        });
+
+        if (response.ok) {
+            // SUCCESS LOGIN
+            const user = await response.json();
+            localStorage.setItem('user', JSON.stringify(user));
+            window.location.href = "dashboard.html";
+        } else {
+            // ERROR HANDLING
+            const errorData = await response.json();
+            const errorMessage = errorData.message || "Login failed"; // Spring Boot usually sends JSON error
+
+            // 1. CHECK FOR SPECIFIC UNVERIFIED ERROR
+            // Note: Spring Boot defaults might wrap the message. 
+            // We check if the text contains our specific keyword.
+            if (errorMessage.includes("UNVERIFIED_ACCOUNT")) {
+                alert("Your account is not verified yet. We have sent a new code to your email.");
+                
+                // Save email for the next page
+                localStorage.setItem('pendingEmail', email);
+                
+                // Redirect to verify page
+                window.location.href = "verify.html";
+            } else {
+                alert("Error: " + errorMessage);
+                submitBtn.textContent = "Sign In";
+                submitBtn.disabled = false;
+            }
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        // Fallback for network errors or non-JSON responses
+        alert("Could not connect to server. Please check your connection.");
+        submitBtn.textContent = "Sign In";
+        submitBtn.disabled = false;
+    }
+});
+    </script>
   </body>
 </html>

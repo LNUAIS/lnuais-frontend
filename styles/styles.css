@@ -456,3 +456,32 @@ input[type="password"]:focus {
   outline: none;
   border-color: #ffe000;
 }
+
+
+/* --- Navbar Profile Styles --- */
+.nav-profile-link {
+    display: flex !important; /* Overrides default block/inline */
+    align-items: center;
+    gap: 10px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: background-color 0.2s;
+}
+
+.nav-profile-link:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.nav-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ddd;
+}
+
+.nav-username {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #333;
+}

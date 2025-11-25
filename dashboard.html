@@ -9,55 +9,85 @@
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-      /* Dashboard specific styles */
-      .dashboard-container {
-        max-width: 800px;
-        margin: 50px auto;
-        padding: 20px;
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        text-align: center;
+      /* --- Dashboard Specific Styles --- */
+      .profile-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
       }
       .profile-pic {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
-        margin-bottom: 20px;
-        border: 4px solid #f0f0f0;
         object-fit: cover;
+        border: 3px solid #eee;
       }
-      .welcome-text {
-        font-size: 2rem;
-        color: #333;
-        margin-bottom: 10px;
-      }
-      .user-email {
-        color: #666;
-        margin-bottom: 30px;
-        font-size: 1.1rem;
-      }
-      .logout-btn {
-        background-color: #ff4b4b;
-        color: white;
-        border: none;
-        padding: 10px 25px;
-        font-size: 1rem;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background 0.3s;
-        margin-top: 20px;
-      }
-      .logout-btn:hover {
-        background-color: #e04141;
-      }
-      .info-box {
-        margin-top: 20px; 
-        padding: 20px; 
-        background: #f9f9f9; 
-        border-radius: 8px;
+      .profile-info h2 { margin: 0; font-size: 1.5rem; }
+      .profile-info p { margin: 5px 0 0; color: #666; }
+
+      .info-grid {
+        display: grid;
+        gap: 15px;
         text-align: left;
       }
+      .info-item {
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 6px;
+      }
+      .info-item label {
+        display: block;
+        font-size: 0.85rem;
+        color: #888;
+        margin-bottom: 5px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      .info-value {
+        font-size: 1.1rem;
+        color: #333;
+        font-weight: 500;
+      }
+
+      /* Edit Inputs */
+      .edit-input {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        box-sizing: border-box;
+      }
+      
+      .action-buttons {
+        margin-top: 30px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      
+      /* FIX: Added !important to ensure this overrides the flex display */
+      .hidden { display: none !important; }
+      
+      /* Notification Box */
+      .alert-box {
+        padding: 10px; margin-bottom: 20px; border-radius: 4px; font-weight: bold; display: none;
+      }
+      .alert-warning { background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+      .alert-success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+      
+      /* Delete Section */
+      .delete-section { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; }
+      .delete-btn { background-color: #fff; color: #dc3545; border: 1px solid #dc3545; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
+      .delete-btn:hover { background-color: #dc3545; color: #fff; }
+
+      /* Modal */
+      .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+      .modal-content { background: white; padding: 30px; border-radius: 8px; width: 400px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+      .modal-actions { margin-top: 20px; display: flex; gap: 10px; justify-content: center; }
     </style>
 
     <title>Dashboard - LNU AI Society</title>
@@ -65,129 +95,306 @@
 
   <body>
     <nav class="navbar">
-      <a href="/">
-        <img src="/images/logo.png" alt="Logo" class="logo" />
-      </a>
+      <a href="/"><img src="/images/logo.png" alt="Logo" class="logo" /></a>
       <ul class="menu">
         <li class="item"><a href="events.html">Events</a></li>
         <li class="item"><a href="courses.html">Courses</a></li>
         <li class="item"><a href="news.html">News</a></li>
         <li class="item"><a href="about.html">About</a></li>
-        </ul>
+      </ul>
     </nav>
 
-    <div id="loading" style="text-align:center; margin-top:100px;">
-        <h2>Verifying session...</h2>
-    </div>
-
-    <div id="dashboardContent" class="dashboard-container" style="display:none;">
-      <img id="profilePic" src="" alt="Profile" class="profile-pic" />
-      
-      <h1 class="welcome-text">Welcome, <span id="userName">User</span>!</h1>
-      <p class="user-email" id="userEmail">email@example.com</p>
-      
-      <div class="info-box">
-          <h3>Your Membership Status</h3>
-          <p><strong>Program:</strong> <span id="userProgram">Loading...</span></p>
-          <p><strong>Experience Level:</strong> <span id="userLevel">Loading...</span></p>
+    <div class="container">
+      <div id="loading" style="text-align:center; margin-top:100px;">
+          <h2>Loading Profile...</h2>
       </div>
 
-      <button onclick="handleLogout()" class="logout-btn">Log Out</button>
+      <div id="dashboardContent" style="display:none;">
+        
+        <div class="hero">
+            <h1>Student Dashboard</h1>
+            <p>Manage your membership and profile details.</p>
+        </div>
+
+        <div class="card">
+            <div id="notification" class="alert-box"></div>
+
+            <div class="profile-header">
+                <img id="profilePic" src="" alt="Profile" class="profile-pic" />
+                <div class="profile-info">
+                    <h2 id="userName">Loading...</h2>
+                    <p id="userEmail">loading...</p>
+                </div>
+            </div>
+
+            <div id="viewMode" class="info-grid">
+                <div class="info-item">
+                    <label>Programme</label>
+                    <div class="info-value" id="displayProgram">N/A</div>
+                </div>
+                <div class="info-item">
+                    <label>Experience Level</label>
+                    <div class="info-value" id="displayLevel">N/A</div>
+                </div>
+            </div>
+
+            <div id="editMode" class="info-grid hidden">
+                <div class="info-item">
+                    <label for="editProgram">Programme</label>
+                    <input type="text" id="editProgram" class="edit-input" placeholder="e.g. Computer Science">
+                </div>
+                <div class="info-item">
+                    <label for="editLevel">Experience Level</label>
+                    <select id="editLevel" class="edit-input">
+                        <option value="LOW">Beginner</option>
+                        <option value="MID">Intermediate</option>
+                        <option value="HIGH">Advanced</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="editBtn" class="primary" onclick="toggleEditMode()">Edit Profile</button>
+                <button id="saveBtn" class="primary hidden" onclick="saveProfile()">Save Changes</button>
+                <button id="cancelBtn" class="secondary hidden" onclick="toggleEditMode()">Cancel</button>
+                
+                <button onclick="handleLogout()" class="secondary" style="margin-left:auto; background-color: #fee2e2; color: #c53030; border:none;">Log Out</button>
+            </div>
+
+            <div class="delete-section">
+                <button onclick="showDeleteModal()" class="delete-btn">Delete Account</button>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="deleteModal" class="hidden modal-overlay">
+        <div class="modal-content">
+            <h3 style="color: #dc3545;">Delete Account?</h3>
+            <p>This action cannot be undone.</p>
+            
+            <div id="passwordConfirm" style="margin: 15px 0;">
+                <input type="password" id="deletePassword" class="edit-input" placeholder="Enter password to confirm">
+            </div>
+
+            <div class="modal-actions">
+                <button onclick="closeDeleteModal()" class="secondary">Cancel</button>
+                <button onclick="confirmDelete()" class="primary" style="background-color: #dc3545;">Delete Forever</button>
+            </div>
+        </div>
     </div>
 
     <footer>
       <h3>LNU AI Society</h3>
-      <div class="footer-items">
-        <p>
-          <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
-            <img src="images/linkedin.svg" alt="" class="footer-icon" />
-          </a>
-          <a href="https://www.instagram.com/lnuaisociety" target="_blank">
-            <img src="images/instagram.svg" alt="" class="footer-icon" />
-          </a>
-          © 2025 LNU AI Society.<br />All rights reserved.
-        </p>
-      </div>
+      <div class="footer-items"><p>© 2025 LNU AI Society</p></div>
     </footer>
 
     <script>
-        // Used to generate a simple avatar if the user doesn't have a Google picture
         const DEFAULT_AVATAR_URL = "https://ui-avatars.com/api/?background=random&name=";
+        let currentUser = null; 
+        let isGoogleUser = false; // Flag to control delete modal
 
         async function checkSession() {
-            // 1. Check for Manual Login (Stored in LocalStorage)
+            // 1. Check LocalStorage first
             const storedUser = localStorage.getItem('user');
-            
             if (storedUser) {
-                console.log("Found manual session");
-                const user = JSON.parse(storedUser);
-                displayUser(user);
+                initDashboard(JSON.parse(storedUser));
                 return;
             }
 
-            // 2. Check for Google Login (Stored in Backend Cookie)
-            // We try to fetch the profile from the backend. 
-            // If the cookie is valid, the backend gives us the data.
+            // 2. Check Backend Cookie (Google Login)
             try {
                 const response = await fetch('http://localhost:8080/users/profile', {
                     method: 'GET',
-                    credentials: 'include' // CRITICAL: This sends the Session Cookie to backend
+                    credentials: 'include'
                 });
 
                 if (response.ok) {
-                    console.log("Found Google session");
-                    const googleUserData = await response.json();
+                    const googleData = await response.json();
                     
-                    // Normalize Google data to match our manual user structure
                     const user = {
-                        name: googleUserData.name,
-                        email: googleUserData.email,
-                        picture: googleUserData.picture, // Google sends a picture URL
-                        program: "N/A (Google Login)",
-                        level: "N/A"
+                        id: googleData.id,
+                        name: googleData.name,
+                        email: googleData.email,
+                        picture: googleData.picture,
+                        program: googleData.program || "N/A",
+                        level: googleData.level || "N/A"
                     };
-                    displayUser(user);
+                    // If program is "N/A (Google Login)" it's definitely Google
+                    if (user.program === "N/A (Google Login)") { user.isGoogle = true; }
+                    
+                    initDashboard(user);
                 } else {
-                    // 3. NO USER FOUND IN EITHER PLACE -> Redirect to Login
-                    console.log("No session found, redirecting...");
                     window.location.href = "signin.html";
                 }
             } catch (error) {
-                console.error("Session check failed", error);
                 window.location.href = "signin.html";
             }
         }
 
-        function displayUser(user) {
-            // Hide loading, show content
+        function initDashboard(user) {
+            currentUser = user;
+            // Determine if manual or google based on picture URL or explicit flag
+            // A robust way is checking if the password field in DB is null, but frontend can guess:
+            // If program was "N/A (Google Login)" or we came from profile endpoint, treat as Google.
+            isGoogleUser = user.isGoogle || (user.picture && user.picture.includes("googleusercontent"));
+
             document.getElementById('loading').style.display = 'none';
             document.getElementById('dashboardContent').style.display = 'block';
 
-            // Fill HTML with data
+            // Fill Data
             document.getElementById('userName').textContent = user.name;
             document.getElementById('userEmail').textContent = user.email;
-            document.getElementById('userProgram').textContent = user.program || "N/A";
-            document.getElementById('userLevel').textContent = user.level || "N/A";
-
-            // Set profile picture
+            document.getElementById('displayProgram').textContent = user.program || "N/A";
+            document.getElementById('displayLevel').textContent = user.level || "N/A";
+            
             if (user.picture) {
                 document.getElementById('profilePic').src = user.picture;
             } else {
-                // Generate initials avatar
                 document.getElementById('profilePic').src = DEFAULT_AVATAR_URL + user.name;
+            }
+
+            // Force Update if info missing
+            if (!user.program || user.program === "N/A" || user.program === "N/A (Google Login)") {
+                showNotification("Please complete your profile details.", "alert-warning");
+                toggleEditMode();
             }
         }
 
-        function handleLogout() {
-            // 1. Clear Local Storage (Manual Login)
-            localStorage.removeItem('user');
+        function toggleEditMode() {
+            const viewMode = document.getElementById('viewMode');
+            const editMode = document.getElementById('editMode');
+            const editBtn = document.getElementById('editBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            const cancelBtn = document.getElementById('cancelBtn');
 
-            // 2. Clear Backend Cookie (Google Login)
-            // Redirecting to the Spring Security logout endpoint kills the cookie
+            if (editMode.classList.contains('hidden')) {
+                // Show Edit
+                viewMode.classList.add('hidden');
+                editMode.classList.remove('hidden');
+                editBtn.classList.add('hidden');
+                saveBtn.classList.remove('hidden');
+                cancelBtn.classList.remove('hidden');
+
+                // Fill inputs
+                const currentProg = document.getElementById('displayProgram').textContent;
+                document.getElementById('editProgram').value = (currentProg === "N/A" || currentProg === "N/A (Google Login)") ? "" : currentProg;
+                
+                const currentLvl = document.getElementById('displayLevel').textContent;
+                document.getElementById('editLevel').value = (currentLvl === "N/A") ? "LOW" : currentLvl;
+            } else {
+                // Show View
+                editMode.classList.add('hidden');
+                viewMode.classList.remove('hidden');
+                saveBtn.classList.add('hidden');
+                cancelBtn.classList.add('hidden');
+                editBtn.classList.remove('hidden');
+                document.getElementById('notification').style.display = 'none';
+            }
+        }
+
+        async function saveProfile() {
+            const newProgram = document.getElementById('editProgram').value;
+            const newLevel = document.getElementById('editLevel').value;
+            const saveBtn = document.getElementById('saveBtn');
+
+            saveBtn.textContent = "Saving...";
+            saveBtn.disabled = true;
+
+            try {
+                const response = await fetch(`http://localhost:8080/users/${currentUser.id}/update_profile`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ program: newProgram, level: newLevel }),
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    const updatedUser = await response.json();
+                    
+                    // Update state
+                    currentUser = updatedUser;
+                    localStorage.setItem('user', JSON.stringify(updatedUser));
+                    
+                    // Update UI
+                    document.getElementById('displayProgram').textContent = updatedUser.program;
+                    document.getElementById('displayLevel').textContent = updatedUser.level;
+                    
+                    showNotification("Profile updated successfully!", "alert-success");
+                    toggleEditMode(); 
+                } else {
+                    throw new Error("Failed to update");
+                }
+            } catch (error) {
+                showNotification("Error updating profile.", "alert-warning");
+            } finally {
+                saveBtn.textContent = "Save Changes";
+                saveBtn.disabled = false;
+            }
+        }
+
+        // --- DELETE LOGIC ---
+        function showDeleteModal() {
+            const modal = document.getElementById('deleteModal');
+            const passField = document.getElementById('passwordConfirm');
+            
+            // Hide password field for Google Users
+            if (isGoogleUser) {
+                passField.style.display = 'none';
+            } else {
+                passField.style.display = 'block';
+            }
+            modal.classList.remove('hidden');
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.add('hidden');
+        }
+
+        async function confirmDelete() {
+            const password = document.getElementById('deletePassword').value;
+            
+            if (!isGoogleUser && !password) {
+                alert("Please enter your password to confirm.");
+                return;
+            }
+
+            try {
+                // Use standard DELETE endpoint
+                const response = await fetch(`http://localhost:8080/users/${currentUser.id}`, {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password: password }),
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    alert("Account deleted.");
+                    handleLogout();
+                } else {
+                    const err = await response.json();
+                    alert("Error: " + (err.message || "Could not delete account"));
+                }
+            } catch (e) {
+                console.error(e);
+                alert("Error connecting to server.");
+            }
+        }
+
+        function showNotification(msg, type) {
+            const notif = document.getElementById('notification');
+            notif.textContent = msg;
+            notif.className = `alert-box ${type}`;
+            notif.style.display = 'block';
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('user');
             window.location.href = "http://localhost:8080/logout"; 
         }
 
         checkSession();
     </script>
+    <script src="scripts/navbar.js"></script>
   </body>
 </html>

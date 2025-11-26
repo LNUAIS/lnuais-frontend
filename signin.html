@@ -8,10 +8,10 @@
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-      
+
       /* Google Button Styles */
       .google-btn {
-        background-color: #4285F4;
+        background-color: #4285f4;
         color: white;
         display: flex;
         align-items: center;
@@ -48,10 +48,11 @@
         justify-content: center;
         gap: 10px;
       }
-      .divider::before, .divider::after {
+      .divider::before,
+      .divider::after {
         content: "";
         flex: 1;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #666;
       }
     </style>
 
@@ -77,7 +78,7 @@
       <div class="hero">
         <h1>Welcome Back</h1>
         <p>
-          Sign in to access your dashboard and continue your journey with the 
+          Sign in to access your dashboard and continue your journey with the
           <span class="highlight">LNU AI Society</span>.
         </p>
       </div>
@@ -85,8 +86,11 @@
       <div class="card signup-card">
         <h2>Sign in to Your Account</h2>
 
-        <a href="http://localhost:8080/oauth2/authorization/google" class="google-btn">
-            Sign in with Google
+        <a
+          href="http://localhost:8080/oauth2/authorization/google"
+          class="google-btn"
+        >
+          Sign in with Google
         </a>
 
         <div class="divider">OR</div>
@@ -132,61 +136,66 @@
     </footer>
 
     <script>
-    // Inside signin.html <script> tag
+      // Inside signin.html <script> tag
 
-document.getElementById('signinForm').addEventListener('submit', async function(e) {
-    e.preventDefault(); 
+      document
+        .getElementById("signinForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
 
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const submitBtn = this.querySelector('button[type="submit"]');
-    
-    submitBtn.textContent = "Signing in...";
-    submitBtn.disabled = true;
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+          const submitBtn = this.querySelector('button[type="submit"]');
 
-    try {
-        const response = await fetch('http://localhost:8080/users/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: email, password: password })
-        });
+          submitBtn.textContent = "Signing in...";
+          submitBtn.disabled = true;
 
-        if (response.ok) {
-            // SUCCESS LOGIN
-            const user = await response.json();
-            localStorage.setItem('user', JSON.stringify(user));
-            window.location.href = "dashboard.html";
-        } else {
-            // ERROR HANDLING
-            const errorData = await response.json();
-            const errorMessage = errorData.message || "Login failed"; // Spring Boot usually sends JSON error
+          try {
+            const response = await fetch("http://localhost:8080/users/login", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email: email, password: password }),
+            });
 
-            // 1. CHECK FOR SPECIFIC UNVERIFIED ERROR
-            // Note: Spring Boot defaults might wrap the message. 
-            // We check if the text contains our specific keyword.
-            if (errorMessage.includes("UNVERIFIED_ACCOUNT")) {
-                alert("Your account is not verified yet. We have sent a new code to your email.");
-                
+            if (response.ok) {
+              // SUCCESS LOGIN
+              const user = await response.json();
+              localStorage.setItem("user", JSON.stringify(user));
+              window.location.href = "dashboard.html";
+            } else {
+              // ERROR HANDLING
+              const errorData = await response.json();
+              const errorMessage = errorData.message || "Login failed"; // Spring Boot usually sends JSON error
+
+              // 1. CHECK FOR SPECIFIC UNVERIFIED ERROR
+              // Note: Spring Boot defaults might wrap the message.
+              // We check if the text contains our specific keyword.
+              if (errorMessage.includes("UNVERIFIED_ACCOUNT")) {
+                alert(
+                  "Your account is not verified yet. We have sent a new code to your email.",
+                );
+
                 // Save email for the next page
-                localStorage.setItem('pendingEmail', email);
-                
+                localStorage.setItem("pendingEmail", email);
+
                 // Redirect to verify page
                 window.location.href = "verify.html";
-            } else {
+              } else {
                 alert("Error: " + errorMessage);
                 submitBtn.textContent = "Sign In";
                 submitBtn.disabled = false;
+              }
             }
-        }
-    } catch (error) {
-        console.error("Error:", error);
-        // Fallback for network errors or non-JSON responses
-        alert("Could not connect to server. Please check your connection.");
-        submitBtn.textContent = "Sign In";
-        submitBtn.disabled = false;
-    }
-});
+          } catch (error) {
+            console.error("Error:", error);
+            // Fallback for network errors or non-JSON responses
+            alert("Could not connect to server. Please check your connection.");
+            submitBtn.textContent = "Sign In";
+            submitBtn.disabled = false;
+          }
+        });
     </script>
     <script src="scripts/navbar.js"></script>
   </body>
 </html>
+

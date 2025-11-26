@@ -9,13 +9,12 @@ body {
   padding: 0;
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(to bottom right, #ffe000, #fdecb2, #ffe000);
+  background: #ffe000;
   background-repeat: no-repeat;
   background-position: top center;
   background-attachment: scroll;
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
-  background-color: #232326;
 }
 
 h1,
@@ -40,7 +39,8 @@ p {
   font-weight: 700;
 }
 
-.hero p {
+.hero p,
+.partners p {
   max-width: 85ch;
   font-size: 24px;
   font-weight: 500;
@@ -203,6 +203,23 @@ p {
   background-color: #232326;
   color: #fcfbf8;
   cursor: pointer;
+}
+
+.partners {
+  margin: 10rem auto;
+  text-align: center;
+}
+
+.partners h1 {
+  font-size: 50px;
+  font-weight: 700;
+}
+
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  justify-items: center;
 }
 
 .navbar {
@@ -457,31 +474,31 @@ input[type="password"]:focus {
   border-color: #ffe000;
 }
 
-
 /* --- Navbar Profile Styles --- */
 .nav-profile-link {
-    display: flex !important; /* Overrides default block/inline */
-    align-items: center;
-    gap: 10px;
-    padding: 5px 10px;
-    border-radius: 20px;
-    transition: background-color 0.2s;
+  display: flex !important; /* Overrides default block/inline */
+  align-items: center;
+  gap: 10px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  transition: background-color 0.2s;
 }
 
 .nav-profile-link:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .nav-avatar {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ddd;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ddd;
 }
 
 .nav-username {
-    font-weight: 600;
-    font-size: 0.95rem;
-    color: #333;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #333;
 }
+

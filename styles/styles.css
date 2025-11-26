@@ -57,7 +57,7 @@ p {
   max-width: 83rem;
   border-radius: 1.5rem;
   background-color: #232326;
-  filter: drop-shadow(0 0 3rem #111111aa);
+  filter: drop-shadow(0 0 1rem #181818aa);
 }
 
 .card h2,
@@ -117,21 +117,21 @@ p {
 .link-cards-1:hover {
   cursor: pointer;
   transform: scale(1.002);
-  filter: drop-shadow(0 0 1rem #111111);
+  filter: drop-shadow(0 0 1rem #181818aa);
   border-color: #5d4fb1;
 }
 
 .link-cards-2:hover {
   cursor: pointer;
   transform: scale(1.002);
-  filter: drop-shadow(0 0 1rem #111111);
+  filter: drop-shadow(0 0 1rem #181818aa);
   border-color: #007340;
 }
 
 .link-cards-3:hover {
   cursor: pointer;
   transform: scale(1.002);
-  filter: drop-shadow(0 0 1rem #111111);
+  filter: drop-shadow(0 0 1rem #181818aa);
   border-color: #a62186;
 }
 
@@ -285,7 +285,7 @@ footer {
   align-items: center;
   position: static;
   z-index: 999;
-  filter: drop-shadow(0 0 3rem #111111aa);
+  filter: drop-shadow(0 0 1rem #181818aa);
 }
 
 footer h3,
@@ -500,4 +500,35 @@ input[type="password"]:focus {
   font-weight: 600;
   font-size: 0.95rem;
   color: #333;
+}
+.hamburger {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+  margin-right: 1rem;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 3px 0;
+  transition: 0.3s;
+  border-radius: 3px;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
 }

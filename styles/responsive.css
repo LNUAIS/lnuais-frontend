@@ -470,4 +470,48 @@
   .nav-username {
     font-size: 0.85rem;
   }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .menu {
+    position: fixed;
+    top: 4.5rem;
+    left: -1px;
+    width: 100%;
+    background-color: rgba(20, 20, 20, 0.98);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .menu.active {
+    max-height: 400px;
+  }
+
+  .item {
+    width: 100%;
+    margin: 0;
+  }
+
+  .item a {
+    display: block;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    text-align: left;
+    transition: background-color 0.2s;
+  }
+
+  .item a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }

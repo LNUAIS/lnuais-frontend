@@ -39,7 +39,7 @@ body {
   display: flex;
   flex-direction: column;
   transition: all 0.3s ease;
-  filter: drop-shadow(0 0 3rem #111111aa);
+  filter: drop-shadow(0 0 1rem #181818aa);
 }
 
 .course-header {

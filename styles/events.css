@@ -56,7 +56,7 @@ p {
   padding: 2rem;
   display: flex;
   gap: 1.5rem;
-  filter: drop-shadow(0 0 3rem #111111aa);
+  filter: drop-shadow(0 0 1rem #111111aa);
 }
 
 .event-date {
@@ -207,7 +207,7 @@ p {
   grid-template-columns: 1fr auto;
   gap: 0.5rem;
   align-items: start;
-  filter: drop-shadow(0 0 3rem #111111aa);
+  filter: drop-shadow(0 0 1rem #181818aa);
 }
 
 .events-card img {

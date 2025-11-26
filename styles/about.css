@@ -38,7 +38,7 @@ body {
   border-radius: 1rem;
   padding: 2rem;
   text-align: center;
-  filter: drop-shadow(0 0 3rem #111111aa);
+  filter: drop-shadow(0 0 1rem #181818aa);
 }
 
 .board-avatar {
@@ -236,7 +236,7 @@ body {
   margin: 0 auto 8rem;
   text-align: center;
   padding-top: 7rem;
-  filter: drop-shadow(0 0 3rem #111111aa);
+  filter: drop-shadow(0 0 1rem #222222aa);
 }
 
 .documents-section h2 {

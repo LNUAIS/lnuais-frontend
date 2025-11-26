@@ -8,7 +8,7 @@
 
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-      
+
       /* Special large input for the code */
       .code-input {
         font-size: 2rem;
@@ -19,12 +19,25 @@
         margin: 20px 0;
         text-transform: uppercase;
       }
-      
+
       .message-box {
-        padding: 10px; margin-bottom: 15px; border-radius: 4px; font-size: 0.9rem; display: none; text-align: center;
+        padding: 10px;
+        margin-bottom: 15px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        display: none;
+        text-align: center;
       }
-      .message-box.error { background-color: #fee2e2; color: #dc2626; border: 1px solid #fca5a5; }
-      .message-box.success { background-color: #dcfce7; color: #166534; border: 1px solid #86efac; }
+      .message-box.error {
+        background-color: #fee2e2;
+        color: #dc2626;
+        border: 1px solid #fca5a5;
+      }
+      .message-box.success {
+        background-color: #dcfce7;
+        color: #166534;
+        border: 1px solid #86efac;
+      }
     </style>
 
     <title>Verify Account - LNU AI Society</title>
@@ -38,7 +51,10 @@
     <div class="container">
       <div class="hero">
         <h1>Check your Email</h1>
-        <p>We've sent a 6-digit verification code to <strong id="displayEmail">your email</strong>.</p>
+        <p>
+          We've sent a 6-digit verification code to
+          <strong id="displayEmail">your email</strong>.
+        </p>
       </div>
 
       <div class="card signup-card">
@@ -48,15 +64,29 @@
         <form class="signup-form" id="verifyForm">
           <div class="form-group">
             <label for="verificationCode">Enter Verification Code</label>
-            <input type="text" id="verificationCode" class="code-input" placeholder="000000" maxlength="6" required />
-            <small style="text-align:center; display:block;">Check your spam folder if you don't see it.</small>
+            <input
+              type="text"
+              id="verificationCode"
+              class="code-input"
+              placeholder="000000"
+              maxlength="6"
+              required
+            />
+            <small style="text-align: center; display: block"
+              >Check your spam folder if you don't see it.</small
+            >
           </div>
 
-          <div class="form-group" style="text-align: center;">
-             <small>Not your email? <a href="signup.html" class="link">Go back</a></small>
+          <div class="form-group" style="text-align: center">
+            <small
+              >Not your email?
+              <a href="signup.html" class="link">Go back</a></small
+            >
           </div>
 
-          <button type="submit" class="primary full-width" id="verifyBtn">Verify & Login</button>
+          <button type="submit" class="primary full-width" id="verifyBtn">
+            Verify & Login
+          </button>
         </form>
       </div>
     </div>
@@ -64,63 +94,75 @@
     <footer>
       <h3>LNU AI Society</h3>
       <div class="footer-items">
-         <p>© 2025 LNU AI Society</p>
+        <p>
+          <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
+            <img src="images/linkedin.svg" alt="" class="footer-icon" />
+          </a>
+          <a href="https://www.instagram.com/lnuaisociety" target="_blank">
+            <img src="images/instagram.svg" alt="" class="footer-icon" />
+          </a>
+          © 2025 LNU AI Society.<br />All rights reserved. <br />
+          802552-2056
+        </p>
       </div>
     </footer>
 
     <script>
       // 1. Get the email from LocalStorage (saved during Step 1)
-      const pendingEmail = localStorage.getItem('pendingEmail');
-      
+      const pendingEmail = localStorage.getItem("pendingEmail");
+
       // If they somehow got here without signing up, send them back
       if (pendingEmail) {
-          document.getElementById('displayEmail').textContent = pendingEmail;
+        document.getElementById("displayEmail").textContent = pendingEmail;
       } else {
-          window.location.href = "signup.html";
+        window.location.href = "signup.html";
       }
 
       // 2. Handle Verification
-      document.getElementById('verifyForm').addEventListener('submit', async function(e) {
+      document
+        .getElementById("verifyForm")
+        .addEventListener("submit", async function (e) {
           e.preventDefault();
 
-          const btn = document.getElementById('verifyBtn');
-          const msgBox = document.getElementById('verifyMessage');
-          const code = document.getElementById('verificationCode').value;
+          const btn = document.getElementById("verifyBtn");
+          const msgBox = document.getElementById("verifyMessage");
+          const code = document.getElementById("verificationCode").value;
 
           btn.textContent = "Verifying...";
           btn.disabled = true;
-          msgBox.style.display = 'none';
+          msgBox.style.display = "none";
 
           try {
-            const response = await fetch('http://localhost:8080/users/verify', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: pendingEmail, code: code })
+            const response = await fetch("http://localhost:8080/users/verify", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ email: pendingEmail, code: code }),
             });
 
             if (response.ok) {
-                msgBox.textContent = "Success! Account verified.";
-                msgBox.className = 'message-box success';
-                msgBox.style.display = 'block';
-                
-                // Cleanup
-                localStorage.removeItem('pendingEmail');
+              msgBox.textContent = "Success! Account verified.";
+              msgBox.className = "message-box success";
+              msgBox.style.display = "block";
 
-                setTimeout(() => {
-                    window.location.href = "signin.html";
-                }, 1500);
+              // Cleanup
+              localStorage.removeItem("pendingEmail");
+
+              setTimeout(() => {
+                window.location.href = "signin.html";
+              }, 1500);
             } else {
-                throw new Error("Invalid code. Please try again.");
+              throw new Error("Invalid code. Please try again.");
             }
           } catch (error) {
-             msgBox.textContent = error.message;
-             msgBox.className = 'message-box error';
-             msgBox.style.display = 'block';
-             btn.textContent = "Verify & Login";
-             btn.disabled = false;
+            msgBox.textContent = error.message;
+            msgBox.className = "message-box error";
+            msgBox.style.display = "block";
+            btn.textContent = "Verify & Login";
+            btn.disabled = false;
           }
-      });
+        });
     </script>
     <script src="scripts/navbar.js"></script>
   </body>
 </html>
+

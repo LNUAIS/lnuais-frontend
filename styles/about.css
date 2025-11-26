@@ -100,6 +100,34 @@ body {
   border-color: #ffe000;
 }
 
+.committee-hero {
+  text-align: center;
+  padding-bottom: 3rem;
+}
+
+.committee-hero h2 {
+  font-size: 48px;
+  font-weight: 700;
+  color: #fcfbf8;
+  margin-bottom: 1rem;
+}
+
+.committee-hero p {
+  font-size: 20px;
+  font-weight: 500;
+  color: #b0b0b0;
+  max-width: 75ch;
+  margin: 0 auto;
+}
+
+.committee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 2rem;
+  max-width: 83rem;
+  margin: 0 auto 4rem;
+}
+
 .divider {
   max-width: 83rem;
   height: 1px;

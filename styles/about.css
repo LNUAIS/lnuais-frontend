@@ -8,15 +8,16 @@ body {
   padding-bottom: 3rem;
 }
 
-.about-hero h1 {
-  font-size: 70px;
+.about-hero h1,
+.committee-hero h1 {
+  font-size: 50px;
   font-weight: 700;
   color: #fcfbf8;
   margin-bottom: 1rem;
 }
 
 .about-hero p {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 500;
   color: #b0b0b0;
   max-width: 75ch;
@@ -81,6 +82,7 @@ body {
   display: flex;
   gap: 1rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .board-links a {
@@ -88,10 +90,12 @@ body {
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1rem;
   border: 1px solid #404040;
   border-radius: 0.5rem;
   transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
 }
 
 .board-links a:hover {
@@ -105,15 +109,8 @@ body {
   padding-bottom: 3rem;
 }
 
-.committee-hero h2 {
-  font-size: 48px;
-  font-weight: 700;
-  color: #fcfbf8;
-  margin-bottom: 1rem;
-}
-
 .committee-hero p {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
   color: #b0b0b0;
   max-width: 75ch;
@@ -175,6 +172,7 @@ body {
   font-size: 16px;
   font-weight: 500;
   transition: all 0.3s ease;
+  min-height: 44px;
 }
 
 .contact-btn:hover {
@@ -237,7 +235,7 @@ body {
   max-width: 83rem;
   margin: 0 auto 8rem;
   text-align: center;
-
+  padding-top: 7rem;
   filter: drop-shadow(0 0 3rem #111111aa);
 }
 
@@ -249,7 +247,7 @@ body {
 }
 
 .documents-intro,
-contact-intro {
+.contact-intro {
   font-size: 18px;
   color: #b0b0b0;
   margin-bottom: 3rem;
@@ -327,6 +325,7 @@ contact-intro {
   cursor: pointer;
   transition: all 0.3s ease;
   align-self: flex-start;
+  min-height: 44px;
 }
 
 .download-button:hover {

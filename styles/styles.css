@@ -34,7 +34,7 @@ p {
 }
 
 .hero h1 {
-  font-size: 70px;
+  font-size: 60px;
   margin-top: 10rem;
   font-weight: 700;
 }
@@ -42,7 +42,7 @@ p {
 .hero p,
 .partners p {
   max-width: 85ch;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   margin: 0 auto; /* centers horizontally */
 }
@@ -501,4 +501,3 @@ input[type="password"]:focus {
   font-size: 0.95rem;
   color: #333;
 }
-

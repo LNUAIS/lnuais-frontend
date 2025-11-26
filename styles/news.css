@@ -9,14 +9,14 @@ body {
 }
 
 .news-hero h1 {
-  font-size: 70px;
+  font-size: 50px;
   font-weight: 700;
   color: #fcfbf8;
   margin-bottom: 1rem;
 }
 
 .news-hero p {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 500;
   color: #b0b0b0;
   max-width: 75ch;

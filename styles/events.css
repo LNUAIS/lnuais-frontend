@@ -1,5 +1,5 @@
 body {
-  background: #232326 !important;
+  background: #232326;
 }
 
 p {
@@ -15,7 +15,7 @@ p {
 
 .about-hero h1,
 .about-hero2 h1 {
-  font-size: 70px;
+  font-size: 50px;
   font-weight: 700;
   color: #fcfbf8;
   margin-bottom: 1rem;
@@ -23,7 +23,7 @@ p {
 
 .about-hero p,
 .about-hero2 p {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 500;
   color: #b0b0b0;
   max-width: 75ch;
@@ -32,10 +32,6 @@ p {
 
 .about-hero2 {
   padding-top: 0;
-}
-
-.about-hero2 h1 {
-  font-size: 60px;
 }
 
 .divider {

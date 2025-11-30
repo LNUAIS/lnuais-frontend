@@ -1,209 +1,198 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="stylesheet" href="styles/responsive.css" />
-    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
 
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="styles/responsive.css" />
+  <link rel="icon" type="image/x-icon" href="/images/logo.png" />
 
-      /* Google Button Styles */
-      .google-btn {
-        background-color: #4285f4;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        text-decoration: none;
-        padding: 12px;
-        border-radius: 4px;
-        font-weight: bold;
-        margin-bottom: 15px;
-        border: none;
-        width: 100%;
-        box-sizing: border-box;
-        transition: background-color 0.2s;
-      }
-      .google-btn:hover {
-        background-color: #357ae8;
-      }
-      .google-icon {
-        width: 20px;
-        height: 20px;
-        background-color: white;
-        border-radius: 50%;
-        padding: 2px;
-      }
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-      .divider {
-        text-align: center;
-        margin: 10px 0 20px 0;
-        color: #666;
-        font-size: 0.9rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-      }
-      .divider::before,
-      .divider::after {
-        content: "";
-        flex: 1;
-        border-bottom: 1px solid #666;
-      }
-    </style>
+    /* Google Button Styles */
+    .google-btn {
+      background-color: #4285f4;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      border: none;
+      width: 100%;
+      box-sizing: border-box;
+      transition: background-color 0.2s;
+    }
 
-    <title>Sign In - LNU AI Society</title>
-  </head>
+    .google-btn:hover {
+      background-color: #357ae8;
+    }
 
-  <body>
-    <nav class="navbar">
-      <a href="/">
-        <img src="/images/logo.png" alt="Logo" class="logo" />
-      </a>
+    .google-icon {
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border-radius: 50%;
+      padding: 2px;
+    }
 
-      <button class="hamburger" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+    .divider {
+      text-align: center;
+      margin: 10px 0 20px 0;
+      color: #666;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
 
-      <ul class="menu">
-        <li class="item"><a href="events.html">Events</a></li>
-        <li class="item"><a href="courses.html">Courses</a></li>
-        <li class="item"><a href="news.html">News</a></li>
-        <li class="item"><a href="about.html">About</a></li>
-        <li class="item"><a href="signup.html">Join Us</a></li>
-      </ul>
-    </nav>
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #666;
+    }
+  </style>
 
-    <div class="container">
-      <div class="hero">
-        <h1>Welcome Back</h1>
-        <p>
-          Sign in to access your dashboard and continue your journey with the
-          <span class="highlight">LNU AI Society</span>.
-        </p>
-      </div>
+  <title>Sign In - LNU AI Society</title>
+</head>
 
-      <div class="card signup-card">
-        <h2>Sign in to Your Account</h2>
+<body>
+  <nav class="navbar">
+    <a href="/">
+      <img src="/images/logo.png" alt="Logo" class="logo" />
+    </a>
 
-        <a
-          href="http://localhost:8080/oauth2/authorization/google"
-          class="google-btn"
-        >
-          Sign in with Google
-        </a>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-        <div class="divider">OR</div>
+    <ul class="menu">
+      <li class="item"><a href="events.html">Events</a></li>
+      <li class="item"><a href="courses.html">Courses</a></li>
+      <li class="item"><a href="news.html">News</a></li>
+      <li class="item"><a href="about.html">About</a></li>
+      <li class="item"><a href="signup.html">Join Us</a></li>
+    </ul>
+  </nav>
 
-        <form class="signup-form" id="signinForm">
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" required />
-            <small>The email address you entered when registering.</small>
-          </div>
-
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required />
-            <small>The password you entered when registering.</small>
-          </div>
-
-          <button type="submit" class="primary full-width">Sign In</button>
-        </form>
-
-        <div class="signup-footer">
-          <p>
-            Forgot your password?
-            <a href="resetpass.html" class="link">Reset it here</a>
-          </p>
-        </div>
-      </div>
+  <div class="container">
+    <div class="hero">
+      <h1>Welcome Back</h1>
+      <p>
+        Sign in to access your dashboard and continue your journey with the
+        <span class="highlight">LNU AI Society</span>.
+        <input type="email" id="email" name="email" required />
+        <small>The email address you entered when registering.</small>
     </div>
 
-    <footer>
-      <h3>LNU AI Society</h3>
-      <div class="footer-items">
-        <p>
-          <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
-            <img src="images/linkedin.svg" alt="" class="footer-icon" />
-          </a>
-          <a href="https://www.instagram.com/lnuaisociety" target="_blank">
-            <img src="images/instagram.svg" alt="" class="footer-icon" />
-          </a>
-          © 2025 LNU AI Society.<br />All rights reserved. <br />
-          802552-2056
-        </p>
-      </div>
-    </footer>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required />
+      <small>The password you entered when registering.</small>
+    </div>
 
-    <script>
-      // Inside signin.html <script> tag
+    <button type="submit" class="primary full-width">Sign In</button>
+    </form>
 
-      document
-        .getElementById("signinForm")
-        .addEventListener("submit", async function (e) {
-          e.preventDefault();
+    <div class="signup-footer">
+      <p>
+        Forgot your password?
+        <a href="resetpass.html" class="link">Reset it here</a>
+      </p>
+    </div>
+  </div>
+  </div>
 
-          const email = document.getElementById("email").value;
-          const password = document.getElementById("password").value;
-          const submitBtn = this.querySelector('button[type="submit"]');
+  <footer>
+    <h3>LNU AI Society</h3>
+    <div class="footer-items">
+      <p>
+        <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
+          <img src="images/linkedin.svg" alt="" class="footer-icon" />
+        </a>
+        <a href="https://www.instagram.com/lnuaisociety" target="_blank">
+          <img src="images/instagram.svg" alt="" class="footer-icon" />
+        </a>
+        © 2025 LNU AI Society.<br />All rights reserved. <br />
+        802552-2056
+      </p>
+    </div>
+  </footer>
 
-          submitBtn.textContent = "Signing in...";
-          submitBtn.disabled = true;
+  <script src="scripts/config.js"></script>
+  <script>
+    document.querySelector('.google-btn').href = `${CONFIG.API_BASE_URL}/oauth2/authorization/google`;
+    // Inside signin.html <script> tag
 
-          try {
-            const response = await fetch("http://localhost:8080/users/login", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email: email, password: password }),
-            });
+    document
+      .getElementById("signinForm")
+      .addEventListener("submit", async function (e) {
+        e.preventDefault();
 
-            if (response.ok) {
-              // SUCCESS LOGIN
-              const user = await response.json();
-              localStorage.setItem("user", JSON.stringify(user));
-              window.location.href = "dashboard.html";
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const submitBtn = this.querySelector('button[type="submit"]');
+
+        submitBtn.textContent = "Signing in...";
+        submitBtn.disabled = true;
+
+        try {
+          const response = await fetch(`${CONFIG.API_BASE_URL}/users/login`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email: email, password: password }),
+          });
+
+          if (response.ok) {
+            // SUCCESS LOGIN
+            const user = await response.json();
+            localStorage.setItem("user", JSON.stringify(user));
+            window.location.href = "dashboard.html";
+          } else {
+            // ERROR HANDLING
+            const errorData = await response.json();
+            const errorMessage = errorData.message || "Login failed"; // Spring Boot usually sends JSON error
+
+            // 1. CHECK FOR SPECIFIC UNVERIFIED ERROR
+            // Note: Spring Boot defaults might wrap the message.
+            // We check if the text contains our specific keyword.
+            if (errorMessage.includes("UNVERIFIED_ACCOUNT")) {
+              alert(
+                "Your account is not verified yet. We have sent a new code to your email.",
+              );
+
+              // Save email for the next page
+              localStorage.setItem("pendingEmail", email);
+
+              // Redirect to verify page
+              window.location.href = "verify.html";
             } else {
-              // ERROR HANDLING
-              const errorData = await response.json();
-              const errorMessage = errorData.message || "Login failed"; // Spring Boot usually sends JSON error
-
-              // 1. CHECK FOR SPECIFIC UNVERIFIED ERROR
-              // Note: Spring Boot defaults might wrap the message.
-              // We check if the text contains our specific keyword.
-              if (errorMessage.includes("UNVERIFIED_ACCOUNT")) {
-                alert(
-                  "Your account is not verified yet. We have sent a new code to your email.",
-                );
-
-                // Save email for the next page
-                localStorage.setItem("pendingEmail", email);
-
-                // Redirect to verify page
-                window.location.href = "verify.html";
-              } else {
-                alert("Error: " + errorMessage);
-                submitBtn.textContent = "Sign In";
-                submitBtn.disabled = false;
-              }
+              alert("Error: " + errorMessage);
+              submitBtn.textContent = "Sign In";
+              submitBtn.disabled = false;
             }
-          } catch (error) {
-            console.error("Error:", error);
-            // Fallback for network errors or non-JSON responses
-            alert("Could not connect to server. Please check your connection.");
-            submitBtn.textContent = "Sign In";
-            submitBtn.disabled = false;
           }
-        });
-    </script>
-    <script src="scripts/navbar.js"></script>
-    <script src="scripts/hamburger.js"></script>
-  </body>
+        } catch (error) {
+          console.error("Error:", error);
+          // Fallback for network errors or non-JSON responses
+          alert("Could not connect to server. Please check your connection.");
+          submitBtn.textContent = "Sign In";
+          submitBtn.disabled = false;
+        }
+      });
+  </script>
+  <script src="scripts/navbar.js"></script>
+  <script src="scripts/hamburger.js"></script>
+</body>
+
 </html>

@@ -114,6 +114,7 @@
       </div>
     </footer>
 
+    <script src="scripts/config.js"></script>
     <script>
       // 1. Get the email from LocalStorage (saved during Step 1)
       const pendingEmail = localStorage.getItem("pendingEmail");
@@ -140,7 +141,7 @@
           msgBox.style.display = "none";
 
           try {
-            const response = await fetch("http://localhost:8080/users/verify", {
+            const response = await fetch(`${CONFIG.API_BASE_URL}/users/verify`, {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ email: pendingEmail, code: code }),

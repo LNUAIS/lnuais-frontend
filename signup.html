@@ -1,258 +1,227 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="stylesheet" href="styles/responsive.css" />
-    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
 
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="styles/responsive.css" />
+  <link rel="icon" type="image/x-icon" href="/images/logo.png" />
 
-      .google-btn {
-        background-color: #4285f4;
-        color: white;
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 12px;
-        border-radius: 4px;
-        font-weight: bold;
-        margin-bottom: 15px;
-        width: 100%;
-        box-sizing: border-box;
-      }
-      .google-btn:hover {
-        background-color: #357ae8;
-      }
-      .divider {
-        text-align: center;
-        margin: 10px 0 20px 0;
-        color: #666;
-        font-size: 0.9rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-      }
-      .divider::before,
-      .divider::after {
-        content: "";
-        flex: 1;
-        border-bottom: 1px solid #666;
-      }
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-      .message-box {
-        padding: 10px;
-        margin-bottom: 15px;
-        border-radius: 4px;
-        font-size: 0.9rem;
-        display: none;
-        text-align: center;
-      }
-      .message-box.error {
-        background-color: #fee2e2;
-        color: #dc2626;
-        border: 1px solid #fca5a5;
-      }
-    </style>
+    .google-btn {
+      background-color: #4285f4;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 4px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      width: 100%;
+      box-sizing: border-box;
+    }
 
-    <title>Sign Up - LNU AI Society</title>
-  </head>
+    .google-btn:hover {
+      background-color: #357ae8;
+    }
 
-  <body>
-    <nav class="navbar">
-      <a href="/"><img src="/images/logo.png" alt="Logo" class="logo" /></a>
+    .divider {
+      text-align: center;
+      margin: 10px 0 20px 0;
+      color: #666;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
 
-      <button class="hamburger" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      border-bottom: 1px solid #666;
+    }
 
-      <ul class="menu">
-        <li class="item"><a href="events.html">Events</a></li>
-        <li class="item"><a href="courses.html">Courses</a></li>
-        <li class="item"><a href="news.html">News</a></li>
-        <li class="item"><a href="about.html">About</a></li>
-        <li class="item"><a href="signup.html">Join Us</a></li>
-      </ul>
-    </nav>
+    .message-box {
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      display: none;
+      text-align: center;
+    }
 
-    <div class="container">
-      <div class="hero">
-        <h1>Join the LNU AI Society</h1>
-        <p>
-          Become part of our growing community of AI enthusiasts at Linnaeus
-          University. Shape the future with us.
-        </p>
-      </div>
+    .message-box.error {
+      background-color: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fca5a5;
+    }
+  </style>
 
-      <div class="card signup-card">
-        <h2>Create Your Account</h2>
-        <a
-          href="http://localhost:8080/oauth2/authorization/google"
-          class="google-btn"
-          >Sign up with Google</a
-        >
-        <div class="divider">OR</div>
+  <title>Sign Up - LNU AI Society</title>
+</head>
 
-        <div id="signupMessage" class="message-box"></div>
+<body>
+  <nav class="navbar">
+    <a href="/"><img src="/images/logo.png" alt="Logo" class="logo" /></a>
 
-        <form class="signup-form" id="signupForm">
-          <div class="form-row">
-            <div class="form-group">
-              <label>First Name</label
-              ><input type="text" id="firstName" required />
-            </div>
-            <div class="form-group">
-              <label>Last Name</label
-              ><input type="text" id="lastName" required />
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Email Address</label
-            ><input type="email" id="email" required />
-            <small>We'll send a verification code to this email.</small>
-          </div>
-          <div class="form-group">
-            <label>Password</label
-            ><input type="password" id="password" required />
-          </div>
-          <div class="form-group">
-            <label>Programme</label
-            ><input type="text" id="programme" required />
-          </div>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-          <div class="form-group">
-            <label>AI/ML Experience</label>
-            <div class="radio-group">
-              <label class="radio-option"
-                ><input
-                  type="radio"
-                  name="experience"
-                  value="beginner"
-                  required
-                /><span class="radio-label">Beginner</span></label
-              >
-              <label class="radio-option"
-                ><input
-                  type="radio"
-                  name="experience"
-                  value="intermediate"
-                /><span class="radio-label">Intermediate</span></label
-              >
-              <label class="radio-option"
-                ><input type="radio" name="experience" value="advanced" /><span
-                  class="radio-label"
-                  >Advanced</span
-                ></label
-              >
-            </div>
-          </div>
+    <ul class="menu">
+      <li class="item"><a href="events.html">Events</a></li>
+      <li class="item"><a href="courses.html">Courses</a></li>
+      <li class="item"><a href="news.html">News</a></li>
+      <li class="item"><a href="about.html">About</a></li>
+      <li class="item"><a href="signup.html">Join Us</a></li>
+    </ul>
+  </nav>
 
-          <div class="form-group checkbox-group">
-            <label class="checkbox-option">
-              <input type="checkbox" required />
-              <span class="checkbox-label"
-                >I agree to the <a href="#" class="link">Terms</a> and
-                <a href="#" class="link">Privacy Policy</a></span
-              >
-            </label>
-          </div>
-
-          <button type="submit" class="primary full-width" id="signupBtn">
-            Join The Community
-          </button>
-        </form>
-
-        <div class="signup-footer">
-          <p>
-            Already have an account?
-            <a href="signin.html" class="link">Sign in here</a>
-          </p>
-        </div>
-      </div>
+  <div class="container">
+    <div class="hero">
+      <h1>Join the LNU AI Society</h1>
+      <p>
+        Become part of our growing community of AI enthusiasts at Linnaeus
+        <label>First Name</label><input type="text" id="firstName" required />
     </div>
-    <footer>
-      <h3>LNU AI Society</h3>
-      <div class="footer-items">
-        <p>
-          <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
-            <img src="images/linkedin.svg" alt="" class="footer-icon" />
-          </a>
-          <a href="https://www.instagram.com/lnuaisociety" target="_blank">
-            <img src="images/instagram.svg" alt="" class="footer-icon" />
-          </a>
-          © 2025 LNU AI Society.<br />All rights reserved. <br />
-          802552-2056
-        </p>
-      </div>
-    </footer>
+    <div class="form-group">
+      <label>Last Name</label><input type="text" id="lastName" required />
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Email Address</label><input type="email" id="email" required />
+    <small>We'll send a verification code to this email.</small>
+  </div>
+  <div class="form-group">
+    <label>Password</label><input type="password" id="password" required />
+  </div>
+  <div class="form-group">
+    <label>Programme</label><input type="text" id="programme" required />
+  </div>
 
-    <script>
-      document
-        .getElementById("signupForm")
-        .addEventListener("submit", async function (e) {
-          e.preventDefault();
+  <div class="form-group">
+    <label>AI/ML Experience</label>
+    <div class="radio-group">
+      <label class="radio-option"><input type="radio" name="experience" value="beginner" required /><span
+          class="radio-label">Beginner</span></label>
+      <label class="radio-option"><input type="radio" name="experience" value="intermediate" /><span
+          class="radio-label">Intermediate</span></label>
+      <label class="radio-option"><input type="radio" name="experience" value="advanced" /><span
+          class="radio-label">Advanced</span></label>
+    </div>
+  </div>
 
-          const btn = document.getElementById("signupBtn");
-          const msgBox = document.getElementById("signupMessage");
-          btn.textContent = "Creating Account...";
-          btn.disabled = true;
-          msgBox.style.display = "none";
+  <div class="form-group checkbox-group">
+    <label class="checkbox-option">
+      <input type="checkbox" required />
+      <span class="checkbox-label">I agree to the <a href="#" class="link">Terms</a> and
+        <a href="#" class="link">Privacy Policy</a></span>
+    </label>
+  </div>
 
-          const firstName = document.getElementById("firstName").value;
-          const lastName = document.getElementById("lastName").value;
-          const email = document.getElementById("email").value;
-          const password = document.getElementById("password").value;
-          const programme = document.getElementById("programme").value;
-          const experienceInput = document.querySelector(
-            'input[name="experience"]:checked',
-          ).value;
+  <button type="submit" class="primary full-width" id="signupBtn">
+    Join The Community
+  </button>
+  </form>
 
-          let backendLevel = "LOW";
-          if (experienceInput === "intermediate") backendLevel = "MID";
-          if (experienceInput === "advanced") backendLevel = "HIGH";
+  <div class="signup-footer">
+    <p>
+      Already have an account?
+      <a href="signin.html" class="link">Sign in here</a>
+    </p>
+  </div>
+  </div>
+  </div>
+  <footer>
+    <h3>LNU AI Society</h3>
+    <div class="footer-items">
+      <p>
+        <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
+          <img src="images/linkedin.svg" alt="" class="footer-icon" />
+        </a>
+        <a href="https://www.instagram.com/lnuaisociety" target="_blank">
+          <img src="images/instagram.svg" alt="" class="footer-icon" />
+        </a>
+        © 2025 LNU AI Society.<br />All rights reserved. <br />
+        802552-2056
+      </p>
+    </div>
+  </footer>
 
-          try {
-            const response = await fetch(
-              "http://localhost:8080/users/new_member",
-              {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  name: firstName + " " + lastName,
-                  email: email,
-                  password: password,
-                  program: programme,
-                  level: backendLevel,
-                }),
-              },
-            );
+  <script src="scripts/config.js"></script>
+  <script>
+    document.querySelector('.google-btn').href = `${CONFIG.API_BASE_URL}/oauth2/authorization/google`;
 
-            if (response.ok) {
-              // SUCCESS: Save email to memory so verify.html knows who it is
-              localStorage.setItem("pendingEmail", email);
-              // Redirect to the new page
-              window.location.href = "verify.html";
-            } else {
-              throw new Error("Email likely already taken.");
-            }
-          } catch (error) {
-            msgBox.textContent = "Error: " + error.message;
-            msgBox.className = "message-box error";
-            msgBox.style.display = "block";
-            btn.textContent = "Join The Community";
-            btn.disabled = false;
+    document
+      .getElementById("signupForm")
+      .addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const btn = document.getElementById("signupBtn");
+        const msgBox = document.getElementById("signupMessage");
+        btn.textContent = "Creating Account...";
+        btn.disabled = true;
+        msgBox.style.display = "none";
+
+        const firstName = document.getElementById("firstName").value;
+        const lastName = document.getElementById("lastName").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const programme = document.getElementById("programme").value;
+        const experienceInput = document.querySelector(
+          'input[name="experience"]:checked',
+        ).value;
+
+        let backendLevel = "LOW";
+        if (experienceInput === "intermediate") backendLevel = "MID";
+        if (experienceInput === "advanced") backendLevel = "HIGH";
+
+        try {
+          const response = await fetch(
+            `${CONFIG.API_BASE_URL}/users/new_member`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                name: firstName + " " + lastName,
+                email: email,
+                password: password,
+                program: programme,
+                level: backendLevel,
+              }),
+            },
+          );
+
+          if (response.ok) {
+            // SUCCESS: Save email to memory so verify.html knows who it is
+            localStorage.setItem("pendingEmail", email);
+            // Redirect to the new page
+            window.location.href = "verify.html";
+          } else {
+            throw new Error("Email likely already taken.");
           }
-        });
-    </script>
+        } catch (error) {
+          msgBox.textContent = "Error: " + error.message;
+          msgBox.className = "message-box error";
+          msgBox.style.display = "block";
+          btn.textContent = "Join The Community";
+          btn.disabled = false;
+        }
+      });
+  </script>
 
-    <script src="scripts/navbar.js"></script>
-    <script src="scripts/hamburger.js"></script>
-  </body>
+  <script src="scripts/navbar.js"></script>
+  <script src="scripts/hamburger.js"></script>
+</body>
+
 </html>

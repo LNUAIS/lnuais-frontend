@@ -29,7 +29,7 @@ Follow these steps to run the website locally:
 ```
 
 5. **View the website on desktop**
-   Open your browser on desktop and visit: [http://localhost:8080/](http://localhost:8080/)
+   Open your browser on desktop and visit: [http://localhost:3000/](http://localhost:3000/)
 
 ---
 
@@ -46,9 +46,13 @@ Follow these steps to run the website locally:
 
    Look for the field saying "IPv4 Address" (usually starts with `192.168.` or `10.0.`)
 
-   Open your browser on mobile and visit: `http://YOUR_IP_ADDRESS:8080/`
+   Open your browser on mobile and visit: `http://YOUR_IP_ADDRESS:3000/`
 
-   Example: `http://192.168.1.105:8080/`
+   Example: `http://192.168.1.105:3000/`
+
+## Configuration
+
+The API base URL is configured in `scripts/config.js`. Default is `http://localhost:8080`.
 
 ---
 

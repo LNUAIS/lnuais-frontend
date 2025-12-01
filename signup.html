@@ -103,7 +103,7 @@
 
     <div class="card signup-card">
       <h2>Create Your Account</h2>
-      <a href="http://localhost:8080/oauth2/authorization/google" class="google-btn">Sign up with Google</a>
+      <a href="#" id="googleSignupBtn" class="google-btn">Sign up with Google</a>
       <div class="divider">OR</div>
 
       <div id="signupMessage" class="message-box"></div>
@@ -111,40 +111,53 @@
       <form class="signup-form" id="signupForm">
         <div class="form-row">
           <div class="form-group">
-            <label>First Name</label><input type="text" id="firstName" required />
+            <label>First Name</label>
+            <input type="text" id="firstName" required />
           </div>
           <div class="form-group">
-            <label>Last Name</label><input type="text" id="lastName" required />
+            <label>Last Name</label>
+            <input type="text" id="lastName" required />
           </div>
         </div>
         <div class="form-group">
-          <label>Email Address</label><input type="email" id="email" required />
+          <label>Email Address</label>
+          <input type="email" id="email" required />
           <small>We'll send a verification code to this email.</small>
         </div>
         <div class="form-group">
-          <label>Password</label><input type="password" id="password" required />
+          <label>Password</label>
+          <input type="password" id="password" required />
         </div>
         <div class="form-group">
-          <label>Programme</label><input type="text" id="programme" required />
+          <label>Programme</label>
+          <input type="text" id="programme" required />
         </div>
 
         <div class="form-group">
           <label>AI/ML Experience</label>
           <div class="radio-group">
-            <label class="radio-option"><input type="radio" name="experience" value="beginner" required /><span
-                class="radio-label">Beginner</span></label>
-            <label class="radio-option"><input type="radio" name="experience" value="intermediate" /><span
-                class="radio-label">Intermediate</span></label>
-            <label class="radio-option"><input type="radio" name="experience" value="advanced" /><span
-                class="radio-label">Advanced</span></label>
+            <label class="radio-option">
+              <input type="radio" name="experience" value="beginner" required />
+              <span class="radio-label">Beginner</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="experience" value="intermediate" />
+              <span class="radio-label">Intermediate</span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="experience" value="advanced" />
+              <span class="radio-label">Advanced</span>
+            </label>
           </div>
         </div>
 
         <div class="form-group checkbox-group">
           <label class="checkbox-option">
             <input type="checkbox" required />
-            <span class="checkbox-label">I agree to the <a href="#" class="link">Terms</a> and
-              <a href="#" class="link">Privacy Policy</a></span>
+            <span class="checkbox-label">
+              I agree to the <a href="#" class="link">Terms</a> and
+              <a href="#" class="link">Privacy Policy</a>
+            </span>
           </label>
         </div>
 
@@ -161,17 +174,19 @@
       </div>
     </div>
   </div>
+
   <footer>
     <h3>LNU AI Society</h3>
     <div class="footer-items">
       <p>
         <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
-          <img src="images/linkedin.svg" alt="" class="footer-icon" />
+          <img src="images/linkedin.svg" alt="LinkedIn" class="footer-icon" />
         </a>
         <a href="https://www.instagram.com/lnuaisociety" target="_blank">
-          <img src="images/instagram.svg" alt="" class="footer-icon" />
+          <img src="images/instagram.svg" alt="Instagram" class="footer-icon" />
         </a>
-        © 2025 LNU AI Society.<br />All rights reserved. <br />
+        © 2025 LNU AI Society.<br />
+        All rights reserved.<br />
         802552-2056
       </p>
     </div>
@@ -236,6 +251,7 @@
       });
   </script>
 
+  <script src="scripts/config.js"></script>
   <script src="scripts/navbar.js"></script>
   <script src="scripts/hamburger.js"></script>
 </body>

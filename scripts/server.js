@@ -6,19 +6,23 @@ const PORT = 3000;
 
 const server = http.createServer((req, res) => {
   // --- PROXY LOGIC ---
-  // Forward API requests to the Spring Boot Backend (port 8080)
+  // Forward API requests to the Spring Boot Backend
+  // Default: localhost:8080, or use BACKEND_URL env var
+  const backendUrl = process.env.BACKEND_URL || "http://localhost:8080";
+  const backendUrlObj = new URL(backendUrl);
+
   if (req.url.startsWith("/users") || req.url.startsWith("/logout") || req.url.startsWith("/oauth2")) {
     console.log(`[PROXY] Incoming request: ${req.method} ${req.url}`);
     const options = {
-      hostname: 'localhost',
-      port: 8080,
+      hostname: backendUrlObj.hostname,
+      port: backendUrlObj.port || (backendUrlObj.protocol === 'https:' ? 443 : 80),
       path: req.url,
       method: req.method,
       headers: {
         ...req.headers,
-        host: 'localhost:8080', // Override Host header to match backend
-        origin: 'http://localhost:8080', // Override Origin to bypass CSRF checks
-        referer: 'http://localhost:8080/', // Override Referer
+        host: backendUrlObj.host, // Override Host header to match backend
+        origin: backendUrl, // Override Origin to bypass CSRF checks
+        referer: backendUrl + '/', // Override Referer
       },
     };
 
@@ -36,7 +40,7 @@ const server = http.createServer((req, res) => {
     proxyReq.on('error', (e) => {
       console.error(`[PROXY] Error connecting to backend: ${e.message}`);
       res.writeHead(502, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ message: `Proxy Error: Could not connect to backend at localhost:8080. ${e.message}` }));
+      res.end(JSON.stringify({ message: `Proxy Error: Could not connect to backend at ${backendUrl}. ${e.message}` }));
     });
     return; // Stop execution here, don't serve static files
   }

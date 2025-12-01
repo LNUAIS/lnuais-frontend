@@ -5,7 +5,8 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 # This creates the "build" folder with your HTML/JS
-RUN npm run build
+# Set CI=false so warnings don't break the build
+RUN CI=false npm run build
 
 # 2. Use a lightweight server to serve the files
 FROM node:18-alpine

@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 <head>
@@ -270,6 +270,7 @@
       <div id="passwordConfirm" style="margin: 15px 0">
         <input type="password" id="deletePassword" class="edit-input" placeholder="Enter password to confirm" />
       </div>
+      <p id="deleteError" style="color: #dc3545; display: none; margin-top: 10px; font-size: 0.9rem;"></p>
 
       <div class="modal-actions">
         <button onclick="closeDeleteModal()" class="secondary">Cancel</button>
@@ -290,29 +291,28 @@
         <a href="https://www.instagram.com/lnuaisociety" target="_blank">
           <img src="images/instagram.svg" alt="" class="footer-icon" />
         </a>
-        © 2025 LNU AI Society.<br />All rights reserved. <br />
+        Â© 2025 LNU AI Society.<br />All rights reserved. <br />
         802552-2056
       </p>
     </div>
   </footer>
 
   <script>
-    const DEFAULT_AVATAR_URL =
-      "https://ui-avatars.com/api/?background=random&name=";
+    const DEFAULT_AVATAR_URL = "https://ui-avatars.com/api/?background=random&name=";
     let currentUser = null;
-    let isGoogleUser = false; // Flag to control delete modal
+    let isGoogleUser = false;
 
     async function checkSession() {
       // 1. Check LocalStorage first
       const storedUser = localStorage.getItem("user");
+      let localUser = null;
       if (storedUser) {
-        initDashboard(JSON.parse(storedUser));
-        return;
+        localUser = JSON.parse(storedUser);
       }
 
-      // 2. Check Backend Cookie (Google Login)
+      // 2. Always validate with Backend to ensure account still exists
       try {
-        const response = await fetch(`${CONFIG.API_BASE_URL}/users/profile`, {
+        const response = await fetch("/users/profile", {
           method: "GET",
           credentials: "include",
         });
@@ -333,23 +333,26 @@
             user.isGoogle = true;
           }
 
+          // Update localStorage with fresh data
+          localStorage.setItem("user", JSON.stringify(user));
           initDashboard(user);
         } else {
+          // Backend session invalid or user deleted
+          console.warn("Backend session invalid, clearing local storage.");
+          localStorage.removeItem("user");
           window.location.href = "signin.html";
         }
       } catch (error) {
+        console.error("Session check failed:", error);
+        // FIX: Clear local storage and redirect to login on error
+        localStorage.removeItem("user");
         window.location.href = "signin.html";
       }
     }
 
     function initDashboard(user) {
       currentUser = user;
-      // Determine if manual or google based on picture URL or explicit flag
-      // A robust way is checking if the password field in DB is null, but frontend can guess:
-      // If program was "N/A (Google Login)" or we came from profile endpoint, treat as Google.
-      isGoogleUser =
-        user.isGoogle ||
-        (user.picture && user.picture.includes("googleusercontent"));
+      isGoogleUser = user.isGoogle || (user.picture && user.picture.includes("googleusercontent"));
 
       document.getElementById("loading").style.display = "none";
       document.getElementById("dashboardContent").style.display = "block";
@@ -357,28 +360,18 @@
       // Fill Data
       document.getElementById("userName").textContent = user.name;
       document.getElementById("userEmail").textContent = user.email;
-      document.getElementById("displayProgram").textContent =
-        user.program || "N/A";
-      document.getElementById("displayLevel").textContent =
-        user.level || "N/A";
+      document.getElementById("displayProgram").textContent = user.program || "N/A";
+      document.getElementById("displayLevel").textContent = user.level || "N/A";
 
       if (user.picture) {
         document.getElementById("profilePic").src = user.picture;
       } else {
-        document.getElementById("profilePic").src =
-          DEFAULT_AVATAR_URL + user.name;
+        document.getElementById("profilePic").src = DEFAULT_AVATAR_URL + user.name;
       }
 
       // Force Update if info missing
-      if (
-        !user.program ||
-        user.program === "N/A" ||
-        user.program === "N/A (Google Login)"
-      ) {
-        showNotification(
-          "Please complete your profile details.",
-          "alert-warning",
-        );
+      if (!user.program || user.program === "N/A" || user.program === "N/A (Google Login)") {
+        showNotification("Please complete your profile details.", "alert-warning");
         toggleEditMode();
       }
     }
@@ -399,17 +392,12 @@
         cancelBtn.classList.remove("hidden");
 
         // Fill inputs
-        const currentProg =
-          document.getElementById("displayProgram").textContent;
+        const currentProg = document.getElementById("displayProgram").textContent;
         document.getElementById("editProgram").value =
-          currentProg === "N/A" || currentProg === "N/A (Google Login)"
-            ? ""
-            : currentProg;
+          currentProg === "N/A" || currentProg === "N/A (Google Login)" ? "" : currentProg;
 
-        const currentLvl =
-          document.getElementById("displayLevel").textContent;
-        document.getElementById("editLevel").value =
-          currentLvl === "N/A" ? "LOW" : currentLvl;
+        const currentLvl = document.getElementById("displayLevel").textContent;
+        document.getElementById("editLevel").value = currentLvl === "N/A" ? "LOW" : currentLvl;
       } else {
         // Show View
         editMode.classList.add("hidden");
@@ -430,15 +418,12 @@
       saveBtn.disabled = true;
 
       try {
-        const response = await fetch(
-          `${CONFIG.API_BASE_URL}/users/${currentUser.id}/update_profile`,
-          {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ program: newProgram, level: newLevel }),
-            credentials: "include",
-          },
-        );
+        const response = await fetch(`/users/${currentUser.id}/update_profile`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ program: newProgram, level: newLevel }),
+          credentials: "include",
+        });
 
         if (response.ok) {
           const updatedUser = await response.json();
@@ -448,10 +433,8 @@
           localStorage.setItem("user", JSON.stringify(updatedUser));
 
           // Update UI
-          document.getElementById("displayProgram").textContent =
-            updatedUser.program;
-          document.getElementById("displayLevel").textContent =
-            updatedUser.level;
+          document.getElementById("displayProgram").textContent = updatedUser.program;
+          document.getElementById("displayLevel").textContent = updatedUser.level;
 
           showNotification("Profile updated successfully!", "alert-success");
           toggleEditMode();
@@ -470,6 +453,8 @@
     function showDeleteModal() {
       const modal = document.getElementById("deleteModal");
       const passField = document.getElementById("passwordConfirm");
+      const errorMsg = document.getElementById("deleteError");
+      if (errorMsg) errorMsg.style.display = "none";
 
       // Hide password field for Google Users
       if (isGoogleUser) {
@@ -486,70 +471,54 @@
 
     async function confirmDelete() {
       const password = document.getElementById("deletePassword").value;
+      const errorMsg = document.getElementById("deleteError");
 
+      // Basic validation for non-Google users
       if (!isGoogleUser && !password) {
-        alert("Please enter your password to confirm.");
+        errorMsg.textContent = "Password is required.";
+        errorMsg.style.display = "block";
         return;
       }
 
       try {
-        // Use standard DELETE endpoint
-        const response = await fetch(
-          `${CONFIG.API_BASE_URL}/users/${currentUser.id}`,
-          {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ password: password }),
-            credentials: "include",
-          },
-        );
+        const response = await fetch(`/users/${currentUser.id}/delete`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ password: password }),
+          credentials: "include"
+        });
 
         if (response.ok) {
-          alert("Account deleted.");
-          handleLogout();
+          // Success
+          localStorage.removeItem("user");
+          window.location.href = "index.html";
         } else {
-          const err = await response.json();
-          alert("Error: " + (err.message || "Could not delete account"));
+          errorMsg.textContent = "Failed to delete account. Incorrect password?";
+          errorMsg.style.display = "block";
         }
       } catch (e) {
         console.error(e);
-        alert("Error connecting to server.");
+        errorMsg.textContent = "An error occurred.";
+        errorMsg.style.display = "block";
       }
+    }
+
+    async function handleLogout() {
+      localStorage.removeItem("user");
+      window.location.href = "signin.html";
     }
 
     function showNotification(msg, type) {
       const notif = document.getElementById("notification");
       notif.textContent = msg;
-      notif.className = `alert-box ${type}`;
+      notif.className = "alert-box " + type;
       notif.style.display = "block";
+      setTimeout(() => notif.style.display = "none", 3000);
     }
 
-    async function handleLogout() {
-      // 1. Clear Local Storage (Crucial for removing the avatar)
-      localStorage.removeItem('user');
-
-      // 2. Clear Backend Session (Google Login)
-      try {
-        // We send a request to the backend to kill the cookie.
-        // We use 'await' so we don't redirect until the server knows we are gone.
-        await fetch(`${CONFIG.API_BASE_URL}/logout`, {
-          method: 'GET',
-          credentials: 'include'
-        });
-      } catch (error) {
-        console.error("Logout error:", error);
-        // Even if the network call fails, we still want to clear the frontend
-      }
-
-      // 3. Redirect to Frontend Home Page
-      window.location.href = "index.html";
-    }
-
+    // Initialize
     checkSession();
   </script>
-  <script src="scripts/config.js"></script>
-  <script src="scripts/navbar.js"></script>
-  <script src="scripts/hamburger.js"></script>
 </body>
 
 </html>

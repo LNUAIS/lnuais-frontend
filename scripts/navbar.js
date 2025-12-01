@@ -1,11 +1,11 @@
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     // 1. Check if user is logged in
     const storedUser = localStorage.getItem('user');
 
     if (storedUser) {
         try {
             const user = JSON.parse(storedUser);
-            
+
             // 2. Find the "Join Us" link using its link address
             // We search for the specific <a> tag that points to signup.html
             const joinUsLink = document.querySelector('a[href="signup.html"]');
@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 // 3. Determine Avatar URL
                 // Use Google's picture if available, otherwise generate initials
-                const avatarUrl = user.picture 
-                    ? user.picture 
+                const avatarUrl = user.picture
+                    ? user.picture
                     : `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=random&color=fff`;
 
                 // 4. Replace "Join Us" with Avatar + Name
@@ -28,6 +28,17 @@ document.addEventListener("DOMContentLoaded", function() {
                     </a>
                 `;
             }
+
+            // 5. Update Landing Page CTA Button (if present)
+            // This handles the "Join The Community" button on index.html
+            const ctaButton = document.querySelector('.cta .primary');
+            if (ctaButton && ctaButton.textContent.trim() === "Join The Community") {
+                ctaButton.textContent = `Hello ${user.name.split(' ')[0]}`;
+                ctaButton.onclick = function () {
+                    window.location.href = 'dashboard.html';
+                };
+            }
+
         } catch (e) {
             console.error("Error parsing user data:", e);
             // If data is corrupt, clear it so they can login again

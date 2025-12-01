@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+  <script>
+    if (localStorage.getItem("user")) {
+      window.location.href = "dashboard.html";
+    }
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles/styles.css" />
@@ -92,55 +97,69 @@
       <h1>Join the LNU AI Society</h1>
       <p>
         Become part of our growing community of AI enthusiasts at Linnaeus
-        <label>First Name</label><input type="text" id="firstName" required />
+        University. Shape the future with us.
+      </p>
     </div>
-    <div class="form-group">
-      <label>Last Name</label><input type="text" id="lastName" required />
+
+    <div class="card signup-card">
+      <h2>Create Your Account</h2>
+      <a href="http://localhost:8080/oauth2/authorization/google" class="google-btn">Sign up with Google</a>
+      <div class="divider">OR</div>
+
+      <div id="signupMessage" class="message-box"></div>
+
+      <form class="signup-form" id="signupForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label><input type="text" id="firstName" required />
+          </div>
+          <div class="form-group">
+            <label>Last Name</label><input type="text" id="lastName" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label><input type="email" id="email" required />
+          <small>We'll send a verification code to this email.</small>
+        </div>
+        <div class="form-group">
+          <label>Password</label><input type="password" id="password" required />
+        </div>
+        <div class="form-group">
+          <label>Programme</label><input type="text" id="programme" required />
+        </div>
+
+        <div class="form-group">
+          <label>AI/ML Experience</label>
+          <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="experience" value="beginner" required /><span
+                class="radio-label">Beginner</span></label>
+            <label class="radio-option"><input type="radio" name="experience" value="intermediate" /><span
+                class="radio-label">Intermediate</span></label>
+            <label class="radio-option"><input type="radio" name="experience" value="advanced" /><span
+                class="radio-label">Advanced</span></label>
+          </div>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label class="checkbox-option">
+            <input type="checkbox" required />
+            <span class="checkbox-label">I agree to the <a href="#" class="link">Terms</a> and
+              <a href="#" class="link">Privacy Policy</a></span>
+          </label>
+        </div>
+
+        <button type="submit" class="primary full-width" id="signupBtn">
+          Join The Community
+        </button>
+      </form>
+
+      <div class="signup-footer">
+        <p>
+          Already have an account?
+          <a href="signin.html" class="link">Sign in here</a>
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label>Email Address</label><input type="email" id="email" required />
-    <small>We'll send a verification code to this email.</small>
-  </div>
-  <div class="form-group">
-    <label>Password</label><input type="password" id="password" required />
-  </div>
-  <div class="form-group">
-    <label>Programme</label><input type="text" id="programme" required />
-  </div>
-
-  <div class="form-group">
-    <label>AI/ML Experience</label>
-    <div class="radio-group">
-      <label class="radio-option"><input type="radio" name="experience" value="beginner" required /><span
-          class="radio-label">Beginner</span></label>
-      <label class="radio-option"><input type="radio" name="experience" value="intermediate" /><span
-          class="radio-label">Intermediate</span></label>
-      <label class="radio-option"><input type="radio" name="experience" value="advanced" /><span
-          class="radio-label">Advanced</span></label>
-    </div>
-  </div>
-
-  <div class="form-group checkbox-group">
-    <label class="checkbox-option">
-      <input type="checkbox" required />
-      <span class="checkbox-label">I agree to the <a href="#" class="link">Terms</a> and
-        <a href="#" class="link">Privacy Policy</a></span>
-    </label>
-  </div>
-
-  <button type="submit" class="primary full-width" id="signupBtn">
-    Join The Community
-  </button>
-  </form>
-
-  <div class="signup-footer">
-    <p>
-      Already have an account?
-      <a href="signin.html" class="link">Sign in here</a>
-    </p>
-  </div>
-  </div>
   </div>
   <footer>
     <h3>LNU AI Society</h3>
@@ -158,10 +177,7 @@
     </div>
   </footer>
 
-  <script src="scripts/config.js"></script>
   <script>
-    document.querySelector('.google-btn').href = `${CONFIG.API_BASE_URL}/oauth2/authorization/google`;
-
     document
       .getElementById("signupForm")
       .addEventListener("submit", async function (e) {
@@ -188,7 +204,7 @@
 
         try {
           const response = await fetch(
-            `${CONFIG.API_BASE_URL}/users/new_member`,
+            "http://localhost:8080/users/new_member",
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

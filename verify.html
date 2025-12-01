@@ -1,176 +1,188 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="stylesheet" href="styles/responsive.css" />
-    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
 
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="styles/responsive.css" />
+  <link rel="icon" type="image/x-icon" href="/images/logo.png" />
 
-      /* Special large input for the code */
-      .code-input {
-        font-size: 2rem;
-        letter-spacing: 0.5rem;
-        text-align: center;
-        padding: 10px;
-        width: 100%;
-        margin: 20px 0;
-        text-transform: uppercase;
-      }
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-      .message-box {
-        padding: 10px;
-        margin-bottom: 15px;
-        border-radius: 4px;
-        font-size: 0.9rem;
-        display: none;
-        text-align: center;
-      }
-      .message-box.error {
-        background-color: #fee2e2;
-        color: #dc2626;
-        border: 1px solid #fca5a5;
-      }
-      .message-box.success {
-        background-color: #dcfce7;
-        color: #166534;
-        border: 1px solid #86efac;
-      }
-    </style>
+    /* Special large input for the code */
+    .code-input {
+      font-size: 2rem;
+      letter-spacing: 0.5rem;
+      text-align: center;
+      padding: 10px;
+      width: 100%;
+      margin: 20px 0;
+      text-transform: uppercase;
+    }
 
-    <title>Verify Account - LNU AI Society</title>
-  </head>
+    .message-box {
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      display: none;
+      text-align: center;
+    }
 
-  <body>
-    <nav class="navbar">
-      <a href="/"><img src="/images/logo.png" alt="Logo" class="logo" /></a>
+    .message-box.error {
+      background-color: #fee2e2;
+      color: #dc2626;
+      border: 1px solid #fca5a5;
+    }
 
-      <button class="hamburger" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </nav>
+    .message-box.success {
+      background-color: #dcfce7;
+      color: #166534;
+      border: 1px solid #86efac;
+    }
+  </style>
 
-    <div class="container">
-      <div class="hero">
-        <h1>Check your Email</h1>
-        <p>
-          We've sent a 6-digit verification code to
-          <strong id="displayEmail">your email</strong>.
-        </p>
-      </div>
+  <title>Verify Account - LNU AI Society</title>
+</head>
 
-      <div class="card signup-card">
-        <h2>Verify Your Account</h2>
-        <div id="verifyMessage" class="message-box"></div>
+<body>
+  <nav class="navbar">
+    <a href="/"><img src="/images/logo.png" alt="Logo" class="logo" /></a>
 
-        <form class="signup-form" id="verifyForm">
-          <div class="form-group">
-            <label for="verificationCode">Enter Verification Code</label>
-            <input
-              type="text"
-              id="verificationCode"
-              class="code-input"
-              placeholder="000000"
-              maxlength="6"
-              required
-            />
-            <small style="text-align: center; display: block"
-              >Check your spam folder if you don't see it.</small
-            >
-          </div>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
 
-          <div class="form-group" style="text-align: center">
-            <small
-              >Not your email?
-              <a href="signup.html" class="link">Go back</a></small
-            >
-          </div>
-
-          <button type="submit" class="primary full-width" id="verifyBtn">
-            Verify & Login
-          </button>
-        </form>
-      </div>
+  <div class="container">
+    <div class="hero">
+      <h1>Check your Email</h1>
+      <p>
+        We've sent a 6-digit verification code to
+        <strong id="displayEmail">your email</strong>.
+      </p>
     </div>
 
-    <footer>
-      <h3>LNU AI Society</h3>
-      <div class="footer-items">
-        <p>
-          <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
-            <img src="images/linkedin.svg" alt="" class="footer-icon" />
-          </a>
-          <a href="https://www.instagram.com/lnuaisociety" target="_blank">
-            <img src="images/instagram.svg" alt="" class="footer-icon" />
-          </a>
-          © 2025 LNU AI Society.<br />All rights reserved. <br />
-          802552-2056
-        </p>
-      </div>
-    </footer>
+    <div class="card signup-card">
+      <h2>Verify Your Account</h2>
+      <div id="verifyMessage" class="message-box"></div>
 
-    <script src="scripts/config.js"></script>
-    <script>
-      // 1. Get the email from LocalStorage (saved during Step 1)
-      const pendingEmail = localStorage.getItem("pendingEmail");
+      <form class="signup-form" id="verifyForm">
+        <div class="form-group">
+          <label for="verificationCode">Enter Verification Code</label>
+          <input type="text" id="verificationCode" class="code-input" placeholder="000000" maxlength="6" required />
+          <small style="text-align: center; display: block">Check your spam folder if you don't see it.</small>
+        </div>
 
-      // If they somehow got here without signing up, send them back
-      if (pendingEmail) {
-        document.getElementById("displayEmail").textContent = pendingEmail;
-      } else {
-        window.location.href = "signup.html";
-      }
+        <div class="form-group" style="text-align: center">
+          <small>Not your email?
+            <a href="signup.html" class="link">Go back</a></small>
+        </div>
 
-      // 2. Handle Verification
-      document
-        .getElementById("verifyForm")
-        .addEventListener("submit", async function (e) {
-          e.preventDefault();
+        <button type="submit" class="primary full-width" id="verifyBtn">
+          Verify & Login
+        </button>
+      </form>
+    </div>
+  </div>
 
-          const btn = document.getElementById("verifyBtn");
-          const msgBox = document.getElementById("verifyMessage");
-          const code = document.getElementById("verificationCode").value;
+  <footer>
+    <h3>LNU AI Society</h3>
+    <div class="footer-items">
+      <p>
+        <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
+          <img src="images/linkedin.svg" alt="" class="footer-icon" />
+        </a>
+        <a href="https://www.instagram.com/lnuaisociety" target="_blank">
+          <img src="images/instagram.svg" alt="" class="footer-icon" />
+        </a>
+        © 2025 LNU AI Society.<br />All rights reserved. <br />
+        802552-2056
+      </p>
+    </div>
+  </footer>
 
-          btn.textContent = "Verifying...";
-          btn.disabled = true;
-          msgBox.style.display = "none";
+  <script>
+    // 1. Get the email from LocalStorage (saved during Step 1)
+    const pendingEmail = localStorage.getItem("pendingEmail");
 
-          try {
-            const response = await fetch(`${CONFIG.API_BASE_URL}/users/verify`, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ email: pendingEmail, code: code }),
-            });
+    // If they somehow got here without signing up, send them back
+    if (pendingEmail) {
+      document.getElementById("displayEmail").textContent = pendingEmail;
+    } else {
+      window.location.href = "signup.html";
+    }
 
-            if (response.ok) {
-              msgBox.textContent = "Success! Account verified.";
+    // 2. Handle Verification
+    document
+      .getElementById("verifyForm")
+      .addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const btn = document.getElementById("verifyBtn");
+        const msgBox = document.getElementById("verifyMessage");
+        const code = document.getElementById("verificationCode").value;
+
+        btn.textContent = "Verifying...";
+        btn.disabled = true;
+        msgBox.style.display = "none";
+
+        try {
+          // Use relative path so request goes through server.js proxy (port 3000)
+          // This ensures the session cookie is set for localhost:3000
+          const response = await fetch("/users/verify", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              email: pendingEmail,
+              code: code
+            }),
+          });
+
+          if (response.ok) {
+            const user = await response.json(); // Get user object
+
+            msgBox.textContent = "Success! Account verified. Logging you in...";
+            msgBox.className = "message-box success";
+            msgBox.style.display = "block";
+
+            // Cleanup & Save User
+            localStorage.removeItem("pendingEmail");
+            localStorage.setItem("user", JSON.stringify(user));
+
+            setTimeout(() => {
+              window.location.href = "dashboard.html";
+            }, 1500);
+          } else {
+            const errorText = await response.text();
+            if (errorText.includes("already verified")) {
+              msgBox.textContent = "Account already verified! Redirecting to login...";
               msgBox.className = "message-box success";
               msgBox.style.display = "block";
-
-              // Cleanup
-              localStorage.removeItem("pendingEmail");
-
               setTimeout(() => {
                 window.location.href = "signin.html";
               }, 1500);
-            } else {
-              throw new Error("Invalid code. Please try again.");
+              return;
             }
-          } catch (error) {
-            msgBox.textContent = error.message;
-            msgBox.className = "message-box error";
-            msgBox.style.display = "block";
-            btn.textContent = "Verify & Login";
-            btn.disabled = false;
+            throw new Error("Invalid code. Please try again.");
           }
-        });
-    </script>
-    <script src="scripts/navbar.js"></script>
-    <script src="scripts/hamburger.js"></script>
-  </body>
+        } catch (error) {
+          msgBox.textContent = error.message;
+          msgBox.className = "message-box error";
+          msgBox.style.display = "block";
+          btn.textContent = "Verify & Login";
+          btn.disabled = false;
+        }
+      });
+  </script>
+  <script src="scripts/navbar.js"></script>
+  <script src="scripts/hamburger.js"></script>
+</body>
+
 </html>

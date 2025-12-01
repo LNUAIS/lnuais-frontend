@@ -95,20 +95,15 @@
         <h3>Join Us First!</h3>
         <p>You need to be a member to register for events.</p>
 
-        href="signup.html"
-        class="primary modal-btn"
-        style="background-color: #2563eb; color: white"
-        >Create Account</a>
+        <a href="signup.html" class="primary modal-btn" style="background-color: #2563eb; color: white">Create
+          Account</a>
 
-        href="signin.html"
-        class="secondary modal-btn"
-        style="
+        <a href="signin.html" class="secondary modal-btn" style="
         background-color: #f3f4f6;
         color: #333;
         display: block;
         margin-top: 10px;
-        "
-        >Sign In</a>
+        ">Sign In</a>
         <button onclick="closeModal()" style="
               background: none;
               border: none;
@@ -213,51 +208,44 @@
     async function loadEvents() {
       const container = document.getElementById("eventsContainer");
 
-      try {
-        // Fetch all events
-        const response = await fetch(`${CONFIG.API_BASE_URL}/events`);
-        if (!response.ok) throw new Error("Failed to load events");
+      // HARDCODED EVENTS (Empty for now)
+      const events = [];
 
-        const events = await response.json();
+      if (events.length === 0) {
+        container.innerHTML =
+          "<p style='text-align:center; grid-column: 1/-1;'>No upcoming events scheduled.</p>";
+        return;
+      }
 
-        if (events.length === 0) {
-          container.innerHTML =
-            "<p style='text-align:center; grid-column: 1/-1;'>No upcoming events scheduled.</p>";
-          return;
+      container.innerHTML = ""; // Clear loading text
+
+      // Render Cards
+      for (const event of events) {
+        const date = new Date(event.startTime);
+        const day = date.getDate();
+        const month = date.toLocaleString("default", { month: "short" });
+
+        // Format Time (HH:MM)
+        const timeStr = date.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+
+        // Check if THIS user is already registered
+        let isRegistered = false;
+        if (currentUser && currentUser.id) {
+          isRegistered = await checkRegistrationStatus(
+            event.id,
+            currentUser.id,
+          );
         }
 
-        container.innerHTML = ""; // Clear loading text
+        const btnText = isRegistered ? "Unregister" : "Register";
+        const btnClass = isRegistered
+          ? "event-button registered"
+          : "event-button";
 
-        // Render Cards
-        for (const event of events) {
-          const date = new Date(event.startTime);
-          const day = date.getDate();
-          const month = date.toLocaleString("default", { month: "short" });
-
-          // Format Time (HH:MM)
-          const timeStr = date.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          });
-
-          // Check if THIS user is already registered
-          let isRegistered = false;
-          if (currentUser && currentUser.id) {
-            // Note: Backend needs to return ID for this to work perfectly
-            // Or we can check the event.attendees list if backend sends it (careful of privacy)
-            // Better: Call specific endpoint to check status
-            isRegistered = await checkRegistrationStatus(
-              event.id,
-              currentUser.id,
-            );
-          }
-
-          const btnText = isRegistered ? "Unregister" : "Register";
-          const btnClass = isRegistered
-            ? "event-button registered"
-            : "event-button";
-
-          const card = `
+        const card = `
                         <div class="event-card">
                           <div class="event-date">
                             <span class="date-day">${day}</span>
@@ -274,11 +262,7 @@
                           <button id="btn-${event.id}" class="${btnClass}" onclick="handleEventClick(${event.id})">${btnText}</button>
                         </div>
                     `;
-          container.innerHTML += card;
-        }
-      } catch (error) {
-        container.innerHTML =
-          "<p style='text-align:center; grid-column: 1/-1;'>Could not load events.</p>";
+        container.innerHTML += card;
       }
     }
 
@@ -303,7 +287,7 @@
       const btn = document.getElementById(`btn-${eventId}`);
       const isRegistered = btn.classList.contains("registered");
 
-      // Optimistic UI update (Change button immediately to feel fast)
+      // Optimistic UI update
       btn.disabled = true;
       btn.textContent = "Processing...";
 

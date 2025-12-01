@@ -5,8 +5,46 @@ const path = require("path");
 const PORT = 3000;
 
 const server = http.createServer((req, res) => {
+  // --- PROXY LOGIC ---
+  // Forward API requests to the Spring Boot Backend (port 8080)
+  if (req.url.startsWith("/users") || req.url.startsWith("/logout") || req.url.startsWith("/oauth2")) {
+    console.log(`[PROXY] Incoming request: ${req.method} ${req.url}`);
+    const options = {
+      hostname: 'localhost',
+      port: 8080,
+      path: req.url,
+      method: req.method,
+      headers: {
+        ...req.headers,
+        host: 'localhost:8080', // Override Host header to match backend
+        origin: 'http://localhost:8080', // Override Origin to bypass CSRF checks
+        referer: 'http://localhost:8080/', // Override Referer
+      },
+    };
+
+    const proxyReq = http.request(options, (proxyRes) => {
+      console.log(`[PROXY] Backend response: ${proxyRes.statusCode}`);
+      if (proxyRes.headers['set-cookie']) {
+        console.log(`[PROXY] Set-Cookie: ${proxyRes.headers['set-cookie']}`);
+      }
+      res.writeHead(proxyRes.statusCode, proxyRes.headers);
+      proxyRes.pipe(res);
+    });
+
+    req.pipe(proxyReq);
+
+    proxyReq.on('error', (e) => {
+      console.error(`[PROXY] Error connecting to backend: ${e.message}`);
+      res.writeHead(502, { "Content-Type": "application/json" });
+      res.end(JSON.stringify({ message: `Proxy Error: Could not connect to backend at localhost:8080. ${e.message}` }));
+    });
+    return; // Stop execution here, don't serve static files
+  }
+
+  // --- STATIC FILE SERVING ---
   // Default to index.html for root path
-  let filePath = req.url === "/" ? "/index.html" : req.url;
+  const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
+  let filePath = parsedUrl.pathname === "/" ? "/index.html" : parsedUrl.pathname;
 
   // Build full path from project root
   filePath = path.join(__dirname, "..", filePath);

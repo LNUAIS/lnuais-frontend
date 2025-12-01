@@ -2,6 +2,11 @@
 <html lang="en">
 
 <head>
+  <script>
+    if (localStorage.getItem("user")) {
+      window.location.href = "dashboard.html";
+    }
+  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles/styles.css" />
@@ -91,26 +96,41 @@
       <p>
         Sign in to access your dashboard and continue your journey with the
         <span class="highlight">LNU AI Society</span>.
-        <input type="email" id="email" name="email" required />
-        <small>The email address you entered when registering.</small>
-    </div>
-
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required />
-      <small>The password you entered when registering.</small>
-    </div>
-
-    <button type="submit" class="primary full-width">Sign In</button>
-    </form>
-
-    <div class="signup-footer">
-      <p>
-        Forgot your password?
-        <a href="resetpass.html" class="link">Reset it here</a>
       </p>
     </div>
-  </div>
+
+    <div class="card signup-card">
+      <h2>Sign in to Your Account</h2>
+
+      <a href="http://localhost:8080/oauth2/authorization/google" class="google-btn">
+        Sign in with Google
+      </a>
+
+      <div class="divider">OR</div>
+
+      <form class="signup-form" id="signinForm">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required />
+          <small>The email address you entered when registering.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required />
+          <small>The password you entered when registering.</small>
+        </div>
+
+        <button type="submit" class="primary full-width">Sign In</button>
+      </form>
+
+      <div class="signup-footer">
+        <p>
+          Forgot your password?
+          <a href="reset_password.html" class="link">Reset it here</a>
+        </p>
+      </div>
+    </div>
   </div>
 
   <footer>
@@ -129,11 +149,7 @@
     </div>
   </footer>
 
-  <script src="scripts/config.js"></script>
   <script>
-    document.querySelector('.google-btn').href = `${CONFIG.API_BASE_URL}/oauth2/authorization/google`;
-    // Inside signin.html <script> tag
-
     document
       .getElementById("signinForm")
       .addEventListener("submit", async function (e) {
@@ -147,10 +163,12 @@
         submitBtn.disabled = true;
 
         try {
-          const response = await fetch(`${CONFIG.API_BASE_URL}/users/login`, {
+          // Use relative URL to go through the proxy
+          const response = await fetch("/users/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: email, password: password }),
+            credentials: "include",
           });
 
           if (response.ok) {
@@ -161,20 +179,13 @@
           } else {
             // ERROR HANDLING
             const errorData = await response.json();
-            const errorMessage = errorData.message || "Login failed"; // Spring Boot usually sends JSON error
+            const errorMessage = errorData.message || "Login failed";
 
-            // 1. CHECK FOR SPECIFIC UNVERIFIED ERROR
-            // Note: Spring Boot defaults might wrap the message.
-            // We check if the text contains our specific keyword.
             if (errorMessage.includes("UNVERIFIED_ACCOUNT")) {
               alert(
                 "Your account is not verified yet. We have sent a new code to your email.",
               );
-
-              // Save email for the next page
               localStorage.setItem("pendingEmail", email);
-
-              // Redirect to verify page
               window.location.href = "verify.html";
             } else {
               alert("Error: " + errorMessage);
@@ -184,7 +195,6 @@
           }
         } catch (error) {
           console.error("Error:", error);
-          // Fallback for network errors or non-JSON responses
           alert("Could not connect to server. Please check your connection.");
           submitBtn.textContent = "Sign In";
           submitBtn.disabled = false;

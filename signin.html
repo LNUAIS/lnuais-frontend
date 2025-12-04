@@ -3,9 +3,8 @@
 
 <head>
   <script>
-    if (localStorage.getItem("user")) {
-      window.location.href = "dashboard.html";
-    }
+    // Clear any stale data on load
+    localStorage.removeItem("user");
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,14 +36,6 @@
 
     .google-btn:hover {
       background-color: #357ae8;
-    }
-
-    .google-icon {
-      width: 20px;
-      height: 20px;
-      background-color: white;
-      border-radius: 50%;
-      padding: 2px;
     }
 
     .divider {
@@ -189,24 +180,47 @@
         msgBox.style.display = "none";
 
         try {
-          // Use relative URL to go through the proxy
+          // 1. Attempt Login
           const response = await fetch("/users/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: email, password: password }),
-            credentials: "include",
+            credentials: "include", // IMPORTANT: Include cookies
           });
 
           if (response.ok) {
-            // SUCCESS LOGIN
             const user = await response.json();
-            localStorage.setItem("user", JSON.stringify(user));
-            msgBox.textContent = "Login successful! Redirecting...";
+
+            // 2. VERIFY SESSION IMMEDIATELY
+            // Before redirecting, we check if the cookie actually works
+            msgBox.textContent = "Login successful. Verifying session...";
             msgBox.className = "message-box success";
             msgBox.style.display = "block";
-            setTimeout(() => {
-              window.location.href = "dashboard.html";
-            }, 1000);
+
+            try {
+              const profileResp = await fetch("/users/profile", {
+                method: "GET",
+                credentials: "include"
+              });
+
+              if (profileResp.ok) {
+                // Session is valid!
+                localStorage.setItem("user", JSON.stringify(user));
+                msgBox.textContent = "Session verified! Redirecting...";
+                setTimeout(() => {
+                  window.location.href = "dashboard.html";
+                }, 500);
+              } else {
+                throw new Error("Session verification failed. Cookie not set?");
+              }
+            } catch (sessionErr) {
+              console.error("Session verification error:", sessionErr);
+              msgBox.textContent = "Login succeeded but session failed. Please enable cookies and try again.";
+              msgBox.className = "message-box error";
+              submitBtn.textContent = "Sign In";
+              submitBtn.disabled = false;
+            }
+
           } else {
             // ERROR HANDLING
             const errorData = await response.json();

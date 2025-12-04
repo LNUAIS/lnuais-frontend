@@ -80,7 +80,7 @@
       background-color: #1a1a1e;
       color: #fcfbf8;
     }
-    
+
     .edit-input:focus {
       outline: none;
       border-color: #ffe000;
@@ -175,7 +175,7 @@
       color: #68d391;
       border-left-color: #68d391;
     }
-    
+
     .alert-error {
       background: #3a1f1f;
       color: #fc8181;
@@ -229,11 +229,11 @@
       border: 1px solid #404040;
       color: #fcfbf8;
     }
-    
+
     .modal-content h3 {
       color: #fc8181;
     }
-    
+
     .modal-content p {
       color: #b0b0b0;
     }
@@ -463,15 +463,24 @@
           initDashboard(user);
         } else {
           // Backend session invalid or user deleted
-          console.warn("Backend session invalid, clearing local storage.");
+          console.warn(`Backend session invalid: ${response.status}`);
+          document.getElementById("loading").innerHTML = `
+            <h2 style="color: #fc8181">Session Error (${response.status})</h2>
+            <p>Could not verify your session with the backend.</p>
+            <p>Please <a href="signin.html" style="color: #ffe000">sign in again</a>.</p>
+          `;
           localStorage.removeItem("user");
-          window.location.href = "signin.html";
+          // window.location.href = "signin.html"; // DISABLED FOR DEBUGGING
         }
       } catch (error) {
         console.error("Session check failed:", error);
-        // FIX: Clear local storage and redirect to login on error
+        document.getElementById("loading").innerHTML = `
+            <h2 style="color: #fc8181">Connection Error</h2>
+            <p>${error.message}</p>
+            <p>Please <a href="signin.html" style="color: #ffe000">sign in again</a>.</p>
+        `;
         localStorage.removeItem("user");
-        window.location.href = "signin.html";
+        // window.location.href = "signin.html"; // DISABLED FOR DEBUGGING
       }
     }
 
@@ -483,16 +492,8 @@
       document.getElementById("dashboardContent").style.display = "block";
 
       // Fill Data
-      document.getElementById("userName").textContent = user.name;
-      document.getElementById("userEmail").textContent = user.email;
       document.getElementById("displayProgram").textContent = user.program || "N/A";
       document.getElementById("displayLevel").textContent = user.level || "N/A";
-
-      if (user.picture) {
-        document.getElementById("profilePic").src = user.picture;
-      } else {
-        document.getElementById("profilePic").src = DEFAULT_AVATAR_URL + user.name;
-      }
 
       // Update navbar profile
       document.getElementById("navbarProfile").style.display = "flex";

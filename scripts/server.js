@@ -27,12 +27,38 @@ const server = http.createServer((req, res) => {
     };
 
     const proxyReq = http.request(options, (proxyRes) => {
-      console.log(`[PROXY] Backend response: ${proxyRes.statusCode}`);
-      if (proxyRes.headers['set-cookie']) {
-        console.log(`[PROXY] Set-Cookie: ${proxyRes.headers['set-cookie']}`);
-      }
-      res.writeHead(proxyRes.statusCode, proxyRes.headers);
-      proxyRes.pipe(res);
+      let responseBody = '';
+      proxyRes.on('data', (chunk) => {
+        responseBody += chunk;
+      });
+
+      proxyRes.on('end', () => {
+        console.log(`[PROXY] Backend response: ${proxyRes.statusCode}`);
+        if (proxyRes.headers['set-cookie']) {
+          console.log(`[PROXY] Original Set-Cookie: ${proxyRes.headers['set-cookie']}`);
+          const cookies = proxyRes.headers['set-cookie'].map(cookie => {
+            let newCookie = cookie
+              .replace(/Domain=[^;]+;?/gi, '')
+              .replace(/Secure;?/gi, '')
+              .replace(/SameSite=[^;]+;?/gi, '')
+              .replace(/Path=[^;]+;?/gi, '');
+
+            // Force Path=/
+            if (!newCookie.endsWith(';')) newCookie += ';';
+            newCookie += ' Path=/;';
+            return newCookie;
+          });
+          proxyRes.headers['set-cookie'] = cookies;
+          console.log(`[PROXY] Rewritten Set-Cookie: ${cookies}`);
+        }
+        // Log body for debugging
+        if (req.url.startsWith("/users")) {
+          console.log(`[PROXY] Body: ${responseBody}`);
+        }
+
+        res.writeHead(proxyRes.statusCode, proxyRes.headers);
+        res.end(responseBody);
+      });
     });
 
     req.pipe(proxyReq);

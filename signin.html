@@ -64,6 +64,28 @@
       flex: 1;
       border-bottom: 1px solid #666;
     }
+
+    .message-box {
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      display: none;
+      text-align: center;
+      border-left: 4px solid;
+    }
+
+    .message-box.error {
+      background-color: #3a1f1f;
+      color: #fc8181;
+      border-left-color: #fc8181;
+    }
+
+    .message-box.success {
+      background-color: #1f3a26;
+      color: #68d391;
+      border-left-color: #68d391;
+    }
   </style>
 
   <title>Sign In - LNU AI Society</title>
@@ -107,6 +129,8 @@
       </a>
 
       <div class="divider">OR</div>
+
+      <div id="signinMessage" class="message-box"></div>
 
       <form class="signup-form" id="signinForm">
         <div class="form-group">
@@ -158,9 +182,11 @@
         const email = document.getElementById("email").value;
         const password = document.getElementById("password").value;
         const submitBtn = this.querySelector('button[type="submit"]');
+        const msgBox = document.getElementById("signinMessage");
 
         submitBtn.textContent = "Signing in...";
         submitBtn.disabled = true;
+        msgBox.style.display = "none";
 
         try {
           // Use relative URL to go through the proxy
@@ -175,27 +201,38 @@
             // SUCCESS LOGIN
             const user = await response.json();
             localStorage.setItem("user", JSON.stringify(user));
-            window.location.href = "dashboard.html";
+            msgBox.textContent = "Login successful! Redirecting...";
+            msgBox.className = "message-box success";
+            msgBox.style.display = "block";
+            setTimeout(() => {
+              window.location.href = "dashboard.html";
+            }, 1000);
           } else {
             // ERROR HANDLING
             const errorData = await response.json();
             const errorMessage = errorData.message || "Login failed";
 
             if (errorMessage.includes("UNVERIFIED_ACCOUNT")) {
-              alert(
-                "Your account is not verified yet. We have sent a new code to your email.",
-              );
+              msgBox.textContent = "Your account is not verified yet. Sending verification code...";
+              msgBox.className = "message-box success";
+              msgBox.style.display = "block";
               localStorage.setItem("pendingEmail", email);
-              window.location.href = "verify.html";
+              setTimeout(() => {
+                window.location.href = "verify.html";
+              }, 1500);
             } else {
-              alert("Error: " + errorMessage);
+              msgBox.textContent = errorMessage;
+              msgBox.className = "message-box error";
+              msgBox.style.display = "block";
               submitBtn.textContent = "Sign In";
               submitBtn.disabled = false;
             }
           }
         } catch (error) {
           console.error("Error:", error);
-          alert("Could not connect to server. Please check your connection.");
+          msgBox.textContent = "Could not connect to server. Please check your connection.";
+          msgBox.className = "message-box error";
+          msgBox.style.display = "block";
           submitBtn.textContent = "Sign In";
           submitBtn.disabled = false;
         }

@@ -134,7 +134,7 @@
         try {
           // Use relative path so request goes through server.js proxy (port 3000)
           // This ensures the session cookie is set for localhost:3000
-          const response = await fetch(CONFIG.getApiBaseUrl() + "/users/verify", {
+          const response = await fetch("/users/verify", {
             method: "POST",
             headers: {
               "Content-Type": "application/json"

@@ -7,8 +7,8 @@ const PORT = 3000;
 const server = http.createServer((req, res) => {
   // --- PROXY LOGIC ---
   // Forward API requests to the Spring Boot Backend
-  // Default: localhost:8080, or use BACKEND_URL env var
-  const backendUrl = process.env.BACKEND_URL || "http://localhost:8080";
+  // Change the IP below or set BACKEND_URL environment variable
+  const backendUrl = process.env.BACKEND_URL || "http://34.51.217.185:8080";
   const backendUrlObj = new URL(backendUrl);
 
   if (req.url.startsWith("/users") || req.url.startsWith("/logout") || req.url.startsWith("/oauth2")) {

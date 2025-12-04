@@ -18,7 +18,7 @@
       gap: 20px;
       margin-bottom: 30px;
       padding-bottom: 20px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #404040;
     }
 
     .profile-pic {
@@ -26,35 +26,38 @@
       height: 80px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #eee;
+      border: 3px solid #ffe000;
     }
 
     .profile-info h2 {
       margin: 0;
       font-size: 1.5rem;
+      color: #ffe000;
     }
 
     .profile-info p {
       margin: 5px 0 0;
-      color: #666;
+      color: #b0b0b0;
     }
 
     .info-grid {
       display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 15px;
       text-align: left;
     }
 
     .info-item {
-      background: #f9f9f9;
+      background: #2a2a2e;
       padding: 15px;
       border-radius: 6px;
+      border: 1px solid #404040;
     }
 
     .info-item label {
       display: block;
       font-size: 0.85rem;
-      color: #888;
+      color: #ffe000;
       margin-bottom: 5px;
       font-weight: bold;
       text-transform: uppercase;
@@ -62,18 +65,42 @@
 
     .info-value {
       font-size: 1.1rem;
-      color: #333;
+      color: #fcfbf8;
       font-weight: 500;
     }
 
     /* Edit Inputs */
     .edit-input {
       width: 100%;
-      padding: 8px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      padding: 10px;
+      border: 1px solid #404040;
+      border-radius: 6px;
       font-size: 1rem;
       box-sizing: border-box;
+      background-color: #1a1a1e;
+      color: #fcfbf8;
+    }
+    
+    .edit-input:focus {
+      outline: none;
+      border-color: #ffe000;
+      box-shadow: 0 0 0 2px rgba(255, 224, 0, 0.1);
+    }
+
+    /* Dropdown/Select Styling */
+    .edit-input[type="select"],
+    select.edit-input {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffe000' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .edit-input[type="select"]:hover,
+    select.edit-input:hover {
+      border-color: #ffe000;
     }
 
     .action-buttons {
@@ -81,6 +108,45 @@
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .action-buttons .primary,
+    .action-buttons .secondary {
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .action-buttons .primary {
+      background: linear-gradient(135deg, #ffe000 0%, #ffc700 100%);
+      color: #232326;
+      box-shadow: 0 4px 15px rgba(255, 224, 0, 0.3);
+    }
+
+    .action-buttons .primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 224, 0, 0.4);
+    }
+
+    .action-buttons .primary:active {
+      transform: translateY(0);
+    }
+
+    .action-buttons .secondary {
+      background: transparent;
+      color: #b0b0b0;
+      border: 1.5px solid #404040;
+    }
+
+    .action-buttons .secondary:hover {
+      border-color: #606060;
+      color: #fcfbf8;
+      background: rgba(255, 224, 0, 0.05);
     }
 
     /* FIX: Added !important to ensure this overrides the flex display */
@@ -90,46 +156,53 @@
 
     /* Notification Box */
     .alert-box {
-      padding: 10px;
+      padding: 15px;
       margin-bottom: 20px;
-      border-radius: 4px;
-      font-weight: bold;
+      border-radius: 6px;
+      font-weight: 500;
       display: none;
+      border-left: 4px solid;
     }
 
     .alert-warning {
-      background: #fff3cd;
-      color: #856404;
-      border: 1px solid #ffeeba;
+      background: #3a2d1f;
+      color: #ffd700;
+      border-left-color: #ffd700;
     }
 
     .alert-success {
-      background: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
+      background: #1f3a26;
+      color: #68d391;
+      border-left-color: #68d391;
+    }
+    
+    .alert-error {
+      background: #3a1f1f;
+      color: #fc8181;
+      border-left-color: #fc8181;
     }
 
     /* Delete Section */
     .delete-section {
       margin-top: 40px;
-      border-top: 1px solid #eee;
+      border-top: 1px solid #404040;
       padding-top: 20px;
     }
 
     .delete-btn {
-      background-color: #fff;
-      color: #dc3545;
-      border: 1px solid #dc3545;
+      background-color: transparent;
+      color: #fc8181;
+      border: 1.5px solid #fc8181;
       padding: 10px 20px;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
       font-size: 0.9rem;
       transition: 0.2s;
     }
 
     .delete-btn:hover {
-      background-color: #dc3545;
-      color: #fff;
+      background-color: #fc8181;
+      color: #232326;
     }
 
     /* Modal */
@@ -139,7 +212,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(0, 0, 0, 0.7);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -147,12 +220,22 @@
     }
 
     .modal-content {
-      background: white;
+      background: #232326;
       padding: 30px;
       border-radius: 8px;
       width: 400px;
       text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+      border: 1px solid #404040;
+      color: #fcfbf8;
+    }
+    
+    .modal-content h3 {
+      color: #fc8181;
+    }
+    
+    .modal-content p {
+      color: #b0b0b0;
     }
 
     .modal-actions {
@@ -160,6 +243,46 @@
       display: flex;
       gap: 10px;
       justify-content: center;
+    }
+
+    /* Navbar Profile Styles */
+    .navbar-profile {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-right: 4rem;
+      color: #fcfbf8;
+    }
+
+    .navbar-profile img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid #ffe000;
+    }
+
+    .navbar-profile-text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-size: 0.9rem;
+    }
+
+    .navbar-profile-name {
+      color: #ffe000;
+      font-weight: 600;
+    }
+
+    .navbar-profile-logout {
+      color: #b0b0b0;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: color 0.2s ease;
+    }
+
+    .navbar-profile-logout:hover {
+      color: #fc8181;
     }
   </style>
 
@@ -175,6 +298,14 @@
       <span></span>
       <span></span>
     </button>
+
+    <div id="navbarProfile" class="navbar-profile" style="display: none">
+      <img id="navbarProfilePic" src="" alt="Profile" />
+      <div class="navbar-profile-text">
+        <div class="navbar-profile-name" id="navbarProfileName">User</div>
+        <a href="#" class="navbar-profile-logout" onclick="handleLogout(); return false;">Logout</a>
+      </div>
+    </div>
 
     <ul class="menu">
       <li class="item"><a href="events.html">Events</a></li>
@@ -198,13 +329,7 @@
       <div class="card">
         <div id="notification" class="alert-box"></div>
 
-        <div class="profile-header">
-          <img id="profilePic" src="" alt="Profile" class="profile-pic" />
-          <div class="profile-info">
-            <h2 id="userName">Loading...</h2>
-            <p id="userEmail">loading...</p>
-          </div>
-        </div>
+        <!-- Profile removed from card (now shown in navbar) -->
 
         <div id="viewMode" class="info-grid">
           <div class="info-item">
@@ -245,9 +370,9 @@
 
           <button onclick="handleLogout()" class="secondary" style="
                 margin-left: auto;
-                background-color: #fee2e2;
-                color: #c53030;
-                border: none;
+                background-color: transparent;
+                color: #fc8181;
+                border: 1.5px solid #fc8181;
               ">
             Log Out
           </button>
@@ -264,17 +389,17 @@
 
   <div id="deleteModal" class="hidden modal-overlay">
     <div class="modal-content">
-      <h3 style="color: #dc3545">Delete Account?</h3>
+      <h3 style="color: #fc8181">Delete Account?</h3>
       <p>This action cannot be undone.</p>
 
       <div id="passwordConfirm" style="margin: 15px 0">
         <input type="password" id="deletePassword" class="edit-input" placeholder="Enter password to confirm" />
       </div>
-      <p id="deleteError" style="color: #dc3545; display: none; margin-top: 10px; font-size: 0.9rem;"></p>
+      <p id="deleteError" style="color: #fc8181; display: none; margin-top: 10px; font-size: 0.9rem;"></p>
 
       <div class="modal-actions">
         <button onclick="closeDeleteModal()" class="secondary">Cancel</button>
-        <button onclick="confirmDelete()" class="primary" style="background-color: #dc3545">
+        <button onclick="confirmDelete()" class="primary" style="background-color: #fc8181; color: #232326;">
           Delete Forever
         </button>
       </div>
@@ -291,7 +416,7 @@
         <a href="https://www.instagram.com/lnuaisociety" target="_blank">
           <img src="images/instagram.svg" alt="" class="footer-icon" />
         </a>
-        Â© 2025 LNU AI Society.<br />All rights reserved. <br />
+        © 2025 LNU AI Society.<br />All rights reserved. <br />
         802552-2056
       </p>
     </div>
@@ -367,6 +492,15 @@
         document.getElementById("profilePic").src = user.picture;
       } else {
         document.getElementById("profilePic").src = DEFAULT_AVATAR_URL + user.name;
+      }
+
+      // Update navbar profile
+      document.getElementById("navbarProfile").style.display = "flex";
+      document.getElementById("navbarProfileName").textContent = user.name.split(' ')[0]; // First name
+      if (user.picture) {
+        document.getElementById("navbarProfilePic").src = user.picture;
+      } else {
+        document.getElementById("navbarProfilePic").src = DEFAULT_AVATAR_URL + user.name;
       }
 
       // Force Update if info missing

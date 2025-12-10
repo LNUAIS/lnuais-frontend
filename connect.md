@@ -7,10 +7,10 @@ To connect this frontend to your backend, change the backend IP in **one place**
 ### `scripts/config.js`
 Open `scripts/config.js` and change this line:
 ```javascript
-const BACKEND_IP = 'YOUR_BACKEND_IP'; // <-- Change this to your backend IP
+const BACKEND_URL_PROD = 'http://lnuais-backend-env.eba-9eqmbpwn.eu-north-1.elasticbeanstalk.com'; // <-- Change this to your backend IP
 ```
 
-Replace `'34.51.217.185'` with your actual backend IP address.
+Replace `'http://lnuais-backend-env.eba-9eqmbpwn.eu-north-1.elasticbeanstalk.com'` with your actual backend IP address.
 
 That's it! All requests will now use this IP.
 
@@ -41,13 +41,13 @@ You can also override the backend IP using an environment variable without editi
 
 **Windows (PowerShell):**
 ```powershell
-$env:BACKEND_URL = 'http://YOUR_BACKEND_IP:8080'
+$env:BACKEND_URL = 'http://YOUR_BACKEND_IP'
 node scripts/server.js
 ```
 
 **Linux/macOS:**
 ```bash
-export BACKEND_URL='http://YOUR_BACKEND_IP:8080'
+export BACKEND_URL='http://YOUR_BACKEND_IP'
 node scripts/server.js
 ```
 
@@ -61,7 +61,7 @@ node scripts/server.js
 
 If you get "failed to fetch" errors:
 1. Verify the backend IP is correct in `scripts/config.js`
-2. Confirm backend is running on port 8080
+2. Confirm backend is running and accessible
 3. Check browser console (F12 → Network tab) for exact error
 4. Ensure backend has CORS enabled for your frontend origin
 
@@ -81,7 +81,7 @@ Stop-Process -Id <PID> -Force
 **Backend not responding?**
 Test directly:
 ```powershell
-curl.exe http://YOUR_BACKEND_IP:8080/
+curl.exe http://YOUR_BACKEND_IP/
 ```
 
 If you get a response, backend is running. If not, verify the IP and port.

@@ -8,7 +8,7 @@ const server = http.createServer((req, res) => {
   // --- PROXY LOGIC ---
   // Forward API requests to the Spring Boot Backend
   // Change the IP below or set BACKEND_URL environment variable
-  const backendUrl = process.env.BACKEND_URL || "http://34.51.217.185:8080";
+  const backendUrl = process.env.BACKEND_URL || "http://lnuais-backend-env.eba-9eqmbpwn.eu-north-1.elasticbeanstalk.com";
   const backendUrlObj = new URL(backendUrl);
 
   if (req.url.startsWith("/users") || req.url.startsWith("/logout") || req.url.startsWith("/oauth2")) {

@@ -2,7 +2,7 @@
 // BACKEND CONFIGURATION
 // Change BACKEND_IP to your backend server IP
 // ============================================
-const BACKEND_IP = '34.51.217.185'; // <-- Change this to your backend IP
+const BACKEND_IP = 'http://lnuais-backend-env.eba-9eqmbpwn.eu-north-1.elasticbeanstalk.com/'; // <-- Change this to your backend IP
 const BACKEND_PORT = '8080';
 
 const CONFIG = {

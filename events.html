@@ -295,7 +295,7 @@
     async function checkRegistrationStatus(eventId, userId) {
       try {
         const res = await fetch(
-          `${CONFIG.API_BASE_URL}/events/${eventId}/is_registered/${userId}`,
+          `${CONFIG.getApiBaseUrl()}/events/${eventId}/is_registered/${userId}`,
         );
         return await res.json();
       } catch {
@@ -321,11 +321,11 @@
         let url, method;
         if (isRegistered) {
           // Unregister
-          url = `${CONFIG.API_BASE_URL}/events/${eventId}/unregister/${currentUser.id}`;
+          url = `${CONFIG.getApiBaseUrl()}/events/${eventId}/unregister/${currentUser.id}`;
           method = "DELETE";
         } else {
           // Register
-          url = `${CONFIG.API_BASE_URL}/events/${eventId}/register/${currentUser.id}`;
+          url = `${CONFIG.getApiBaseUrl()}/events/${eventId}/register/${currentUser.id}`;
           method = "POST";
         }
 

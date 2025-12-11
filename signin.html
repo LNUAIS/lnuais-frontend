@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="styles/styles.css" />
   <link rel="stylesheet" href="styles/responsive.css" />
   <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+  <script src="scripts/config.js"></script>
 
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
@@ -115,7 +116,7 @@
     <div class="card signup-card">
       <h2>Sign in to Your Account</h2>
 
-      <a href="http://localhost:8080/oauth2/authorization/google" class="google-btn">
+      <a href="#" id="googleLoginBtn" class="google-btn">
         Sign in with Google
       </a>
 
@@ -165,13 +166,14 @@
   </footer>
 
   <script>
+    // Set Google Login URL dynamically
+    document.getElementById("googleLoginBtn").href = `${CONFIG.getApiBaseUrl()}/oauth2/authorization/google`;
+
     document
       .getElementById("signinForm")
       .addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
         const submitBtn = this.querySelector('button[type="submit"]');
         const msgBox = document.getElementById("signinMessage");
 
@@ -181,7 +183,7 @@
 
         try {
           // 1. Attempt Login
-          const response = await fetch("/users/login", {
+          const response = await fetch(`${CONFIG.getApiBaseUrl()}/users/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: email, password: password }),
@@ -198,7 +200,7 @@
             msgBox.style.display = "block";
 
             try {
-              const profileResp = await fetch("/users/profile", {
+              const profileResp = await fetch(`${CONFIG.getApiBaseUrl()}/users/profile`, {
                 method: "GET",
                 credentials: "include"
               });

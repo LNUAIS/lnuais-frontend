@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="styles/styles.css" />
   <link rel="stylesheet" href="styles/responsive.css" />
   <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+  <script src="scripts/config.js"></script>
 
   <style>
     @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
@@ -437,7 +438,7 @@
 
       // 2. Always validate with Backend to ensure account still exists
       try {
-        const response = await fetch("/users/profile", {
+        const response = await fetch(`${CONFIG.getApiBaseUrl()}/users/profile`, {
           method: "GET",
           credentials: "include",
         });
@@ -553,7 +554,7 @@
       saveBtn.disabled = true;
 
       try {
-        const response = await fetch(`/users/${currentUser.id}/update_profile`, {
+        const response = await fetch(`${CONFIG.getApiBaseUrl()}/users/${currentUser.id}/update_profile`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ program: newProgram, level: newLevel }),
@@ -616,7 +617,7 @@
       }
 
       try {
-        const response = await fetch(`/users/${currentUser.id}/delete`, {
+        const response = await fetch(`${CONFIG.getApiBaseUrl()}/users/${currentUser.id}/delete`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ password: password }),

@@ -24,7 +24,7 @@
       border-radius: 14px;
       background: linear-gradient(180deg, #1f1f23 0%, #222226 100%);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
-      border: 1px solid rgba(255,255,255,0.03);
+      border: 1px solid rgba(255, 255, 255, 0.03);
     }
 
     .signup-card h2 {
@@ -35,7 +35,7 @@
     }
 
     .google-btn {
-      background: linear-gradient(135deg,#4285f4 0%, #2a66e6 100%);
+      background: linear-gradient(135deg, #4285f4 0%, #2a66e6 100%);
       color: white;
       text-decoration: none;
       display: flex;
@@ -49,10 +49,12 @@
       width: 100%;
       box-sizing: border-box;
       border: none;
-      box-shadow: 0 8px 20px rgba(42,102,230,0.18);
+      box-shadow: 0 8px 20px rgba(42, 102, 230, 0.18);
     }
 
-    .google-btn:hover { transform: translateY(-2px); }
+    .google-btn:hover {
+      transform: translateY(-2px);
+    }
 
     .divider {
       text-align: center;
@@ -69,24 +71,67 @@
     .divider::after {
       content: "";
       flex: 1;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
 
-    .signup-form { display: block; gap: 12px; }
-    .form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .form-group { margin-bottom: 12px; }
-    .form-group label { display:block; margin-bottom:6px; color:#cfcfcf; font-weight:600; font-size:0.9rem; }
+    .signup-form {
+      display: block;
+      gap: 12px;
+    }
 
-    input[type="text"], input[type="email"], input[type="password"], select {
-      width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(255,255,255,0.06);
-      background: #151518; color:#f7f7f7; box-sizing:border-box; font-size:0.95rem;
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 6px;
+      color: #cfcfcf;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      background: #151518;
+      color: #f7f7f7;
+      box-sizing: border-box;
+      font-size: 0.95rem;
       transition: box-shadow .15s ease, border-color .15s ease, transform .08s ease;
     }
 
-    input:focus, select:focus { outline:none; border-color:#ffe000; box-shadow:0 6px 18px rgba(255,224,0,0.08); transform: translateY(-1px); }
+    input:focus,
+    select:focus {
+      outline: none;
+      border-color: #ffe000;
+      box-shadow: 0 6px 18px rgba(255, 224, 0, 0.08);
+      transform: translateY(-1px);
+    }
 
-    .radio-group { display:flex; gap:12px; flex-wrap:wrap; }
-    .radio-option { display:flex; align-items:center; gap:8px; color:#cfcfcf; }
+    .radio-group {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #cfcfcf;
+    }
 
     /* Custom radio pills */
     .radio-option input[type="radio"] {
@@ -97,35 +142,76 @@
       display: inline-block;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.02);
+      background: rgba(255, 255, 255, 0.02);
       color: #cfcfcf;
-      border: 1px solid rgba(255,255,255,0.04);
+      border: 1px solid rgba(255, 255, 255, 0.04);
       cursor: pointer;
       transition: all 0.18s ease;
-      font-weight:600;
-      font-size:0.95rem;
+      font-weight: 600;
+      font-size: 0.95rem;
     }
 
-    .radio-option input[type="radio"]:checked + .radio-label,
+    .radio-option input[type="radio"]:checked+.radio-label,
     .radio-option .radio-label.active {
-      background: linear-gradient(135deg,#ffe000 0%, #ffc700 100%);
+      background: linear-gradient(135deg, #ffe000 0%, #ffc700 100%);
       color: #232326;
-      border-color: rgba(255,224,0,0.6);
+      border-color: rgba(255, 224, 0, 0.6);
       transform: translateY(-2px);
-      box-shadow: 0 8px 18px rgba(255,224,0,0.12);
+      box-shadow: 0 8px 18px rgba(255, 224, 0, 0.12);
     }
 
-    .checkbox-group .checkbox-option { display:flex; gap:10px; align-items:center; color:#cfcfcf; }
+    .checkbox-group .checkbox-option {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      color: #cfcfcf;
+    }
 
-    .message-box { padding:12px; margin-bottom:14px; border-radius:8px; font-size:0.95rem; display:none; text-align:left; }
-    .message-box.error { background:#3a1f1f; color:#ffb4b4; border-left:4px solid #ff8181; }
-    .message-box.success { background:#153126; color:#9ff3b0; border-left:4px solid #68d391; }
+    .message-box {
+      padding: 12px;
+      margin-bottom: 14px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      display: none;
+      text-align: left;
+    }
 
-    .primary.full-width { width:100%; padding:12px 18px; border-radius:10px; background:linear-gradient(135deg,#ffe000 0%, #ffc700 100%); color:#232326; font-weight:700; border:none; box-shadow:0 12px 30px rgba(255,224,0,0.12); }
-    .primary.full-width:hover { transform: translateY(-3px); }
+    .message-box.error {
+      background: #3a1f1f;
+      color: #ffb4b4;
+      border-left: 4px solid #ff8181;
+    }
 
-    .signup-footer { margin-top:14px; color:#cfcfcf; }
-    .signup-footer a.link { color:#ffe000; font-weight:600; }
+    .message-box.success {
+      background: #153126;
+      color: #9ff3b0;
+      border-left: 4px solid #68d391;
+    }
+
+    .primary.full-width {
+      width: 100%;
+      padding: 12px 18px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ffe000 0%, #ffc700 100%);
+      color: #232326;
+      font-weight: 700;
+      border: none;
+      box-shadow: 0 12px 30px rgba(255, 224, 0, 0.12);
+    }
+
+    .primary.full-width:hover {
+      transform: translateY(-3px);
+    }
+
+    .signup-footer {
+      margin-top: 14px;
+      color: #cfcfcf;
+    }
+
+    .signup-footer a.link {
+      color: #ffe000;
+      font-weight: 600;
+    }
   </style>
 
   <title>Sign Up - LNU AI Society</title>
@@ -243,6 +329,9 @@
   </footer>
 
   <script>
+    // Set Google Signup URL dynamically
+    document.getElementById("googleSignupBtn").href = `${CONFIG.getApiBaseUrl()}/oauth2/authorization/google`;
+
     document
       .getElementById("signupForm")
       .addEventListener("submit", async function (e) {
@@ -269,7 +358,7 @@
 
         try {
           const response = await fetch(
-            "/users/new_member",
+            `${CONFIG.getApiBaseUrl()}/users/new_member`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

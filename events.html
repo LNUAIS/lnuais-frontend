@@ -1,277 +1,296 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/events.css" />
+    <link rel="stylesheet" href="styles/responsive.css" />
+    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles/styles.css" />
-  <link rel="stylesheet" href="styles/events.css" />
-  <link rel="stylesheet" href="styles/responsive.css" />
-  <link rel="icon" type="image/x-icon" href="/images/logo.png" />
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+      /* Modal Styles */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        display: none;
+      }
 
-    /* Modal Styles */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      display: none;
-    }
+      .modal-content {
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        width: 350px;
+        text-align: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
 
-    .modal-content {
-      background: white;
-      padding: 30px;
-      border-radius: 8px;
-      width: 350px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
+      .modal-btn {
+        margin-top: 15px;
+        display: inline-block;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        text-decoration: none;
+      }
 
-    .modal-btn {
-      margin-top: 15px;
-      display: inline-block;
-      width: 100%;
-      padding: 10px;
-      border-radius: 5px;
-      text-decoration: none;
-    }
+      /* Registered State Button */
+      .event-button.registered {
+        background-color: #dc3545;
+        /* Red */
+        color: white;
+      }
 
-    /* Registered State Button */
-    .event-button.registered {
-      background-color: #dc3545;
-      /* Red */
-      color: white;
-    }
+      .event-button.registered:hover {
+        background-color: #c82333;
+      }
+    </style>
+    <title>Events - LNU AI Society</title>
+  </head>
 
-    .event-button.registered:hover {
-      background-color: #c82333;
-    }
-  </style>
-  <title>Events - LNU AI Society</title>
-</head>
+  <body>
+    <nav class="navbar">
+      <a href="/"><img src="/images/logo.png" alt="Logo" class="logo" /></a>
 
-<body>
-  <nav class="navbar">
-    <a href="/"><img src="/images/logo.png" alt="Logo" class="logo" /></a>
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-    <button class="hamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+      <ul class="menu">
+        <li class="item"><a href="events.html">Events</a></li>
+        <li class="item"><a href="courses.html">Courses</a></li>
+        <li class="item"><a href="news.html">News</a></li>
+        <li class="item"><a href="about.html">About</a></li>
+        <li class="item"><a href="signup.html">Join Us</a></li>
+      </ul>
+    </nav>
 
-    <ul class="menu">
-      <li class="item"><a href="events.html">Events</a></li>
-      <li class="item"><a href="courses.html">Courses</a></li>
-      <li class="item"><a href="news.html">News</a></li>
-      <li class="item"><a href="about.html">About</a></li>
-      <li class="item"><a href="signup.html">Join Us</a></li>
-    </ul>
-  </nav>
-
-  <div class="container">
-    <div class="about-hero">
-      <h1>Upcoming Events</h1>
-      <p>
-        Join us for workshops, hackathons, and networking events throughout
-        the year.
-      </p>
-    </div>
-
-    <div class="events-grid" id="eventsContainer">
-      <p style="text-align: center; grid-column: 1/-1">Loading events...</p>
-    </div>
-
-    <!-- Upcoming Event: Tech Bar -->
-    <div class="events-grid">
-      <div class="events-card">
-        <div class="events-tag">December 11, 2025 • TECH BAR</div>
-        <h2>Tech Bar — Bridging Academia & Industry</h2>
+    <div class="container">
+      <div class="about-hero">
+        <h1>Upcoming Events</h1>
         <p>
-          On December 11th, join LNU AI Society and @grocommunitysweden for Tech Bar, an
-          evening designed to bridge the gap between academic life and the professional world. We are
-          bringing together students, local founders, and industry experts for a night of creativity
-          and meaningful connection.
+          Join us for workshops, hackathons, and networking events throughout
+          the year.
         </p>
 
-        <p>
-          The event features a fast-paced schedule, starting with a one-hour Lovable hackathon where
-          you build functional tools on the spot. This is followed by a startup pitch competition judged by a
-          panel of investors and experts, finally transitioning into relaxed networking over beers and snacks.
-        </p>
-
-        <p>
-          Sign up here: <a href="https://luma.com/aufbcvei" target="_blank" class="link">https://luma.com/aufbcvei</a>
-        </p>
-
-        <img src="event-images/techbar.png" alt="Tech Bar" />
+        <p><br /><br />No upcoming events.</p>
       </div>
-    </div>
 
-    <div id="loginModal" class="modal-overlay">
-      <div class="modal-content">
-        <h3>Join Us First!</h3>
-        <p>You need to be a member to register for events.</p>
+      <div class="events-grid" id="eventsContainer">
+        <p style="text-align: center; grid-column: 1/-1">Loading events...</p>
+      </div>
 
-        <a href="signup.html" class="primary modal-btn" style="background-color: #2563eb; color: white">Create
-          Account</a>
+      <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+          <h3>Join Us First!</h3>
+          <p>You need to be a member to register for events.</p>
 
-        <a href="signin.html" class="secondary modal-btn" style="
-        background-color: #f3f4f6;
-        color: #333;
-        display: block;
-        margin-top: 10px;
-        ">Sign In</a>
-        <button onclick="closeModal()" style="
+          <a
+            href="signup.html"
+            class="primary modal-btn"
+            style="background-color: #2563eb; color: white"
+            >Create Account</a
+          >
+
+          <a
+            href="signin.html"
+            class="secondary modal-btn"
+            style="
+              background-color: #f3f4f6;
+              color: #333;
+              display: block;
+              margin-top: 10px;
+            "
+            >Sign In</a
+          >
+          <button
+            onclick="closeModal()"
+            style="
               background: none;
               border: none;
               color: #666;
               margin-top: 15px;
               cursor: pointer;
               text-decoration: underline;
-            ">
-          Close
-        </button>
+            "
+          >
+            Close
+          </button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="about-hero2">
+        <h1>Past Events</h1>
+        <p>Here are some of our past events at LNU AI Society.</p>
+      </div>
+
+      <div class="events-grid">
+        <div class="events-card">
+          <div class="events-tag">December 11, 2025 • TECH BAR</div>
+          <h2>Tech Bar — Bridging Academia & Industry</h2>
+          <p>
+            On December 11th, join LNU AI Society and @grocommunitysweden for
+            Tech Bar, an evening designed to bridge the gap between academic
+            life and the professional world. We are bringing together students,
+            local founders, and industry experts for a night of creativity and
+            meaningful connection.
+          </p>
+
+          <p>
+            The event features a fast-paced schedule, starting with a one-hour
+            Lovable hackathon where you build functional tools on the spot. This
+            is followed by a startup pitch competition judged by a panel of
+            investors and experts, finally transitioning into relaxed networking
+            over beers and snacks.
+          </p>
+
+          <p>
+            Sign up here:
+            <a href="https://luma.com/aufbcvei" target="_blank" class="link"
+              >https://luma.com/aufbcvei</a
+            >
+          </p>
+
+          <img src="event-images/techbar.png" alt="Tech Bar" />
+        </div>
+      </div>
+
+      <div class="events-grid">
+        <div class="events-card">
+          <div class="events-tag">November 2025 • NEURAWAVE HACKATHON</div>
+          <h2>Hackathon: Neurawave & Kalmar Science Park</h2>
+          <p>
+            We were honored to join Neurawave at Kalmar Science Park on November
+            21 for a fast-paced hackathon dedicated to tackling challenges in
+            migraine relief. Students collaborated in teams to develop
+            innovative business ideas, prototypes, designs, and AI/ML or
+            Generative AI–based solutions. <br />
+            The session highlighted practical applications of AI/ML in product
+            development, along with valuable lessons on resilience and
+            adaptability in building impactful solutions. <br />
+          </p>
+
+          <p>
+            Neurawave and other companies based in Kalmar Science Park also
+            shared opportunities for internships and bachelor's thesis projects,
+            giving attendees a valuable chance to build industry connections.
+          </p>
+          <img src="event-images/hackathon.png" alt="" />
+        </div>
+      </div>
+
+      <div class="events-grid">
+        <div class="events-card">
+          <div class="events-tag">November 2025 • COMPANY VISIT</div>
+          <h2>Company Visit: Spiris | Visma</h2>
+          <p>
+            On November 25, we had the pleasure of visiting Spiris | Visma for
+            an evening focused on applied AI in software development. The
+            session began with pizza and an informal meet-and-greet before
+            diving into practical demonstrations of how engineers build and
+            deploy AI agents.
+            <br />
+            Attendees gained insight into real-world workflows, tools, and
+            development practices used within the company, offering a clear view
+            of how AI is integrated into modern software systems. <br />
+          </p>
+
+          <p>
+            The Head of Technology also shared valuable guidance on the skills
+            and mindsets they look for in emerging talent, providing students
+            with direction and inspiration for their career paths.
+          </p>
+          <img src="event-images/spiris.png" alt="" />
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="cta-section">
+        <h2>Stay Connected</h2>
+        <p>Interested in joining or staying up-to-date with LNU AI Society?</p>
+        <a href="signup.html" class="cta-button">Become A Member!</a>
       </div>
     </div>
 
-    <div class="divider"></div>
-
-    <div class="about-hero2">
-      <h1>Past Events</h1>
-      <p>Here are some of our past events at LNU AI Society.</p>
-    </div>
-
-    <div class="events-grid">
-      <div class="events-card">
-        <div class="events-tag">November 2025 • NEURAWAVE HACKATHON</div>
-        <h2>Hackathon: Neurawave & Kalmar Science Park</h2>
+    <footer>
+      <h3>LNU AI Society</h3>
+      <div class="footer-items">
         <p>
-          We were honored to join Neurawave at Kalmar Science Park on November
-          21 for a fast-paced hackathon dedicated to tackling challenges in
-          migraine relief. Students collaborated in teams to develop innovative
-          business ideas, prototypes, designs, and AI/ML or Generative
-          AI–based solutions. <br />
-          The session highlighted practical applications of AI/ML in product
-          development, along with valuable lessons on resilience and
-          adaptability in building impactful solutions. <br />
+          <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
+            <img src="images/linkedin.svg" alt="" class="footer-icon" />
+          </a>
+          <a href="https://www.instagram.com/lnuaisociety" target="_blank">
+            <img src="images/instagram.svg" alt="" class="footer-icon" />
+          </a>
+          © 2025 LNU AI Society.<br />All rights reserved. <br />
+          802552-2056
         </p>
-
-        <p>
-          Neurawave and other companies based in Kalmar Science Park also shared
-          opportunities for internships and bachelor's thesis projects, giving
-          attendees a valuable chance to build industry connections.
-        </p>
-        <img src="event-images/hackathon.png" alt="" />
       </div>
-    </div>
+    </footer>
 
-    <div class="events-grid">
-      <div class="events-card">
-        <div class="events-tag">November 2025 • COMPANY VISIT</div>
-        <h2>Company Visit: Spiris | Visma</h2>
-        <p>
-          On November 25, we had the pleasure of visiting Spiris | Visma for an
-          evening focused on applied AI in software development. The session
-          began with pizza and an informal meet-and-greet before diving into
-          practical demonstrations of how engineers build and deploy AI agents.
-          <br />
-          Attendees gained insight into real-world workflows, tools, and
-          development practices used within the company, offering a clear view
-          of how AI is integrated into modern software systems. <br />
-        </p>
+    <script src="scripts/config.js"></script>
+    <script src="scripts/navbar.js"></script>
+    <script src="scripts/hamburger.js"></script>
+    <script>
+      // 1. Check Login Status
+      const storedUser = localStorage.getItem("user");
+      const currentUser = storedUser ? JSON.parse(storedUser) : null;
 
-        <p>
-          The Head of Technology also shared valuable guidance on the skills and
-          mindsets they look for in emerging talent, providing students with
-          direction and inspiration for their career paths.
-        </p>
-        <img src="event-images/spiris.png" alt="" />
-      </div>
-    </div>
+      async function loadEvents() {
+        const container = document.getElementById("eventsContainer");
 
-    <div class="divider"></div>
+        // HARDCODED EVENTS (Empty for now)
+        const events = [];
 
-    <div class="cta-section">
-      <h2>Stay Connected</h2>
-      <p>Interested in joining or staying up-to-date with LNU AI Society?</p>
-      <a href="signup.html" class="cta-button">Become A Member!</a>
-    </div>
-  </div>
-
-  <footer>
-    <h3>LNU AI Society</h3>
-    <div class="footer-items">
-      <p>
-        <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
-          <img src="images/linkedin.svg" alt="" class="footer-icon" />
-        </a>
-        <a href="https://www.instagram.com/lnuaisociety" target="_blank">
-          <img src="images/instagram.svg" alt="" class="footer-icon" />
-        </a>
-        © 2025 LNU AI Society.<br />All rights reserved. <br />
-        802552-2056
-      </p>
-    </div>
-  </footer>
-
-  <script src="scripts/config.js"></script>
-  <script src="scripts/navbar.js"></script>
-  <script src="scripts/hamburger.js"></script>
-  <script>
-    // 1. Check Login Status
-    const storedUser = localStorage.getItem("user");
-    const currentUser = storedUser ? JSON.parse(storedUser) : null;
-
-    async function loadEvents() {
-      const container = document.getElementById("eventsContainer");
-
-      // HARDCODED EVENTS (Empty for now)
-      const events = [];
-
-      if (events.length === 0) {
-        container.innerHTML =
-          "<p style='text-align:center; grid-column: 1/-1;'></p>";
-        return;
-      }
-
-      container.innerHTML = ""; // Clear loading text
-
-      // Render Cards
-      for (const event of events) {
-        const date = new Date(event.startTime);
-        const day = date.getDate();
-        const month = date.toLocaleString("default", { month: "short" });
-
-        // Format Time (HH:MM)
-        const timeStr = date.toLocaleTimeString([], {
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-
-        // Check if THIS user is already registered
-        let isRegistered = false;
-        if (currentUser && currentUser.id) {
-          isRegistered = await checkRegistrationStatus(
-            event.id,
-            currentUser.id,
-          );
+        if (events.length === 0) {
+          container.innerHTML =
+            "<p style='text-align:center; grid-column: 1/-1;'></p>";
+          return;
         }
 
-        const btnText = isRegistered ? "Unregister" : "Register";
-        const btnClass = isRegistered
-          ? "event-button registered"
-          : "event-button";
+        container.innerHTML = ""; // Clear loading text
 
-        const card = `
+        // Render Cards
+        for (const event of events) {
+          const date = new Date(event.startTime);
+          const day = date.getDate();
+          const month = date.toLocaleString("default", { month: "short" });
+
+          // Format Time (HH:MM)
+          const timeStr = date.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+
+          // Check if THIS user is already registered
+          let isRegistered = false;
+          if (currentUser && currentUser.id) {
+            isRegistered = await checkRegistrationStatus(
+              event.id,
+              currentUser.id,
+            );
+          }
+
+          const btnText = isRegistered ? "Unregister" : "Register";
+          const btnClass = isRegistered
+            ? "event-button registered"
+            : "event-button";
+
+          const card = `
                         <div class="event-card">
                           <div class="event-date">
                             <span class="date-day">${day}</span>
@@ -288,75 +307,75 @@
                           <button id="btn-${event.id}" class="${btnClass}" onclick="handleEventClick(${event.id})">${btnText}</button>
                         </div>
                     `;
-        container.innerHTML += card;
-      }
-    }
-
-    async function checkRegistrationStatus(eventId, userId) {
-      try {
-        const res = await fetch(
-          `${CONFIG.getApiBaseUrl()}/events/${eventId}/is_registered/${userId}`,
-        );
-        return await res.json();
-      } catch {
-        return false;
-      }
-    }
-
-    async function handleEventClick(eventId) {
-      if (!currentUser) {
-        // Show Modal
-        document.getElementById("loginModal").style.display = "flex";
-        return;
+          container.innerHTML += card;
+        }
       }
 
-      const btn = document.getElementById(`btn-${eventId}`);
-      const isRegistered = btn.classList.contains("registered");
+      async function checkRegistrationStatus(eventId, userId) {
+        try {
+          const res = await fetch(
+            `${CONFIG.getApiBaseUrl()}/events/${eventId}/is_registered/${userId}`,
+          );
+          return await res.json();
+        } catch {
+          return false;
+        }
+      }
 
-      // Optimistic UI update
-      btn.disabled = true;
-      btn.textContent = "Processing...";
-
-      try {
-        let url, method;
-        if (isRegistered) {
-          // Unregister
-          url = `${CONFIG.getApiBaseUrl()}/events/${eventId}/unregister/${currentUser.id}`;
-          method = "DELETE";
-        } else {
-          // Register
-          url = `${CONFIG.getApiBaseUrl()}/events/${eventId}/register/${currentUser.id}`;
-          method = "POST";
+      async function handleEventClick(eventId) {
+        if (!currentUser) {
+          // Show Modal
+          document.getElementById("loginModal").style.display = "flex";
+          return;
         }
 
-        const response = await fetch(url, { method: method });
+        const btn = document.getElementById(`btn-${eventId}`);
+        const isRegistered = btn.classList.contains("registered");
 
-        if (response.ok) {
-          // Toggle State
+        // Optimistic UI update
+        btn.disabled = true;
+        btn.textContent = "Processing...";
+
+        try {
+          let url, method;
           if (isRegistered) {
-            btn.classList.remove("registered");
-            btn.textContent = "Register";
+            // Unregister
+            url = `${CONFIG.getApiBaseUrl()}/events/${eventId}/unregister/${currentUser.id}`;
+            method = "DELETE";
           } else {
-            btn.classList.add("registered");
-            btn.textContent = "Unregister";
+            // Register
+            url = `${CONFIG.getApiBaseUrl()}/events/${eventId}/register/${currentUser.id}`;
+            method = "POST";
           }
-        } else {
-          alert("Action failed. Please try again.");
+
+          const response = await fetch(url, { method: method });
+
+          if (response.ok) {
+            // Toggle State
+            if (isRegistered) {
+              btn.classList.remove("registered");
+              btn.textContent = "Register";
+            } else {
+              btn.classList.add("registered");
+              btn.textContent = "Unregister";
+            }
+          } else {
+            alert("Action failed. Please try again.");
+          }
+        } catch (e) {
+          alert("Server error.");
+        } finally {
+          btn.disabled = false;
         }
-      } catch (e) {
-        alert("Server error.");
-      } finally {
-        btn.disabled = false;
       }
-    }
 
-    function closeModal() {
-      document.getElementById("loginModal").style.display = "none";
-    }
+      function closeModal() {
+        document.getElementById("loginModal").style.display = "none";
+      }
 
-    // Initialize
-    loadEvents();
-  </script>
-</body>
-
+      // Initialize
+      loadEvents();
+    </script>
+  </body>
 </html>
+

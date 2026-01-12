@@ -7,10 +7,10 @@ To connect this frontend to your backend, change the backend IP in **one place**
 ### `scripts/config.js`
 Open `scripts/config.js` and change this line:
 ```javascript
-const BACKEND_URL_PROD = 'http://lnuais-backend-env.eba-9eqmbpwn.eu-north-1.elasticbeanstalk.com'; // <-- Change this to your backend IP
+const BACKEND_URL_PROD = 'http://lnuais-backend-env.eba-p9nw9zdb.eu-central-1.elasticbeanstalk.com'; // <-- Change this to your backend IP
 ```
 
-Replace `'http://lnuais-backend-env.eba-9eqmbpwn.eu-north-1.elasticbeanstalk.com'` with your actual backend IP address.
+Replace `'http://lnuais-backend-env.eba-p9nw9zdb.eu-central-1.elasticbeanstalk.com'` with your actual backend IP address.
 
 That's it! All requests will now use this IP.
 

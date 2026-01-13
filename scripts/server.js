@@ -8,10 +8,11 @@ const server = http.createServer((req, res) => {
   // --- PROXY LOGIC ---
   // Forward API requests to the Spring Boot Backend
   // Change the IP below or set BACKEND_URL environment variable
-  const backendUrl = process.env.BACKEND_URL || "http://lnuais-backend-env.eba-p9nw9zdb.eu-central-1.elasticbeanstalk.com";
+  // Default to localhost:5000 if not specified (Development default)
+  const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
   const backendUrlObj = new URL(backendUrl);
 
-  if (req.url.startsWith("/users") || req.url.startsWith("/logout") || req.url.startsWith("/oauth2")) {
+  if (req.url.startsWith("/users") || req.url.startsWith("/logout") || req.url.startsWith("/oauth2") || req.url.startsWith("/api")) {
     console.log(`[PROXY] Incoming request: ${req.method} ${req.url}`);
     const options = {
       hostname: backendUrlObj.hostname,

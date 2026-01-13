@@ -575,8 +575,11 @@
     }
 
     function initDashboard(user) {
+      console.log('DEBUG: Init Dashboard with user:', user);
       currentUser = user;
-      isGoogleUser = user.isGoogle || (user.picture && user.picture.includes("googleusercontent"));
+      // Robust check: If user has no password OR is linked to Google, treat as OAuth user for deletion UI
+      isGoogleUser = !user.has_password || user.google_linked;
+      console.log('DEBUG: isGoogleUser derived as:', isGoogleUser);
 
       document.getElementById("loading").style.display = "none";
       document.getElementById("dashboardContent").style.display = "block";
@@ -594,9 +597,14 @@
         document.getElementById("navbarProfilePic").src = DEFAULT_AVATAR_URL + user.name;
       }
 
-      // Force Update if info missing
-      if (!user.program || user.program === "N/A" || user.program === "N/A (Google Login)") {
+      // Check URL for actions
+      const urlParams = new URLSearchParams(window.location.search);
+      const action = urlParams.get('action');
+
+      // Force Update if info missing OR action is complete_profile
+      if (action === 'complete_profile' || !user.program || user.program === "N/A" || user.program === "N/A (Google Login)") {
         showNotification("Please complete your profile details.", "alert-warning");
+        // Show edit mode immediately
         toggleEditMode();
       }
     }
@@ -614,6 +622,8 @@
         editMode.classList.remove("hidden");
         editBtn.classList.add("hidden");
         saveBtn.classList.remove("hidden");
+        // Only show Cancel if it's not a forced completion (checking URL params again is safest or relying on user state)
+        // For simplicity, we allow cancel but the notification persists
         cancelBtn.classList.remove("hidden");
 
         // Fill inputs
@@ -643,30 +653,51 @@
       saveBtn.disabled = true;
 
       try {
-        const response = await fetch(`${CONFIG.getApiBaseUrl()}/users/${currentUser.id}/update_profile`, {
+        // Use /api/users/:id endpoint
+        const response = await fetch(`${CONFIG.getApiBaseUrl()}/api/users/${currentUser.id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ program: newProgram, level: newLevel }),
+          body: JSON.stringify({ programme: newProgram, experience_level: newLevel }), // Note: backend expects 'programme' not 'program'
           credentials: "include",
         });
 
         if (response.ok) {
           const updatedUser = await response.json();
 
+          // Transform backend response to frontend format if needed
+          // Backend returns { programme: ..., experience_level: ... }
+          // Frontend expects { program: ..., level: ... }
+          // Let's manually map it since getAllUsers might not return the same structure as getCurrentUser logic?
+          // Actually updatedUser from backend is the raw model.
+          const mappedUser = {
+            ...currentUser,
+            program: updatedUser.programme,
+            level: updatedUser.experience_level
+          };
+
           // Update state
-          currentUser = updatedUser;
-          localStorage.setItem("user", JSON.stringify(updatedUser));
+          currentUser = mappedUser;
+          localStorage.setItem("user", JSON.stringify(mappedUser));
 
           // Update UI
-          document.getElementById("displayProgram").textContent = updatedUser.program;
-          document.getElementById("displayLevel").textContent = updatedUser.level;
+          document.getElementById("displayProgram").textContent = mappedUser.program;
+          document.getElementById("displayLevel").textContent = mappedUser.level;
 
           showNotification("Profile updated successfully!", "alert-success");
+
+          // Clean URL if it had action param
+          const url = new URL(window.location);
+          if (url.searchParams.has('action')) {
+            url.searchParams.delete('action');
+            window.history.replaceState({}, '', url);
+          }
+
           toggleEditMode();
         } else {
           throw new Error("Failed to update");
         }
       } catch (error) {
+        console.error(error);
         showNotification("Error updating profile.", "alert-warning");
       } finally {
         saveBtn.textContent = "Save Changes";
@@ -706,19 +737,21 @@
       }
 
       try {
-        const response = await fetch(`${CONFIG.getApiBaseUrl()}/users/${currentUser.id}/delete`, {
-          method: "POST",
+        // Use DELETE /api/users/:id
+        const response = await fetch(`${CONFIG.getApiBaseUrl()}/api/users/${currentUser.id}`, {
+          method: "DELETE",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ password: password }),
           credentials: "include"
         });
 
-        if (response.ok) {
+        if (response.ok || response.status === 204) {
           // Success
           localStorage.removeItem("user");
           window.location.href = "index.html";
         } else {
-          errorMsg.textContent = "Failed to delete account. Incorrect password?";
+          const data = await response.json();
+          errorMsg.textContent = data.error || "Failed to delete account.";
           errorMsg.style.display = "block";
         }
       } catch (e) {
@@ -730,6 +763,10 @@
 
     async function handleLogout() {
       localStorage.removeItem("user");
+      // Call backend logout
+      try {
+        await fetch(`${CONFIG.getApiBaseUrl()}/api/auth/logout`);
+      } catch (e) { }
       window.location.href = "signin.html";
     }
 
@@ -738,7 +775,10 @@
       notif.textContent = msg;
       notif.className = "alert-box " + type;
       notif.style.display = "block";
-      setTimeout(() => notif.style.display = "none", 3000);
+      // Don't auto-hide if it's a warning (like profile completion)
+      if (type !== 'alert-warning') {
+        setTimeout(() => notif.style.display = "none", 3000);
+      }
     }
 
     // Initialize

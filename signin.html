@@ -181,6 +181,9 @@
         submitBtn.disabled = true;
         msgBox.style.display = "none";
 
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
         try {
           // 1. Attempt Login
           const response = await fetch(`${CONFIG.getApiBaseUrl()}/users/login`, {

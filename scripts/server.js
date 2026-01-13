@@ -96,20 +96,40 @@ const server = http.createServer((req, res) => {
   const contentType = contentTypes[extname] || "text/plain";
 
   // Read and serve the file
-  fs.readFile(filePath, (err, content) => {
-    if (err) {
-      if (err.code === "ENOENT") {
-        res.writeHead(404, { "Content-Type": "text/html" });
-        res.end("<h1>404 - File Not Found</h1>", "utf-8");
+  const tryServe = (tryPath) => {
+    fs.readFile(tryPath, (err, content) => {
+      if (err) {
+        if (err.code === "ENOENT") {
+          // If original path failed, and it doesn't have an extension, try adding .html
+          if (path.extname(tryPath) === '' && !tryPath.endsWith('.html')) {
+            const htmlPath = tryPath + ".html";
+            // Try serving with .html extension
+            fs.readFile(htmlPath, (err2, content2) => {
+              if (err2) {
+                // Still not found
+                res.writeHead(404, { "Content-Type": "text/html" });
+                res.end("<h1>404 - File Not Found</h1>", "utf-8");
+              } else {
+                res.writeHead(200, { "Content-Type": "text/html" });
+                res.end(content2, "utf-8");
+              }
+            });
+          } else {
+            res.writeHead(404, { "Content-Type": "text/html" });
+            res.end("<h1>404 - File Not Found</h1>", "utf-8");
+          }
+        } else {
+          res.writeHead(500);
+          res.end(`Server Error: ${err.code}`, "utf-8");
+        }
       } else {
-        res.writeHead(500);
-        res.end(`Server Error: ${err.code}`, "utf-8");
+        res.writeHead(200, { "Content-Type": contentType });
+        res.end(content, "utf-8");
       }
-    } else {
-      res.writeHead(200, { "Content-Type": contentType });
-      res.end(content, "utf-8");
-    }
-  });
+    });
+  };
+
+  tryServe(filePath);
 });
 
 server.listen(PORT, "0.0.0.0", () => {

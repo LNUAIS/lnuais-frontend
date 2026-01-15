@@ -1,0 +1,21 @@
+---
+const { tag, title, paragraphs = [], link, imageSrc, imageAlt = '' } =
+  Astro.props;
+---
+
+<div class="events-card">
+  <div class="events-tag">{tag}</div>
+  <h2>{title}</h2>
+  {paragraphs.map((paragraph) => (
+    <p set:html={paragraph} />
+  ))}
+  {link ? (
+    <p>
+      Sign up here:
+      <a href={link.href} target="_blank" class="link">
+        {link.label ?? link.href}
+      </a>
+    </p>
+  ) : null}
+  <img src={imageSrc} alt={imageAlt} />
+</div>

@@ -1,8 +1,13 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
 <!doctype html>
 <html lang="en">
 
 <head>
-  <script>
+  <script is:inline>
     if (localStorage.getItem("user")) {
       window.location.href = "dashboard.html";
     }
@@ -12,9 +17,9 @@
   <link rel="stylesheet" href="styles/styles.css" />
   <link rel="stylesheet" href="styles/responsive.css" />
   <link rel="icon" type="image/x-icon" href="/images/logo.png" />
-  <script src="scripts/config.js"></script>
+  <script is:inline src="scripts/config.js"></script>
 
-  <style>
+  <style is:global>
     @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
     /* Modern signup card styles */
@@ -219,23 +224,7 @@
 </head>
 
 <body>
-  <nav class="navbar">
-    <a href="/"><img src="/images/logo.png" alt="Logo" class="logo" /></a>
-
-    <button class="hamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
-    <ul class="menu">
-      <li class="item"><a href="events.html">Events</a></li>
-      <li class="item"><a href="courses.html">Courses</a></li>
-      <li class="item"><a href="news.html">News</a></li>
-      <li class="item"><a href="about.html">About</a></li>
-      <li class="item"><a href="signup.html">Join Us</a></li>
-    </ul>
-  </nav>
+  <Nav />
 
   <div class="container">
     <div class="hero">
@@ -312,24 +301,9 @@
     </div>
   </div>
 
-  <footer>
-    <h3>LNU AI Society</h3>
-    <div class="footer-items">
-      <p>
-        <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
-          <img src="images/linkedin.svg" alt="LinkedIn" class="footer-icon" />
-        </a>
-        <a href="https://www.instagram.com/lnuaisociety" target="_blank">
-          <img src="images/instagram.svg" alt="Instagram" class="footer-icon" />
-        </a>
-        © 2025 LNU AI Society.<br />
-        All rights reserved.<br />
-        802552-2056
-      </p>
-    </div>
-  </footer>
+  <Footer />
 
-  <script>
+  <script is:inline>
     // Set Google Signup URL dynamically
     document.getElementById("googleSignupBtn").href = `${CONFIG.getApiBaseUrl()}/oauth2/authorization/google`;
 
@@ -397,8 +371,8 @@
       });
   </script>
 
-  <script src="scripts/navbar.js"></script>
-  <script src="scripts/hamburger.js"></script>
+  <script is:inline src="scripts/navbar.js"></script>
+  <script is:inline src="scripts/hamburger.js"></script>
 </body>
 
 </html>

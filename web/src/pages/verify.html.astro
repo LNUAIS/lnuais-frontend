@@ -1,3 +1,7 @@
+---
+import Footer from '../components/Footer.astro';
+---
+
 <!doctype html>
 <html lang="en">
 
@@ -8,7 +12,7 @@
   <link rel="stylesheet" href="styles/responsive.css" />
   <link rel="icon" type="image/x-icon" href="/images/logo.png" />
 
-  <style>
+  <style is:global>
     @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
     /* Special large input for the code */
@@ -90,23 +94,9 @@
     </div>
   </div>
 
-  <footer>
-    <h3>LNU AI Society</h3>
-    <div class="footer-items">
-      <p>
-        <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
-          <img src="images/linkedin.svg" alt="" class="footer-icon" />
-        </a>
-        <a href="https://www.instagram.com/lnuaisociety" target="_blank">
-          <img src="images/instagram.svg" alt="" class="footer-icon" />
-        </a>
-        © 2025 LNU AI Society.<br />All rights reserved. <br />
-        802552-2056
-      </p>
-    </div>
-  </footer>
+  <Footer />
 
-  <script>
+  <script is:inline>
     // 1. Get the email from LocalStorage (saved during Step 1)
     const pendingEmail = localStorage.getItem("pendingEmail");
 
@@ -182,9 +172,9 @@
         }
       });
   </script>
-  <script src="scripts/config.js"></script>
-  <script src="scripts/navbar.js"></script>
-  <script src="scripts/hamburger.js"></script>
+  <script is:inline src="scripts/config.js"></script>
+  <script is:inline src="scripts/navbar.js"></script>
+  <script is:inline src="scripts/hamburger.js"></script>
 </body>
 
 </html>

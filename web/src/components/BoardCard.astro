@@ -1,0 +1,14 @@
+---
+const { initials, name, role, description, email, linkedin } = Astro.props;
+---
+
+<div class="board-card">
+  <div class="board-avatar">{initials}</div>
+  <h3>{name}</h3>
+  <p class="board-title">{role}</p>
+  <p class="board-description">{description}</p>
+  <div class="board-links">
+    <a href={`mailto:${email}`}>Email</a>
+    <a href={linkedin} target="_blank">LinkedIn</a>
+  </div>
+</div>

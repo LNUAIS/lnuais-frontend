@@ -1,3 +1,8 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,7 +12,7 @@
     <link rel="stylesheet" href="styles/responsive.css" />
     <link rel="icon" type="image/x-icon" href="/images/logo.png" />
 
-    <style>
+    <style is:global>
       @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
       /* Make reset page match site theme */
       .signup-card { max-width:720px; margin:3rem auto; padding:2.25rem; border-radius:14px; background:linear-gradient(180deg,#1f1f23 0%, #222226 100%); box-shadow:0 12px 40px rgba(0,0,0,0.45); border:1px solid rgba(255,255,255,0.03); }
@@ -21,25 +26,7 @@
   </head>
 
   <body>
-    <nav class="navbar">
-      <a href="/">
-        <img src="/images/logo.png" alt="Logo" class="logo" />
-      </a>
-
-      <button class="hamburger" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <ul class="menu">
-        <li class="item"><a href="events.html">Events</a></li>
-        <li class="item"><a href="courses.html">Courses</a></li>
-        <li class="item"><a href="news.html">News</a></li>
-        <li class="item"><a href="about.html">About</a></li>
-        <li class="item"><a href="signup.html">Join Us</a></li>
-      </ul>
-    </nav>
+    <Nav />
 
     <div class="container">
       <div class="hero">
@@ -88,22 +75,8 @@
       </div>
     </div>
 
-    <footer>
-      <h3>LNU AI Society</h3>
-      <div class="footer-items">
-        <p>
-          <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
-            <img src="images/linkedin.svg" alt="" class="footer-icon" />
-          </a>
-          <a href="https://www.instagram.com/lnuaisociety" target="_blank">
-            <img src="images/instagram.svg" alt="" class="footer-icon" />
-          </a>
-          © 2025 LNU AI Society.<br />All rights reserved. <br />
-          802552-2056
-        </p>
-      </div>
-    </footer>
-    <script src="scripts/navbar.js"></script>
-    <script src="scripts/hamburger.js"></script>
+    <Footer />
+    <script is:inline src="scripts/navbar.js"></script>
+    <script is:inline src="scripts/hamburger.js"></script>
   </body>
 </html>

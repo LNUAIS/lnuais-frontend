@@ -1,0 +1,139 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import CourseCard from '../components/CourseCard.astro';
+
+const courses = [
+  {
+    level: "Bachelor's Level",
+    levelClass: 'bachelor',
+    language: 'English',
+    title: 'Introduction to Machine Learning',
+    description:
+      'Gain a solid foundation in machine learning concepts, an ideal course for beginners eager to start their journey into Machine Learning.',
+    dateInfo: '30 Mar, 2026 - 07 Jun, 2026 • 7.5 ECTS',
+    locationInfo: 'Half-time • Campus Växjö',
+    applicationInfo: 'Application: August 15',
+    link: 'https://lnu.se/en/course/introduction-to-machine-learning/vaxjo-international-part-time-spring/',
+  },
+  {
+    level: "Master's Level",
+    levelClass: 'master',
+    language: 'English',
+    title: 'Deep Machine Learning',
+    description:
+      'Focuses on neural networks, CNNs, and optimization methods. Learn to build and train deep models.',
+    dateInfo: '30 Mar, 2026 - 07 Jun, 2026 • 5 ECTS',
+    locationInfo: '33% • Campus Växjö',
+    applicationInfo: 'Application: October 15',
+    link: 'https://lnu.se/en/course/deep-machine-learning/vaxjo-exchange-part-time-spring/',
+  },
+  {
+    level: "Master's Level",
+    levelClass: 'master',
+    language: 'English',
+    title: 'Deep Reinforcement Learning',
+    description:
+      'Advanced course covering supervised and unsupervised learning algorithms.',
+    dateInfo: '10 Nov, 2025 - 18 Jan, 2026 • 7.5 ECTS',
+    locationInfo: 'Half-time • Campus Växjö',
+    applicationInfo: 'Application: January 15',
+    link: 'https://lnu.se/en/course/deep-reinforcement-learning/vaxjo-international-part-time-autumn/',
+  },
+  {
+    level: "Bachelor's Level",
+    levelClass: 'bachelor',
+    language: 'English',
+    title: 'Applied Machine Learning',
+    description:
+      'Applied machine learning techniques to extract meaningful insights and value from large, diverse datasets using appropriate algorithms and approaches.',
+    dateInfo: '1 semester • 7.5 ECTS',
+    locationInfo: 'Period 2 • Spring',
+    applicationInfo: 'Prerequisites: Mathematics',
+    link: 'https://lnu.se/en/education/contract-education/utveckla-dig-sjalv/digitalisering-och-it/applied-machine-learning/',
+  },
+  {
+    level: "Bachelor's Level",
+    levelClass: 'bachelor',
+    language: 'English',
+    title: 'Advanced Statistical Machine Learning',
+    description:
+      'An introductory course combining statistical learning theory with hands-on machine learning practice using R, Keras, and TensorFlow on real-world datasets.',
+    dateInfo: '1 semester • 7.5 ECTS',
+    locationInfo: 'Period 1 • Autumn',
+    applicationInfo: 'Prerequisites: Statistics 15 credits',
+    link: 'https://lnu.se/kurs/avancerad-statistisk-maskininlarning/vaxjo-distans-engelska-ht/',
+  },
+  {
+    level: "Master's Level",
+    levelClass: 'master',
+    language: 'English',
+    title: 'Data Mining',
+    description:
+      'Techniques for discovering patterns in large datasets using statistical and ML methods.',
+    dateInfo: '1 semester • 7.5 ECTS',
+    locationInfo: 'Period 1 • Autumn',
+    applicationInfo: 'Prerequisites: Statistics',
+    link: 'https://lnu.se/en/course/data-mining/vaxjo-international-part-time-autumn/',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/courses.css" />
+    <link rel="stylesheet" href="styles/responsive.css" />
+    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+
+    <style is:global>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+    </style>
+
+    <title>Courses - LNU AI Society</title>
+  </head>
+
+  <body>
+    <Nav />
+
+    <div class="container">
+      <div class="courses-hero">
+        <h1>AI & ML Courses at LNU</h1>
+        <p>
+          Current artificial intelligence and machine learning courses offered
+          at Linnaeus University.
+        </p>
+      </div>
+
+      <div class="courses-grid">
+        {courses.map((course) => (
+          <CourseCard {...course} />
+        ))}
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="important-note">
+        <h2>Important Note</h2>
+        <p>
+          Offerings, schedules, and requirements may change. Please visit the
+          official Linnaeus University website for the most current and detailed
+          information about their courses.
+        </p>
+        <a
+          href="https://lnu.se/en/education/"
+          target="_blank"
+          class="portal-button"
+          >Visit LNU Education Portal</a
+        >
+      </div>
+    </div>
+
+    <Footer />
+    <script is:inline src="scripts/navbar.js"></script>
+    <script is:inline src="scripts/hamburger.js"></script>
+  </body>
+</html>

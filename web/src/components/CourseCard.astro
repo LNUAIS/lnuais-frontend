@@ -1,0 +1,34 @@
+---
+const {
+  level,
+  levelClass,
+  language,
+  title,
+  description,
+  dateInfo,
+  locationInfo,
+  applicationInfo,
+  link,
+} = Astro.props;
+---
+
+<div class="course-card">
+  <div class="course-header">
+    <div class={`course-level ${levelClass}`}>{level}</div>
+    <div class="course-language">{language}</div>
+  </div>
+  <h3>{title}</h3>
+  <p class="course-description">{description}</p>
+  <div class="course-details">
+    <p class="course-info">
+      <img src="images/calendar.svg" alt="" class="course-icon" /> {dateInfo}
+    </p>
+    <p class="course-info">
+      <img src="images/map-pin.svg" alt="" class="course-icon" /> {locationInfo}
+    </p>
+    <p class="course-info">
+      <img src="images/book.svg" alt="" class="course-icon" /> {applicationInfo}
+    </p>
+  </div>
+  <a href={link} target="_blank" class="course-button">Course Info</a>
+</div>

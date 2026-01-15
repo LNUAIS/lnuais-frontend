@@ -1,3 +1,54 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import EventCard from '../components/EventCard.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+const stayConnected = {
+  title: 'Stay Connected',
+  description: 'Interested in joining or staying up-to-date with LNU AI Society?',
+  buttonHref: 'signup.html',
+  buttonText: 'Become A Member!',
+};
+
+const pastEvents = [
+  {
+    tag: 'December 11, 2025 • TECH BAR',
+    title: 'Tech Bar — Bridging Academia & Industry',
+    paragraphs: [
+      'On December 11th, join LNU AI Society and @grocommunitysweden for Tech Bar, an evening designed to bridge the gap between academic life and the professional world. We are bringing together students, local founders, and industry experts for a night of creativity and meaningful connection.',
+      'The event features a fast-paced schedule, starting with a one-hour Lovable hackathon where you build functional tools on the spot. This is followed by a startup pitch competition judged by a panel of investors and experts, finally transitioning into relaxed networking over beers and snacks.',
+    ],
+    link: {
+      href: 'https://luma.com/aufbcvei',
+      label: 'https://luma.com/aufbcvei',
+    },
+    imageSrc: 'event-images/techbar.png',
+    imageAlt: 'Tech Bar',
+  },
+  {
+    tag: 'November 2025 • NEURAWAVE HACKATHON',
+    title: 'Hackathon: Neurawave & Kalmar Science Park',
+    paragraphs: [
+      'We were honored to join Neurawave at Kalmar Science Park on November 21 for a fast-paced hackathon dedicated to tackling challenges in migraine relief. Students collaborated in teams to develop innovative business ideas, prototypes, designs, and AI/ML or Generative AI–based solutions. <br /> The session highlighted practical applications of AI/ML in product development, along with valuable lessons on resilience and adaptability in building impactful solutions. <br />',
+      "Neurawave and other companies based in Kalmar Science Park also shared opportunities for internships and bachelor's thesis projects, giving attendees a valuable chance to build industry connections.",
+    ],
+    imageSrc: 'event-images/hackathon.png',
+    imageAlt: '',
+  },
+  {
+    tag: 'November 2025 • COMPANY VISIT',
+    title: 'Company Visit: Spiris | Visma',
+    paragraphs: [
+      'On November 25, we had the pleasure of visiting Spiris | Visma for an evening focused on applied AI in software development. The session began with pizza and an informal meet-and-greet before diving into practical demonstrations of how engineers build and deploy AI agents.<br />Attendees gained insight into real-world workflows, tools, and development practices used within the company, offering a clear view of how AI is integrated into modern software systems. <br />',
+      'The Head of Technology also shared valuable guidance on the skills and mindsets they look for in emerging talent, providing students with direction and inspiration for their career paths.',
+    ],
+    imageSrc: 'event-images/spiris.png',
+    imageAlt: '',
+  },
+];
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,7 +58,7 @@
     <link rel="stylesheet" href="styles/events.css" />
     <link rel="stylesheet" href="styles/responsive.css" />
     <link rel="icon" type="image/x-icon" href="/images/logo.png" />
-    <style>
+    <style is:global>
       @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
       /* Modal Styles */
@@ -58,23 +109,7 @@
   </head>
 
   <body>
-    <nav class="navbar">
-      <a href="/"><img src="/images/logo.png" alt="Logo" class="logo" /></a>
-
-      <button class="hamburger" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <ul class="menu">
-        <li class="item"><a href="events.html">Events</a></li>
-        <li class="item"><a href="courses.html">Courses</a></li>
-        <li class="item"><a href="news.html">News</a></li>
-        <li class="item"><a href="about.html">About</a></li>
-        <li class="item"><a href="signup.html">Join Us</a></li>
-      </ul>
-    </nav>
+    <Nav />
 
     <div class="container">
       <div class="about-hero">
@@ -137,115 +172,23 @@
         <p>Here are some of our past events at LNU AI Society.</p>
       </div>
 
-      <div class="events-grid">
-        <div class="events-card">
-          <div class="events-tag">December 11, 2025 • TECH BAR</div>
-          <h2>Tech Bar — Bridging Academia & Industry</h2>
-          <p>
-            On December 11th, join LNU AI Society and @grocommunitysweden for
-            Tech Bar, an evening designed to bridge the gap between academic
-            life and the professional world. We are bringing together students,
-            local founders, and industry experts for a night of creativity and
-            meaningful connection.
-          </p>
-
-          <p>
-            The event features a fast-paced schedule, starting with a one-hour
-            Lovable hackathon where you build functional tools on the spot. This
-            is followed by a startup pitch competition judged by a panel of
-            investors and experts, finally transitioning into relaxed networking
-            over beers and snacks.
-          </p>
-
-          <p>
-            Sign up here:
-            <a href="https://luma.com/aufbcvei" target="_blank" class="link"
-              >https://luma.com/aufbcvei</a
-            >
-          </p>
-
-          <img src="event-images/techbar.png" alt="Tech Bar" />
+      {pastEvents.map((event) => (
+        <div class="events-grid">
+          <EventCard {...event} />
         </div>
-      </div>
-
-      <div class="events-grid">
-        <div class="events-card">
-          <div class="events-tag">November 2025 • NEURAWAVE HACKATHON</div>
-          <h2>Hackathon: Neurawave & Kalmar Science Park</h2>
-          <p>
-            We were honored to join Neurawave at Kalmar Science Park on November
-            21 for a fast-paced hackathon dedicated to tackling challenges in
-            migraine relief. Students collaborated in teams to develop
-            innovative business ideas, prototypes, designs, and AI/ML or
-            Generative AI–based solutions. <br />
-            The session highlighted practical applications of AI/ML in product
-            development, along with valuable lessons on resilience and
-            adaptability in building impactful solutions. <br />
-          </p>
-
-          <p>
-            Neurawave and other companies based in Kalmar Science Park also
-            shared opportunities for internships and bachelor's thesis projects,
-            giving attendees a valuable chance to build industry connections.
-          </p>
-          <img src="event-images/hackathon.png" alt="" />
-        </div>
-      </div>
-
-      <div class="events-grid">
-        <div class="events-card">
-          <div class="events-tag">November 2025 • COMPANY VISIT</div>
-          <h2>Company Visit: Spiris | Visma</h2>
-          <p>
-            On November 25, we had the pleasure of visiting Spiris | Visma for
-            an evening focused on applied AI in software development. The
-            session began with pizza and an informal meet-and-greet before
-            diving into practical demonstrations of how engineers build and
-            deploy AI agents.
-            <br />
-            Attendees gained insight into real-world workflows, tools, and
-            development practices used within the company, offering a clear view
-            of how AI is integrated into modern software systems. <br />
-          </p>
-
-          <p>
-            The Head of Technology also shared valuable guidance on the skills
-            and mindsets they look for in emerging talent, providing students
-            with direction and inspiration for their career paths.
-          </p>
-          <img src="event-images/spiris.png" alt="" />
-        </div>
-      </div>
+      ))}
 
       <div class="divider"></div>
 
-      <div class="cta-section">
-        <h2>Stay Connected</h2>
-        <p>Interested in joining or staying up-to-date with LNU AI Society?</p>
-        <a href="signup.html" class="cta-button">Become A Member!</a>
-      </div>
+      <CtaSection {...stayConnected} />
     </div>
 
-    <footer>
-      <h3>LNU AI Society</h3>
-      <div class="footer-items">
-        <p>
-          <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
-            <img src="images/linkedin.svg" alt="" class="footer-icon" />
-          </a>
-          <a href="https://www.instagram.com/lnuaisociety" target="_blank">
-            <img src="images/instagram.svg" alt="" class="footer-icon" />
-          </a>
-          © 2025 LNU AI Society.<br />All rights reserved. <br />
-          802552-2056
-        </p>
-      </div>
-    </footer>
+    <Footer />
 
-    <script src="scripts/config.js"></script>
-    <script src="scripts/navbar.js"></script>
-    <script src="scripts/hamburger.js"></script>
-    <script>
+    <script is:inline src="scripts/config.js"></script>
+    <script is:inline src="scripts/navbar.js"></script>
+    <script is:inline src="scripts/hamburger.js"></script>
+    <script is:inline>
       // 1. Check Login Status
       const storedUser = localStorage.getItem("user");
       const currentUser = storedUser ? JSON.parse(storedUser) : null;
@@ -378,4 +321,3 @@
     </script>
   </body>
 </html>
-

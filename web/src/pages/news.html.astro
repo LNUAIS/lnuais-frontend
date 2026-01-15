@@ -1,0 +1,57 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import CtaSection from '../components/CtaSection.astro';
+
+const stayConnected = {
+  title: 'Stay Connected',
+  description: 'Interested in joining or staying up-to-date with LNU AI Society?',
+  buttonHref: 'signup.html',
+  buttonText: 'Become A Member!',
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/news.css" />
+
+    <link rel="stylesheet" href="styles/responsive.css" />
+    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+
+    <style is:global>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+    </style>
+
+    <title>News - LNU AI Society</title>
+  </head>
+
+  <body>
+    <Nav />
+
+    <div class="container">
+      <div class="news-hero">
+        <h1>Latest News</h1>
+        <p>
+          Discover the most recent updates from the world of AI and our society
+          activities.
+        </p>
+      </div>
+
+      <p style="text-align: center; grid-column: 1/-1; color: #b0b0b0">
+        No news to display.
+      </p>
+
+      <div class="divider"></div>
+
+      <CtaSection {...stayConnected} />
+    </div>
+
+    <Footer />
+    <script is:inline src="scripts/navbar.js"></script>
+    <script is:inline src="scripts/hamburger.js"></script>
+  </body>
+</html>

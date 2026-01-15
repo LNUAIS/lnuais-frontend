@@ -1,4 +1,9 @@
-﻿<!doctype html>
+---
+import DashboardNav from '../components/DashboardNav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -7,9 +12,9 @@
   <link rel="stylesheet" href="styles/styles.css" />
   <link rel="stylesheet" href="styles/responsive.css" />
   <link rel="icon" type="image/x-icon" href="/images/logo.png" />
-  <script src="scripts/config.js"></script>
+  <script is:inline src="scripts/config.js"></script>
 
-  <style>
+  <style is:global>
     @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
     /* --- Dashboard Specific Styles --- */
@@ -378,33 +383,7 @@
 </head>
 
 <body>
-  <nav class="navbar">
-    <a href="/"><img src="/images/logo.png" alt="Logo" class="logo" /></a>
-
-    <!-- Container for Menu and Profile to group them on the right -->
-    <div class="navbar-right-container">
-      <ul class="menu">
-        <li class="item"><a href="events.html">Events</a></li>
-        <li class="item"><a href="courses.html">Courses</a></li>
-        <li class="item"><a href="news.html">News</a></li>
-        <li class="item"><a href="about.html">About</a></li>
-      </ul>
-
-      <div id="navbarProfile" class="navbar-profile" style="display: none">
-        <img id="navbarProfilePic" src="" alt="Profile" />
-        <div class="navbar-profile-text">
-          <div class="navbar-profile-name" id="navbarProfileName">User</div>
-          <a href="#" class="navbar-profile-logout" onclick="handleLogout(); return false;">Log Out</a>
-        </div>
-      </div>
-    </div>
-
-    <button class="hamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
+  <DashboardNav />
 
   <div class="container">
     <div id="loading" style="text-align: center; margin-top: 100px">
@@ -497,23 +476,9 @@
     </div>
   </div>
 
-  <footer>
-    <h3>LNU AI Society</h3>
-    <div class="footer-items">
-      <p>
-        <a href="https://www.linkedin.com/company/lnuais/" target="_blank">
-          <img src="images/linkedin.svg" alt="" class="footer-icon" />
-        </a>
-        <a href="https://www.instagram.com/lnuaisociety" target="_blank">
-          <img src="images/instagram.svg" alt="" class="footer-icon" />
-        </a>
-        © 2025 LNU AI Society.<br />All rights reserved. <br />
-        802552-2056
-      </p>
-    </div>
-  </footer>
+  <Footer />
 
-  <script>
+  <script is:inline>
     const DEFAULT_AVATAR_URL = "https://ui-avatars.com/api/?background=random&name=";
     let currentUser = null;
     let isGoogleUser = false;

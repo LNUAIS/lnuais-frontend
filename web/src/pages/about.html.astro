@@ -1,0 +1,188 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import BoardCard from '../components/BoardCard.astro';
+
+const boardMembers = [
+  {
+    initials: 'SR',
+    name: 'Saisharan Raja',
+    role: 'President',
+    description: 'Leading innovation and strategic direction for LNU AI Society.',
+    email: 'saisharan@lnuais.com',
+    linkedin: 'https://www.linkedin.com/in/saisharanraja/',
+  },
+  {
+    initials: 'LP',
+    name: 'Laknath Ranaraja Perera',
+    role: 'Vice President',
+    description: 'Focused on operations, planning, and society coordination.',
+    email: 'laknath@lnuais.com',
+    linkedin: 'https://www.linkedin.com/in/lranaraja/',
+  },
+  {
+    initials: 'AS',
+    name: 'Abdirashiid Sammantar',
+    role: 'Head of Communications',
+    description: 'Responsible for outreach, messaging, and media relations.',
+    email: 'abdirashiid@lnuais.com',
+    linkedin:
+      'https://www.linkedin.com/in/abdirashiid-sammantar-3b7863238/',
+  },
+  {
+    initials: 'YM',
+    name: 'Younus Mashoor',
+    role: 'Head of Marketing',
+    description: 'Leading marketing initiatives and promotional strategies.',
+    email: 'younus@lnuais.com',
+    linkedin: 'https://www.linkedin.com/in/younusmashoor/',
+  },
+  {
+    initials: 'WM',
+    name: 'William McCallum-Vallmark',
+    role: 'Secretary',
+    description: 'Organizing meetings, records, and official documents.',
+    email: 'william@lnuais.com',
+    linkedin:
+      'https://www.linkedin.com/in/william-mc-callum-vallmark-4118a01ba/',
+  },
+  {
+    initials: 'KC',
+    name: 'Kemal Cikota',
+    role: 'Head of Business Relations',
+    description: 'Managing partnerships and external business relationships.',
+    email: 'kemal@lnuais.com',
+    linkedin: 'https://www.linkedin.com/in/kemal-cikota-19b509252/',
+  },
+  {
+    initials: 'AG',
+    name: 'Armin Coco Grbovic',
+    role: 'Treasurer',
+    description: 'Managing finances, budgets, and financial planning.',
+    email: 'armin@lnuais.com',
+    linkedin: 'https://www.linkedin.com/in/armin-coco-grbovic-195a72237/',
+  },
+];
+
+const committeeMembers = [
+  {
+    initials: 'KA',
+    name: 'Keenan Arsianto',
+    role: 'Art Director',
+    description:
+      'Creating visual identity and designing graphics for society initiatives.',
+    email: 'keenan@lnuais.com',
+    linkedin: 'https://www.linkedin.com/in/keenan-arsianto-63b00334b/',
+  },
+  {
+    initials: 'EK',
+    name: 'Ebbe Karlstad',
+    role: 'Web Developer',
+    description:
+      "Building and maintaining the society's digital platforms and web presence.",
+    email: 'ebbe@lnuais.com',
+    linkedin: 'https://www.linkedin.com/in/ebbekarlstad/',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/about.css" />
+    <link rel="stylesheet" href="styles/responsive.css" />
+    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+
+    <style is:global>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+    </style>
+
+    <title>About - LNU AI Society</title>
+  </head>
+
+  <body>
+    <Nav />
+
+    <div class="container">
+      <div class="about-hero">
+        <h1>Board Members at LNU AI Society</h1>
+        <p>
+          Our dedicated team of students leading the AI revolution at Linnaeus
+          University.
+        </p>
+      </div>
+
+      <div class="board-grid">
+        {boardMembers.map((member) => (
+          <BoardCard {...member} />
+        ))}
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="committee-hero">
+        <h1>Committee Members</h1>
+        <p>Supporting our mission with specialized skills and expertise.</p>
+      </div>
+
+      <div class="committee-grid">
+        {committeeMembers.map((member) => (
+          <BoardCard {...member} />
+        ))}
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="contact-section-compact">
+        <h2>Get in Touch</h2>
+        <p class="contact-intro">
+          Have questions or want to get involved? We'd love to hear from you!
+        </p>
+
+        <div class="contact-buttons">
+          <a href="mailto:contact@lnuais.com" class="contact-btn">
+            <img src="images/mail.svg" alt="" class="contact-btn-icon" />
+            Email Us
+          </a>
+          <a
+            href="https://maps.google.com/?q=Linnaeus+University+Växjö"
+            target="_blank"
+            class="contact-btn"
+          >
+            <img src="images/map-pin.svg" alt="" class="contact-btn-icon" />
+            Visit Campus
+          </a>
+        </div>
+
+        <div class="office-hours">
+          <img src="images/clock.svg" alt="" class="office-hours-icon" />
+          <div class="office-hours-text">
+            <h3>Office Hours</h3>
+            <p>
+              Tuesdays: 14:00 - 16:00 • Thursdays: 10:00 - 12:00 • Or by
+              appointment
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="divider"></div>
+
+      <div class="documents-cta" style="text-align:center; margin:3rem 0">
+        <h2 style="margin-bottom:0.5rem">Official Documents</h2>
+        <p style="margin-top:0; color:#9aa0a6; max-width:70ch; margin-left:auto; margin-right:auto;">
+          View official bylaws and professional documents, including policies, agreements,
+          and other governance materials for LNU AI Society.
+        </p>
+        <a href="documents.html" class="cta-button" style="margin-top:1rem; display:inline-block; color: #ffffff;">View Documents</a>
+      </div>
+
+    </div>
+
+    <Footer />
+    <script is:inline src="scripts/navbar.js"></script>
+    <script is:inline src="scripts/hamburger.js"></script>
+  </body>
+</html>

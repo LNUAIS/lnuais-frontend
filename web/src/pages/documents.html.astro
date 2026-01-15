@@ -1,0 +1,63 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import DocumentCard from '../components/DocumentCard.astro';
+
+const documents = [
+  {
+    headerTitle: 'Statutory Documents',
+    bodyTitle: 'Bylaws of LNU AI Society',
+    description: 'Official bylaws governing the LNU AI Society',
+    dateText: 'Latest Revision: Wednesday, October 21, 2025',
+    filePath: 'documents/BylawsofLNUAISociety.pdf',
+  },
+  {
+    headerTitle: 'Annual Meeting Agenda 2025',
+    bodyTitle: 'Agenda for the 2025 Annual General Meeting',
+    dateText: 'Latest Revision: Wednesday, October 21, 2025',
+    filePath: 'documents/Agenda.pdf',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/responsive.css" />
+    <!--THIS USES ABOUT CSS FILE BECAUSE THEY*RE SIMILAR:
+    WE COULD DUPLICATE TO REMOVE SINGLE POINT OF FAILURE BUT MIGHT NOT BE NECCESSARY FOR SUCH SIMPLE PAGE-->
+    <link rel="stylesheet" href="styles/about.css" />
+    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+
+    <style is:global>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+    </style>
+
+    <title>About - LNU AI Society</title>
+  </head>
+
+  <body>
+    <Nav />
+    <div class="container">
+      <div class="documents-section">
+        <h2>Official Documents</h2>
+        <p class="documents-intro">
+          Access all LNU AI Society documents and meeting minutes
+        </p>
+
+        <div class="documents-grid">
+          {documents.map((document) => (
+            <DocumentCard {...document} />
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <Footer />
+    <script is:inline src="scripts/navbar.js"></script>
+    <script is:inline src="scripts/hamburger.js"></script>
+  </body>
+</html>

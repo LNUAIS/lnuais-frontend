@@ -1,0 +1,24 @@
+---
+const { headerTitle, bodyTitle, description, dateText, filePath } = Astro.props;
+---
+
+<div class="document-card">
+  <div class="document-header">
+    <img src="images/file.svg" alt="" class="document-icon" />
+    <div>
+      <h3>{headerTitle}</h3>
+    </div>
+  </div>
+  <div class="document-body">
+    <h4>{bodyTitle}</h4>
+    {description ? <p>{description}</p> : null}
+    <p class="document-date">{dateText}</p>
+  </div>
+  <button
+    class="download-button"
+    onclick={`window.open('${filePath}', '_blank')`}
+    target="_blank"
+  >
+    Download
+  </button>
+</div>

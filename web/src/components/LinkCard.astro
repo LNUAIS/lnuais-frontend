@@ -1,0 +1,14 @@
+---
+const { className, href, icon, title, description, alt = '' } = Astro.props;
+---
+
+<div
+  class={className}
+  onclick={`window.location.href = '${href}'`}
+  style="cursor: pointer"
+>
+  <h3>
+    <img src={icon} alt={alt} class="card-icon" /> {title}
+  </h3>
+  <p>{description}</p>
+</div>

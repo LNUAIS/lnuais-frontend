@@ -1,0 +1,139 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import InfoCard from '../components/InfoCard.astro';
+import LinkCard from '../components/LinkCard.astro';
+
+const infoCards = [
+  {
+    icon: 'images/brain.svg',
+    title: 'Learn',
+    description:
+      'Workshops, seminars, and hands-on sessions covering machine learning, deep learning, and AI applications.',
+  },
+  {
+    icon: 'images/users.svg',
+    title: 'Connect',
+    description:
+      'Network with like-minded students, researchers, and industry professionals in the AI field.',
+  },
+  {
+    icon: 'images/bolt.svg',
+    title: 'Innovate',
+    description:
+      'Participate in hackathons, research projects, and collaborative initiatives to push AI boundaries.',
+  },
+  {
+    icon: 'images/calendar.svg',
+    title: 'Engage',
+    description:
+      'Regular meetups, guest lectures, and various social events to build lasting connections in the AI community.',
+  },
+];
+
+const linkCards = [
+  {
+    className: 'link-cards-1',
+    href: 'courses.html',
+    icon: 'images/book.svg',
+    title: 'Courses',
+    description:
+      'Explore our comprehensive AI and Machine Learning courses designed for all skill levels.',
+  },
+  {
+    className: 'link-cards-2',
+    href: 'events.html',
+    icon: 'images/calendar.svg',
+    title: 'Events',
+    description:
+      'Join our workshops, hackathons, guest lectures, and networking events throughout the year.',
+  },
+  {
+    className: 'link-cards-3',
+    href: 'news.html',
+    icon: 'images/news.svg',
+    title: 'News',
+    description:
+      'Stay updated with the latest AI developments, research breakthroughs, and announcements.',
+  },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/responsive.css" />
+    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+
+    <style is:global>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+    </style>
+
+    <title>Home - LNU AI Society</title>
+  </head>
+
+  <body>
+    <Nav />
+
+    <div class="container">
+      <div class="hero">
+        <h1>Build the future of AI at Linnaeus University</h1>
+        <p>
+          Join a community of students passionate about
+          <span class="highlight"> artificial intelligence</span>. Learn,
+          collaborate, and create together through workshops, hackathons, and
+          real-world projects.
+        </p>
+      </div>
+
+      <div class="cta">
+        <button class="primary" onclick="window.location.href = 'signup.html'">
+          Join The Community
+        </button>
+        <button class="secondary" onclick="window.location.href = 'about.html'">
+          Meet The Team
+        </button>
+      </div>
+
+      <div class="card">
+        <h2>What We're About</h2>
+        <p>
+          A student-driven organization at Linnaeus University focused on
+          <span class="text"></span>
+        </p>
+        <div class="info-card">
+          {infoCards.map((card) => (
+            <InfoCard {...card} />
+          ))}
+        </div>
+
+        <h2>Explore Our Community</h2>
+        <p>
+          Discover everything we have to offer — from courses and events, to the
+          latest AI news and updates.
+        </p>
+        <div class="link-card">
+          {linkCards.map((card) => (
+            <LinkCard {...card} />
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <Footer />
+
+    <!--This is a script I'm using that makes the typing effect possible-->
+    <script
+      is:inline
+      src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"
+      integrity="sha512-BdHyGtczsUoFcEma+MfXc71KJLv/cd+sUsUaYYf2mXpfG/PtBjNXsPo78+rxWjscxUYN2Qr2+DbeGGiJx81ifg=="
+      crossorigin="anonymous"
+    ></script>
+    <script is:inline src="scripts/typed.js"></script>
+    <script is:inline src="scripts/navbar.js"></script>
+    <script is:inline src="scripts/hamburger.js"></script>
+  </body>
+</html>

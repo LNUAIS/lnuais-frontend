@@ -209,7 +209,7 @@ import Footer from '../components/Footer.astro';
             document.getElementById("loading").innerHTML = `
               <h2 class="text-xl font-semibold text-[#fc8181]">Session Error (${response.status})</h2>
               <p class="mt-2 text-sm text-[#a1a1aa]">Could not verify your session with the backend.</p>
-              <p class="mt-2 text-sm text-[#a1a1aa]">Please <a href="signin.html" class="font-semibold text-[#ffe000]">sign in again</a>.</p>
+              <p class="mt-2 text-sm text-[#a1a1aa]">Please <a href="signin.html" data-astro-prefetch class="font-semibold text-[#ffe000]">sign in again</a>.</p>
             `;
             localStorage.removeItem("user");
             // window.location.href = "signin.html"; // DISABLED FOR DEBUGGING
@@ -219,7 +219,7 @@ import Footer from '../components/Footer.astro';
           document.getElementById("loading").innerHTML = `
               <h2 class="text-xl font-semibold text-[#fc8181]">Connection Error</h2>
               <p class="mt-2 text-sm text-[#a1a1aa]">${error.message}</p>
-              <p class="mt-2 text-sm text-[#a1a1aa]">Please <a href="signin.html" class="font-semibold text-[#ffe000]">sign in again</a>.</p>
+              <p class="mt-2 text-sm text-[#a1a1aa]">Please <a href="signin.html" data-astro-prefetch class="font-semibold text-[#ffe000]">sign in again</a>.</p>
           `;
           localStorage.removeItem("user");
           // window.location.href = "signin.html"; // DISABLED FOR DEBUGGING

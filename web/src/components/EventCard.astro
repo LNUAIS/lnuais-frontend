@@ -3,29 +3,31 @@ const { tag, title, paragraphs = [], link, imageSrc, imageAlt = '' } =
   Astro.props;
 ---
 
-<div class="events-card grid gap-3 rounded-xl border border-[#404040] bg-[#2a2a2e] p-8 text-[#fcfbf8] shadow-[0_0_1rem_#181818aa] md:grid-cols-[1fr_auto] md:items-start md:p-10">
-  <div class="events-tag w-fit rounded-md bg-[#ffe000] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-[#232326]">
-    {tag}
+<div class="grid gap-6 rounded-xl border border-[#404040] bg-[#2a2a2e] p-8 text-[#fcfbf8] shadow-[0_0_1rem_#181818aa] md:grid-cols-[minmax(0,1fr)_auto] md:items-start md:gap-4 md:p-10">
+  <div class="flex flex-col">
+    <div class="text-nowrap mb-4 w-fit rounded-md bg-[#ffe000] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-[#232326]">
+      {tag}
+    </div>
+    <h2 class="text-2xl font-semibold text-[#fcfbf8]">{title}</h2>
+    {paragraphs.map((paragraph) => (
+      <p class="mt-3 leading-relaxed text-[#b0b0b0]" set:html={paragraph} />
+    ))}
+    {link ? (
+      <p class="mt-3 text-[#b0b0b0]">
+        Sign up here:
+        <a
+          href={link.href}
+          target="_blank"
+          class="link font-medium text-[#ffe000] transition hover:text-[#fdecb2] hover:underline"
+        >
+          {link.label ?? link.href}
+        </a>
+      </p>
+    ) : null}
   </div>
-  <h2 class="text-2xl font-semibold text-[#fcfbf8]">{title}</h2>
-  {paragraphs.map((paragraph) => (
-    <p class="mt-3 text-sm leading-relaxed text-[#b0b0b0]" set:html={paragraph} />
-  ))}
-  {link ? (
-    <p class="mt-3 text-sm text-[#b0b0b0]">
-      Sign up here:
-      <a
-        href={link.href}
-        target="_blank"
-        class="link font-medium text-[#ffe000] transition hover:text-[#fdecb2] hover:underline"
-      >
-        {link.label ?? link.href}
-      </a>
-    </p>
-  ) : null}
   <img
     src={imageSrc}
     alt={imageAlt}
-    class="hidden max-h-[450px] rounded-lg object-cover md:col-start-2 md:row-span-6 md:ml-4 md:block"
+    class="hidden max-h-[450px] rounded-lg object-cover md:ml-4 md:block"
   />
 </div>

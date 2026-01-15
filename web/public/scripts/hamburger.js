@@ -1,6 +1,13 @@
 const hamburger = document.querySelector(".hamburger");
 const menu = document.querySelector(".menu");
 
+const isPlainLeftMouseDown = (event) =>
+  event.button === 0 &&
+  !event.metaKey &&
+  !event.ctrlKey &&
+  !event.shiftKey &&
+  !event.altKey;
+
 const closeMenu = () => {
   if (!hamburger || !menu) return;
   hamburger.dataset.open = "false";
@@ -33,5 +40,10 @@ if (hamburger && menu) {
   // Close menu when clicking a link
   menu.querySelectorAll(".item a").forEach((link) => {
     link.addEventListener("click", closeMenu);
+    link.addEventListener("mousedown", (event) => {
+      if (isPlainLeftMouseDown(event)) {
+        closeMenu();
+      }
+    });
   });
 }

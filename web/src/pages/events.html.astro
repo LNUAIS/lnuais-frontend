@@ -81,7 +81,7 @@ const pastEvents = [
             </div>
 
             <div
-                class="events-grid mt-10 flex flex-col gap-8"
+                class="events-grid mx-auto mt-10 flex max-w-[83rem] flex-col gap-8"
                 id="eventsContainer"
             >
                 <p class="text-center text-sm text-[#b0b0b0]">
@@ -103,12 +103,14 @@ const pastEvents = [
 
                     <a
                         href="signup.html"
+                        data-astro-prefetch
                         class="modal-btn mt-6 inline-flex w-full items-center justify-center rounded-md bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
                         >Create Account</a
                     >
 
                     <a
                         href="signin.html"
+                        data-astro-prefetch
                         class="modal-btn mt-3 inline-flex w-full items-center justify-center rounded-md bg-gray-100 px-4 py-3 text-sm font-semibold text-[#333] transition hover:bg-gray-200"
                         >Sign In</a
                     >
@@ -137,7 +139,7 @@ const pastEvents = [
                 </p>
             </div>
 
-            <div class="events-grid mt-10 flex flex-col gap-8">
+            <div class="events-grid mx-auto mt-10 flex max-w-[83rem] flex-col gap-8">
                 {pastEvents.map((event) => <EventCard {...event} />)}
             </div>
 
@@ -153,7 +155,6 @@ const pastEvents = [
 
         <script is:inline src="scripts/config.js"></script>
         <script is:inline src="scripts/navbar.js"></script>
-        <script is:inline src="scripts/hamburger.js"></script>
         <script is:inline>
             // 1. Check Login Status
             const storedUser = localStorage.getItem("user");

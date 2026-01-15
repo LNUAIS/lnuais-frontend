@@ -91,20 +91,20 @@ const linkCards = [
             </div>
 
             <div
-                class="cta mt-10 flex flex-col items-center justify-center gap-4 md:flex-row"
+                class="cta mt-10 flex flex-col text-center items-center justify-center gap-4 md:flex-row"
             >
-                <button
-                    class="primary w-full max-w-xs rounded-2xl bg-[#232326] px-6 py-4 text-base font-medium text-[#fcfbf8] transition hover:translate-y-[-2px] hover:bg-[#111111] md:w-auto"
-                    onclick="window.location.href = 'signup.html'"
+                <a
+                    class="primary w-full max-w-xs rounded-2xl bg-[#232326] px-6 py-4 text-base font-medium text-[#fcfbf8] transition hover:translate-y-[-2px] hover:bg-[#111111] md:w-auto cursor-pointer"
+                    href="signup.html"
                 >
                     Join The Community
-                </button>
-                <button
-                    class="secondary w-full max-w-xs rounded-2xl border-4 border-[#232326] px-6 py-4 text-base font-medium text-[#232326] transition hover:bg-[#232326] hover:text-[#fcfbf8] md:w-auto"
-                    onclick="window.location.href = 'about.html'"
+                </a>
+                <a
+                    class="secondary w-full max-w-xs rounded-2xl border-2 border-[#232326] px-6 py-4 text-base font-medium text-[#232326] transition hover:bg-[#232326] hover:text-[#fcfbf8] md:w-auto cursor-pointer"
+                    href="about.html"
                 >
                     Meet The Team
-                </button>
+                </a>
             </div>
 
             <div
@@ -145,6 +145,5 @@ const linkCards = [
             crossorigin="anonymous"></script>
         <script is:inline src="scripts/typed.js"></script>
         <script is:inline src="scripts/navbar.js"></script>
-        <script is:inline src="scripts/hamburger.js"></script>
     </body>
 </html>

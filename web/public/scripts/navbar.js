@@ -34,7 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const ctaButton = document.querySelector('.cta .primary');
             if (ctaButton && ctaButton.textContent.trim() === "Join The Community") {
                 ctaButton.textContent = `Hello ${user.name.split(' ')[0]}`;
-                ctaButton.onclick = function () {
+                ctaButton.onmousedown = function (event) {
+                    if (event.button !== 0) return;
                     window.location.href = 'dashboard.html';
                 };
             }

@@ -1,323 +1,300 @@
 ---
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import EventCard from '../components/EventCard.astro';
-import CtaSection from '../components/CtaSection.astro';
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import EventCard from "../components/EventCard.astro";
+import CtaSection from "../components/CtaSection.astro";
 
 const stayConnected = {
-  title: 'Stay Connected',
-  description: 'Interested in joining or staying up-to-date with LNU AI Society?',
-  buttonHref: 'signup.html',
-  buttonText: 'Become A Member!',
+    title: "Stay Connected",
+    description:
+        "Interested in joining or staying up-to-date with LNU AI Society?",
+    buttonHref: "signup.html",
+    buttonText: "Become A Member!",
 };
 
 const pastEvents = [
-  {
-    tag: 'December 11, 2025 • TECH BAR',
-    title: 'Tech Bar — Bridging Academia & Industry',
-    paragraphs: [
-      'On December 11th, join LNU AI Society and @grocommunitysweden for Tech Bar, an evening designed to bridge the gap between academic life and the professional world. We are bringing together students, local founders, and industry experts for a night of creativity and meaningful connection.',
-      'The event features a fast-paced schedule, starting with a one-hour Lovable hackathon where you build functional tools on the spot. This is followed by a startup pitch competition judged by a panel of investors and experts, finally transitioning into relaxed networking over beers and snacks.',
-    ],
-    link: {
-      href: 'https://luma.com/aufbcvei',
-      label: 'https://luma.com/aufbcvei',
+    {
+        tag: "December 11, 2025 • TECH BAR",
+        title: "Tech Bar — Bridging Academia & Industry",
+        paragraphs: [
+            "On December 11th, join LNU AI Society and @grocommunitysweden for Tech Bar, an evening designed to bridge the gap between academic life and the professional world. We are bringing together students, local founders, and industry experts for a night of creativity and meaningful connection.",
+            "The event features a fast-paced schedule, starting with a one-hour Lovable hackathon where you build functional tools on the spot. This is followed by a startup pitch competition judged by a panel of investors and experts, finally transitioning into relaxed networking over beers and snacks.",
+        ],
+        link: {
+            href: "https://luma.com/aufbcvei",
+            label: "https://luma.com/aufbcvei",
+        },
+        imageSrc: "event-images/techbar.png",
+        imageAlt: "Tech Bar",
     },
-    imageSrc: 'event-images/techbar.png',
-    imageAlt: 'Tech Bar',
-  },
-  {
-    tag: 'November 2025 • NEURAWAVE HACKATHON',
-    title: 'Hackathon: Neurawave & Kalmar Science Park',
-    paragraphs: [
-      'We were honored to join Neurawave at Kalmar Science Park on November 21 for a fast-paced hackathon dedicated to tackling challenges in migraine relief. Students collaborated in teams to develop innovative business ideas, prototypes, designs, and AI/ML or Generative AI–based solutions. <br /> The session highlighted practical applications of AI/ML in product development, along with valuable lessons on resilience and adaptability in building impactful solutions. <br />',
-      "Neurawave and other companies based in Kalmar Science Park also shared opportunities for internships and bachelor's thesis projects, giving attendees a valuable chance to build industry connections.",
-    ],
-    imageSrc: 'event-images/hackathon.png',
-    imageAlt: '',
-  },
-  {
-    tag: 'November 2025 • COMPANY VISIT',
-    title: 'Company Visit: Spiris | Visma',
-    paragraphs: [
-      'On November 25, we had the pleasure of visiting Spiris | Visma for an evening focused on applied AI in software development. The session began with pizza and an informal meet-and-greet before diving into practical demonstrations of how engineers build and deploy AI agents.<br />Attendees gained insight into real-world workflows, tools, and development practices used within the company, offering a clear view of how AI is integrated into modern software systems. <br />',
-      'The Head of Technology also shared valuable guidance on the skills and mindsets they look for in emerging talent, providing students with direction and inspiration for their career paths.',
-    ],
-    imageSrc: 'event-images/spiris.png',
-    imageAlt: '',
-  },
+    {
+        tag: "November 2025 • NEURAWAVE HACKATHON",
+        title: "Hackathon: Neurawave & Kalmar Science Park",
+        paragraphs: [
+            "We were honored to join Neurawave at Kalmar Science Park on November 21 for a fast-paced hackathon dedicated to tackling challenges in migraine relief. Students collaborated in teams to develop innovative business ideas, prototypes, designs, and AI/ML or Generative AI–based solutions. <br /> The session highlighted practical applications of AI/ML in product development, along with valuable lessons on resilience and adaptability in building impactful solutions. <br />",
+            "Neurawave and other companies based in Kalmar Science Park also shared opportunities for internships and bachelor's thesis projects, giving attendees a valuable chance to build industry connections.",
+        ],
+        imageSrc: "event-images/hackathon.png",
+        imageAlt: "",
+    },
+    {
+        tag: "November 2025 • COMPANY VISIT",
+        title: "Company Visit: Spiris | Visma",
+        paragraphs: [
+            "On November 25, we had the pleasure of visiting Spiris | Visma for an evening focused on applied AI in software development. The session began with pizza and an informal meet-and-greet before diving into practical demonstrations of how engineers build and deploy AI agents.<br />Attendees gained insight into real-world workflows, tools, and development practices used within the company, offering a clear view of how AI is integrated into modern software systems. <br />",
+            "The Head of Technology also shared valuable guidance on the skills and mindsets they look for in emerging talent, providing students with direction and inspiration for their career paths.",
+        ],
+        imageSrc: "event-images/spiris.png",
+        imageAlt: "",
+    },
 ];
 ---
 
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="stylesheet" href="styles/events.css" />
-    <link rel="stylesheet" href="styles/responsive.css" />
-    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
-    <style is:global>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+        <title>Events - LNU AI Society</title>
+    </head>
 
-      /* Modal Styles */
-      .modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-        display: none;
-      }
+    <body
+        class="flex min-h-screen flex-col bg-[#232326] font-sans text-[#fcfbf8]"
+    >
+        <Nav />
 
-      .modal-content {
-        background: white;
-        padding: 30px;
-        border-radius: 8px;
-        width: 350px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      }
+        <div class="container mx-auto flex-1 px-6 pb-32 pt-28 md:px-10">
+            <div class="about-hero text-center">
+                <h1 class="text-4xl font-bold text-[#fcfbf8] md:text-5xl">
+                    Upcoming Events
+                </h1>
+                <p
+                    class="mx-auto mt-4 max-w-[75ch] text-base font-medium text-[#b0b0b0] md:text-lg"
+                >
+                    Join us for workshops, hackathons, and networking events
+                    throughout the year.
+                </p>
 
-      .modal-btn {
-        margin-top: 15px;
-        display: inline-block;
-        width: 100%;
-        padding: 10px;
-        border-radius: 5px;
-        text-decoration: none;
-      }
+                <p class="mt-8 text-base text-[#b0b0b0]">No upcoming events.</p>
+            </div>
 
-      /* Registered State Button */
-      .event-button.registered {
-        background-color: #dc3545;
-        /* Red */
-        color: white;
-      }
+            <div
+                class="events-grid mt-10 flex flex-col gap-8"
+                id="eventsContainer"
+            >
+                <p class="text-center text-sm text-[#b0b0b0]">
+                    Loading events...
+                </p>
+            </div>
 
-      .event-button.registered:hover {
-        background-color: #c82333;
-      }
-    </style>
-    <title>Events - LNU AI Society</title>
-  </head>
+            <div
+                id="loginModal"
+                class="modal-overlay fixed inset-0 z-50 hidden items-center justify-center bg-black/60 backdrop-blur-sm"
+            >
+                <div
+                    class="modal-content w-full max-w-sm rounded-xl border border-white/10 bg-[#232326] p-8 text-center text-[#fcfbf8] shadow-xl"
+                >
+                    <h3 class="text-xl font-semibold">Join Us First!</h3>
+                    <p class="mt-2 text-sm text-[#b0b0b0]">
+                        You need to be a member to register for events.
+                    </p>
 
-  <body>
-    <Nav />
+                    <a
+                        href="signup.html"
+                        class="modal-btn mt-6 inline-flex w-full items-center justify-center rounded-md bg-blue-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
+                        >Create Account</a
+                    >
 
-    <div class="container">
-      <div class="about-hero">
-        <h1>Upcoming Events</h1>
-        <p>
-          Join us for workshops, hackathons, and networking events throughout
-          the year.
-        </p>
+                    <a
+                        href="signin.html"
+                        class="modal-btn mt-3 inline-flex w-full items-center justify-center rounded-md bg-gray-100 px-4 py-3 text-sm font-semibold text-[#333] transition hover:bg-gray-200"
+                        >Sign In</a
+                    >
+                    <button
+                        onclick="closeModal()"
+                        class="mt-4 text-sm font-medium text-gray-300 underline transition hover:text-white"
+                    >
+                        Close
+                    </button>
+                </div>
+            </div>
 
-        <p><br /><br />No upcoming events.</p>
-      </div>
+            <div
+                class="divider mx-auto my-20 h-px max-w-[83rem] bg-gradient-to-r from-transparent via-[#ffe000]/30 to-transparent"
+            >
+            </div>
 
-      <div class="events-grid" id="eventsContainer">
-        <p style="text-align: center; grid-column: 1/-1">Loading events...</p>
-      </div>
+            <div class="about-hero2 text-center">
+                <h1 class="text-4xl font-bold text-[#fcfbf8] md:text-5xl">
+                    Past Events
+                </h1>
+                <p
+                    class="mx-auto mt-4 max-w-[75ch] text-base font-medium text-[#b0b0b0] md:text-lg"
+                >
+                    Here are some of our past events at LNU AI Society.
+                </p>
+            </div>
 
-      <div id="loginModal" class="modal-overlay">
-        <div class="modal-content">
-          <h3>Join Us First!</h3>
-          <p>You need to be a member to register for events.</p>
+            <div class="events-grid mt-10 flex flex-col gap-8">
+                {pastEvents.map((event) => <EventCard {...event} />)}
+            </div>
 
-          <a
-            href="signup.html"
-            class="primary modal-btn"
-            style="background-color: #2563eb; color: white"
-            >Create Account</a
-          >
+            <div
+                class="divider mx-auto my-20 h-px max-w-[83rem] bg-gradient-to-r from-transparent via-[#ffe000]/30 to-transparent"
+            >
+            </div>
 
-          <a
-            href="signin.html"
-            class="secondary modal-btn"
-            style="
-              background-color: #f3f4f6;
-              color: #333;
-              display: block;
-              margin-top: 10px;
-            "
-            >Sign In</a
-          >
-          <button
-            onclick="closeModal()"
-            style="
-              background: none;
-              border: none;
-              color: #666;
-              margin-top: 15px;
-              cursor: pointer;
-              text-decoration: underline;
-            "
-          >
-            Close
-          </button>
+            <CtaSection {...stayConnected} />
         </div>
-      </div>
 
-      <div class="divider"></div>
+        <Footer />
 
-      <div class="about-hero2">
-        <h1>Past Events</h1>
-        <p>Here are some of our past events at LNU AI Society.</p>
-      </div>
+        <script is:inline src="scripts/config.js"></script>
+        <script is:inline src="scripts/navbar.js"></script>
+        <script is:inline src="scripts/hamburger.js"></script>
+        <script is:inline>
+            // 1. Check Login Status
+            const storedUser = localStorage.getItem("user");
+            const currentUser = storedUser ? JSON.parse(storedUser) : null;
 
-      {pastEvents.map((event) => (
-        <div class="events-grid">
-          <EventCard {...event} />
-        </div>
-      ))}
+            const baseButtonClass =
+                "event-button mt-4 w-full rounded-md border border-[#404040] px-4 py-3 text-sm font-medium text-[#fcfbf8] transition md:mt-0 md:w-auto";
+            const defaultButtonClass =
+                "bg-transparent hover:border-[#ffe000] hover:bg-[#ffe000] hover:text-[#232326]";
+            const registeredButtonClass =
+                "border-transparent bg-[#dc3545] text-white hover:bg-[#c82333]";
 
-      <div class="divider"></div>
+            const getButtonClass = (registered) =>
+                `${baseButtonClass} ${
+                    registered ? registeredButtonClass : defaultButtonClass
+                }`;
 
-      <CtaSection {...stayConnected} />
-    </div>
+            async function loadEvents() {
+                const container = document.getElementById("eventsContainer");
 
-    <Footer />
+                // HARDCODED EVENTS (Empty for now)
+                const events = [];
 
-    <script is:inline src="scripts/config.js"></script>
-    <script is:inline src="scripts/navbar.js"></script>
-    <script is:inline src="scripts/hamburger.js"></script>
-    <script is:inline>
-      // 1. Check Login Status
-      const storedUser = localStorage.getItem("user");
-      const currentUser = storedUser ? JSON.parse(storedUser) : null;
+                if (events.length === 0) {
+                    container.innerHTML =
+                        "<p class='text-center text-sm text-[#b0b0b0]'></p>";
+                    return;
+                }
 
-      async function loadEvents() {
-        const container = document.getElementById("eventsContainer");
+                container.innerHTML = ""; // Clear loading text
 
-        // HARDCODED EVENTS (Empty for now)
-        const events = [];
+                // Render Cards
+                for (const event of events) {
+                    const date = new Date(event.startTime);
+                    const day = date.getDate();
+                    const month = date.toLocaleString("default", {
+                        month: "short",
+                    });
 
-        if (events.length === 0) {
-          container.innerHTML =
-            "<p style='text-align:center; grid-column: 1/-1;'></p>";
-          return;
-        }
+                    // Format Time (HH:MM)
+                    const timeStr = date.toLocaleTimeString([], {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                    });
 
-        container.innerHTML = ""; // Clear loading text
+                    // Check if THIS user is already registered
+                    let isRegistered = false;
+                    if (currentUser && currentUser.id) {
+                        isRegistered = await checkRegistrationStatus(
+                            event.id,
+                            currentUser.id,
+                        );
+                    }
 
-        // Render Cards
-        for (const event of events) {
-          const date = new Date(event.startTime);
-          const day = date.getDate();
-          const month = date.toLocaleString("default", { month: "short" });
+                    const btnText = isRegistered ? "Unregister" : "Register";
+                    const btnClass = getButtonClass(isRegistered);
 
-          // Format Time (HH:MM)
-          const timeStr = date.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          });
-
-          // Check if THIS user is already registered
-          let isRegistered = false;
-          if (currentUser && currentUser.id) {
-            isRegistered = await checkRegistrationStatus(
-              event.id,
-              currentUser.id,
-            );
-          }
-
-          const btnText = isRegistered ? "Unregister" : "Register";
-          const btnClass = isRegistered
-            ? "event-button registered"
-            : "event-button";
-
-          const card = `
-                        <div class="event-card">
-                          <div class="event-date">
-                            <span class="date-day">${day}</span>
-                            <span class="date-month">${month}</span>
+                    const card = `
+                        <div class="event-card flex flex-col gap-6 rounded-xl border border-[#404040] bg-[#2a2a2e] p-6 shadow-[0_0_1rem_#111111aa] md:flex-row">
+                          <div class="event-date flex h-[70px] min-w-[70px] flex-col items-center justify-center rounded-lg bg-gradient-to-br from-[#ffe000] to-[#ffd700] text-[#232326]">
+                            <span class="date-day text-2xl font-bold leading-none">${day}</span>
+                            <span class="date-month text-xs font-semibold uppercase tracking-wide">${month}</span>
                           </div>
-                          <div class="event-content">
-                            <h3>${event.title}</h3>
-                            <p class="event-time">
-                              <img src="images/map-pin-yellow.svg" class="event-icon" /> ${event.location} • 
-                              <img src="images/clock-yellow.svg" class="event-icon" /> ${timeStr}
+                          <div class="event-content flex flex-1 flex-col">
+                            <h3 class="text-lg font-semibold text-[#fcfbf8]">${event.title}</h3>
+                            <p class="event-time mt-2 flex flex-wrap items-center gap-2 text-xs font-medium text-[#ffe000]">
+                              <img src="images/map-pin-yellow.svg" class="event-icon h-4 w-4" /> ${event.location} •
+                              <img src="images/clock-yellow.svg" class="event-icon h-4 w-4" /> ${timeStr}
                             </p>
-                            <p class="event-description">${event.description}</p>
+                            <p class="event-description mt-3 text-sm text-[#b0b0b0]">${event.description}</p>
                           </div>
-                          <button id="btn-${event.id}" class="${btnClass}" onclick="handleEventClick(${event.id})">${btnText}</button>
+                          <button id="btn-${event.id}" class="${btnClass}" data-registered="${isRegistered}" onclick="handleEventClick(${event.id})">${btnText}</button>
                         </div>
                     `;
-          container.innerHTML += card;
-        }
-      }
-
-      async function checkRegistrationStatus(eventId, userId) {
-        try {
-          const res = await fetch(
-            `${CONFIG.getApiBaseUrl()}/events/${eventId}/is_registered/${userId}`,
-          );
-          return await res.json();
-        } catch {
-          return false;
-        }
-      }
-
-      async function handleEventClick(eventId) {
-        if (!currentUser) {
-          // Show Modal
-          document.getElementById("loginModal").style.display = "flex";
-          return;
-        }
-
-        const btn = document.getElementById(`btn-${eventId}`);
-        const isRegistered = btn.classList.contains("registered");
-
-        // Optimistic UI update
-        btn.disabled = true;
-        btn.textContent = "Processing...";
-
-        try {
-          let url, method;
-          if (isRegistered) {
-            // Unregister
-            url = `${CONFIG.getApiBaseUrl()}/events/${eventId}/unregister/${currentUser.id}`;
-            method = "DELETE";
-          } else {
-            // Register
-            url = `${CONFIG.getApiBaseUrl()}/events/${eventId}/register/${currentUser.id}`;
-            method = "POST";
-          }
-
-          const response = await fetch(url, { method: method });
-
-          if (response.ok) {
-            // Toggle State
-            if (isRegistered) {
-              btn.classList.remove("registered");
-              btn.textContent = "Register";
-            } else {
-              btn.classList.add("registered");
-              btn.textContent = "Unregister";
+                    container.innerHTML += card;
+                }
             }
-          } else {
-            alert("Action failed. Please try again.");
-          }
-        } catch (e) {
-          alert("Server error.");
-        } finally {
-          btn.disabled = false;
-        }
-      }
 
-      function closeModal() {
-        document.getElementById("loginModal").style.display = "none";
-      }
+            async function checkRegistrationStatus(eventId, userId) {
+                try {
+                    const res = await fetch(
+                        `${CONFIG.getApiBaseUrl()}/events/${eventId}/is_registered/${userId}`,
+                    );
+                    return await res.json();
+                } catch {
+                    return false;
+                }
+            }
 
-      // Initialize
-      loadEvents();
-    </script>
-  </body>
+            async function handleEventClick(eventId) {
+                if (!currentUser) {
+                    // Show Modal
+                    document.getElementById("loginModal").style.display =
+                        "flex";
+                    return;
+                }
+
+                const btn = document.getElementById(`btn-${eventId}`);
+                const isRegistered = btn.dataset.registered === "true";
+
+                // Optimistic UI update
+                btn.disabled = true;
+                btn.textContent = "Processing...";
+
+                try {
+                    let url, method;
+                    if (isRegistered) {
+                        // Unregister
+                        url = `${CONFIG.getApiBaseUrl()}/events/${eventId}/unregister/${currentUser.id}`;
+                        method = "DELETE";
+                    } else {
+                        // Register
+                        url = `${CONFIG.getApiBaseUrl()}/events/${eventId}/register/${currentUser.id}`;
+                        method = "POST";
+                    }
+
+                    const response = await fetch(url, { method: method });
+
+                    if (response.ok) {
+                        // Toggle State
+                        btn.dataset.registered = (!isRegistered).toString();
+                        btn.className = getButtonClass(!isRegistered);
+                        btn.textContent = isRegistered
+                            ? "Register"
+                            : "Unregister";
+                    } else {
+                        alert("Action failed. Please try again.");
+                    }
+                } catch (e) {
+                    alert("Server error.");
+                } finally {
+                    btn.disabled = false;
+                }
+            }
+
+            function closeModal() {
+                document.getElementById("loginModal").style.display = "none";
+            }
+
+            // Initialize
+            loadEvents();
+        </script>
+    </body>
 </html>

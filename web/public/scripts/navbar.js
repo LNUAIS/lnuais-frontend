@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 // 4. Replace "Join Us" with Avatar + Name
                 parentLi.innerHTML = `
-                    <a href="dashboard.html" class="nav-profile-link" title="Go to Dashboard">
-                        <img src="${avatarUrl}" alt="Profile" class="nav-avatar">
-                        <span class="nav-username">${user.name.split(' ')[0]}</span>
+                    <a href="dashboard.html" class="nav-profile-link flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm font-medium text-[#fcfbf8] transition hover:bg-white/20" title="Go to Dashboard">
+                        <img src="${avatarUrl}" alt="Profile" class="nav-avatar h-8 w-8 rounded-full border-2 border-[#ddd] object-cover">
+                        <span class="nav-username text-sm font-semibold text-[#fcfbf8]">${user.name.split(' ')[0]}</span>
                     </a>
                 `;
             }

@@ -1,14 +1,25 @@
 ---
 const { className, href, icon, title, description, alt = '' } = Astro.props;
+
+const hoverBorder =
+  {
+    'link-cards-1': 'hover:border-[#5d4fb1]',
+    'link-cards-2': 'hover:border-[#007340]',
+    'link-cards-3': 'hover:border-[#a62186]',
+  }[className] ?? 'hover:border-[#ffe000]';
 ---
 
 <div
-  class={className}
+  class:list={[
+    className,
+    'flex-1 min-w-[10rem] cursor-pointer rounded-xl border border-[#404040] bg-[#2a2a2e] p-6 leading-relaxed text-[#fcfbf8] transition duration-300 hover:scale-[1.002] hover:shadow-[0_0_1rem_#181818aa]',
+    hoverBorder,
+  ]}
   onclick={`window.location.href = '${href}'`}
-  style="cursor: pointer"
 >
-  <h3>
-    <img src={icon} alt={alt} class="card-icon" /> {title}
+  <h3 class="mb-2 flex items-center gap-2 text-lg font-semibold text-[#fcfbf8]">
+    <img src={icon} alt={alt} class="card-icon h-5 w-5 brightness-0 invert" />
+    {title}
   </h3>
-  <p>{description}</p>
+  <p class="text-sm text-[#fcfbf8] md:text-base">{description}</p>
 </div>

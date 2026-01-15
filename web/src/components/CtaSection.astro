@@ -2,8 +2,12 @@
 const { title, description, buttonHref, buttonText } = Astro.props;
 ---
 
-<div class="cta-section">
-  <h2>{title}</h2>
-  <p>{description}</p>
-  <a href={buttonHref} class="cta-button">{buttonText}</a>
+<div class="cta-section mx-auto max-w-[83rem] rounded-xl border border-[#404040] bg-[#2a2a2e] px-6 py-10 text-center text-[#fcfbf8] md:px-8">
+  <h2 class="text-3xl font-bold md:text-4xl">{title}</h2>
+  <p class="mt-2 text-base text-[#b0b0b0] md:text-lg">{description}</p>
+  <a
+    href={buttonHref}
+    class="cta-button mt-6 inline-flex items-center justify-center rounded-xl border border-[#404040] bg-[#2a2a2e] px-8 py-4 text-base font-medium text-[#fcfbf8] transition hover:border-[#ffe000] hover:bg-[#ffe000] hover:text-[#232326]"
+    >{buttonText}</a
+  >
 </div>

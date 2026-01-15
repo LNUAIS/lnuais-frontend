@@ -2,13 +2,26 @@
 const { initials, name, role, description, email, linkedin } = Astro.props;
 ---
 
-<div class="board-card">
-  <div class="board-avatar">{initials}</div>
-  <h3>{name}</h3>
-  <p class="board-title">{role}</p>
-  <p class="board-description">{description}</p>
-  <div class="board-links">
-    <a href={`mailto:${email}`}>Email</a>
-    <a href={linkedin} target="_blank">LinkedIn</a>
+<div class="board-card rounded-xl border border-[#404040] bg-[#2a2a2e] p-8 text-center text-[#fcfbf8] shadow-[0_0_1rem_#181818aa]">
+  <div class="board-avatar mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-[#ffe000] text-2xl font-bold text-[#232326]">
+    {initials}
+  </div>
+  <h3 class="text-xl font-semibold text-[#fcfbf8]">{name}</h3>
+  <p class="board-title mt-2 text-xs font-semibold uppercase tracking-wide text-[#ffe000]">
+    {role}
+  </p>
+  <p class="board-description mt-4 text-sm text-[#b0b0b0]">{description}</p>
+  <div class="board-links mt-6 flex flex-wrap justify-center gap-3">
+    <a
+      href={`mailto:${email}`}
+      class="rounded-md border border-[#404040] px-4 py-2 text-sm font-medium text-[#fcfbf8] transition hover:border-[#ffe000] hover:bg-[#ffe000] hover:text-[#232326]"
+      >Email</a
+    >
+    <a
+      href={linkedin}
+      target="_blank"
+      class="rounded-md border border-[#404040] px-4 py-2 text-sm font-medium text-[#fcfbf8] transition hover:border-[#ffe000] hover:bg-[#ffe000] hover:text-[#232326]"
+      >LinkedIn</a
+    >
   </div>
 </div>

@@ -1,63 +1,62 @@
 ---
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import DocumentCard from '../components/DocumentCard.astro';
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import DocumentCard from "../components/DocumentCard.astro";
 
 const documents = [
-  {
-    headerTitle: 'Statutory Documents',
-    bodyTitle: 'Bylaws of LNU AI Society',
-    description: 'Official bylaws governing the LNU AI Society',
-    dateText: 'Latest Revision: Wednesday, October 21, 2025',
-    filePath: 'documents/BylawsofLNUAISociety.pdf',
-  },
-  {
-    headerTitle: 'Annual Meeting Agenda 2025',
-    bodyTitle: 'Agenda for the 2025 Annual General Meeting',
-    dateText: 'Latest Revision: Wednesday, October 21, 2025',
-    filePath: 'documents/Agenda.pdf',
-  },
+    {
+        headerTitle: "Statutory Documents",
+        bodyTitle: "Bylaws of LNU AI Society",
+        description: "Official bylaws governing the LNU AI Society",
+        dateText: "Latest Revision: Wednesday, October 21, 2025",
+        filePath: "documents/BylawsofLNUAISociety.pdf",
+    },
+    {
+        headerTitle: "Annual Meeting Agenda 2025",
+        bodyTitle: "Agenda for the 2025 Annual General Meeting",
+        dateText: "Latest Revision: Wednesday, October 21, 2025",
+        filePath: "documents/Agenda.pdf",
+    },
 ];
 ---
 
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="stylesheet" href="styles/responsive.css" />
-    <!--THIS USES ABOUT CSS FILE BECAUSE THEY*RE SIMILAR:
-    WE COULD DUPLICATE TO REMOVE SINGLE POINT OF FAILURE BUT MIGHT NOT BE NECCESSARY FOR SUCH SIMPLE PAGE-->
-    <link rel="stylesheet" href="styles/about.css" />
-    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+        <title>Documents - LNU AI Society</title>
+    </head>
 
-    <style is:global>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-    </style>
+    <body
+        class="flex min-h-screen flex-col bg-[#232326] font-sans text-[#fcfbf8]"
+    >
+        <Nav />
+        <div class="container mx-auto flex-1 px-6 pb-32 pt-28 md:px-10">
+            <div class="documents-section mx-auto max-w-[83rem] text-center">
+                <h2 class="text-3xl font-bold text-[#fcfbf8] md:text-4xl">
+                    Official Documents
+                </h2>
+                <p
+                    class="documents-intro mx-auto mt-4 max-w-[75ch] text-base text-[#b0b0b0] md:text-lg"
+                >
+                    Access all LNU AI Society documents and meeting minutes
+                </p>
 
-    <title>About - LNU AI Society</title>
-  </head>
-
-  <body>
-    <Nav />
-    <div class="container">
-      <div class="documents-section">
-        <h2>Official Documents</h2>
-        <p class="documents-intro">
-          Access all LNU AI Society documents and meeting minutes
-        </p>
-
-        <div class="documents-grid">
-          {documents.map((document) => (
-            <DocumentCard {...document} />
-          ))}
+                <div class="documents-grid mt-10 flex flex-col gap-8">
+                    {
+                        documents.map((document) => (
+                            <DocumentCard {...document} />
+                        ))
+                    }
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <Footer />
-    <script is:inline src="scripts/navbar.js"></script>
-    <script is:inline src="scripts/hamburger.js"></script>
-  </body>
+        <Footer />
+        <script is:inline src="scripts/navbar.js"></script>
+        <script is:inline src="scripts/hamburger.js"></script>
+    </body>
 </html>

@@ -1,180 +1,160 @@
 ---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles/styles.css" />
-  <link rel="stylesheet" href="styles/responsive.css" />
-  <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+    <title>Verify Account - LNU AI Society</title>
+  </head>
 
-  <style is:global>
-    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+  <body class="flex min-h-screen flex-col bg-[#ffe000] font-sans text-[#232326]">
+    <Nav />
 
-    /* Special large input for the code */
-    .code-input {
-      font-size: 2rem;
-      letter-spacing: 0.5rem;
-      text-align: center;
-      padding: 10px;
-      width: 100%;
-      margin: 20px 0;
-      text-transform: uppercase;
-    }
+    <div class="container mx-auto flex-1 px-6 pb-32 pt-28 md:px-10">
+      <div class="hero text-center">
+        <h1 class="text-4xl font-bold md:text-5xl">Check your Email</h1>
+        <p class="mx-auto mt-4 max-w-[75ch] text-base font-medium md:text-lg">
+          We've sent a 6-digit verification code to
+          <strong id="displayEmail">your email</strong>.
+        </p>
+      </div>
 
-    .message-box {
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      display: none;
-      text-align: center;
-    }
+      <div class="card signup-card mx-auto mt-10 max-w-[720px] rounded-2xl border border-white/5 bg-gradient-to-b from-[#1f1f23] to-[#222226] p-9 text-[#fcfbf8] shadow-[0_12px_40px_rgba(0,0,0,0.45)]">
+        <h2 class="text-xl font-semibold text-[#ffe000]">
+          Verify Your Account
+        </h2>
+        <div id="verifyMessage" class="message-box hidden"></div>
 
-    .message-box.error {
-      background-color: #fee2e2;
-      color: #dc2626;
-      border: 1px solid #fca5a5;
-    }
+        <form class="signup-form" id="verifyForm">
+          <div class="form-group mt-4">
+            <label class="mb-2 block text-sm font-semibold text-[#cfcfcf]" for="verificationCode">
+              Enter Verification Code
+            </label>
+            <input
+              type="text"
+              id="verificationCode"
+              placeholder="000000"
+              maxlength="6"
+              required
+              class="code-input w-full rounded-xl border border-white/10 bg-[#151518] px-4 py-3 text-center text-2xl uppercase tracking-[0.5rem] text-[#f7f7f7] transition focus:border-[#ffe000] focus:outline-none focus:ring-2 focus:ring-[#ffe000]/20"
+            />
+            <small class="mt-2 block text-center text-xs text-[#9aa0a6]">
+              Check your spam folder if you don't see it.
+            </small>
+          </div>
 
-    .message-box.success {
-      background-color: #dcfce7;
-      color: #166534;
-      border: 1px solid #86efac;
-    }
-  </style>
+          <div class="form-group mt-4 text-center">
+            <small class="text-xs text-[#9aa0a6]">
+              Not your email?
+              <a href="signup.html" class="link font-semibold text-[#ffe000]">
+                Go back
+              </a>
+            </small>
+          </div>
 
-  <title>Verify Account - LNU AI Society</title>
-</head>
-
-<body>
-  <nav class="navbar">
-    <a href="/"><img src="/images/logo.png" alt="Logo" class="logo" /></a>
-
-    <button class="hamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
-
-  <div class="container">
-    <div class="hero">
-      <h1>Check your Email</h1>
-      <p>
-        We've sent a 6-digit verification code to
-        <strong id="displayEmail">your email</strong>.
-      </p>
+          <button
+            type="submit"
+            class="primary full-width mt-6 w-full rounded-xl bg-gradient-to-br from-[#ffe000] to-[#ffc700] px-4 py-3 text-sm font-bold text-[#232326] shadow-[0_12px_30px_rgba(255,224,0,0.12)] transition hover:-translate-y-0.5"
+            id="verifyBtn"
+          >
+            Verify & Login
+          </button>
+        </form>
+      </div>
     </div>
 
-    <div class="card signup-card">
-      <h2>Verify Your Account</h2>
-      <div id="verifyMessage" class="message-box"></div>
+    <Footer />
 
-      <form class="signup-form" id="verifyForm">
-        <div class="form-group">
-          <label for="verificationCode">Enter Verification Code</label>
-          <input type="text" id="verificationCode" class="code-input" placeholder="000000" maxlength="6" required />
-          <small style="text-align: center; display: block">Check your spam folder if you don't see it.</small>
-        </div>
+    <script is:inline>
+      const messageBaseClass =
+        "message-box mt-4 rounded-lg border px-4 py-3 text-sm text-center";
+      const messageSuccessClass = `${messageBaseClass} border-[#86efac] bg-[#dcfce7] text-[#166534]`;
+      const messageErrorClass = `${messageBaseClass} border-[#fca5a5] bg-[#fee2e2] text-[#dc2626]`;
 
-        <div class="form-group" style="text-align: center">
-          <small>Not your email?
-            <a href="signup.html" class="link">Go back</a></small>
-        </div>
+      // 1. Get the email from LocalStorage (saved during Step 1)
+      const pendingEmail = localStorage.getItem("pendingEmail");
 
-        <button type="submit" class="primary full-width" id="verifyBtn">
-          Verify & Login
-        </button>
-      </form>
-    </div>
-  </div>
+      // If they somehow got here without signing up, send them back
+      if (pendingEmail) {
+        document.getElementById("displayEmail").textContent = pendingEmail;
+      } else {
+        window.location.href = "signup.html";
+      }
 
-  <Footer />
+      // 2. Handle Verification
+      document
+        .getElementById("verifyForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
 
-  <script is:inline>
-    // 1. Get the email from LocalStorage (saved during Step 1)
-    const pendingEmail = localStorage.getItem("pendingEmail");
+          const btn = document.getElementById("verifyBtn");
+          const msgBox = document.getElementById("verifyMessage");
+          const code = document.getElementById("verificationCode").value;
 
-    // If they somehow got here without signing up, send them back
-    if (pendingEmail) {
-      document.getElementById("displayEmail").textContent = pendingEmail;
-    } else {
-      window.location.href = "signup.html";
-    }
+          btn.textContent = "Verifying...";
+          btn.disabled = true;
+          msgBox.style.display = "none";
 
-    // 2. Handle Verification
-    document
-      .getElementById("verifyForm")
-      .addEventListener("submit", async function (e) {
-        e.preventDefault();
+          try {
+            // Use relative path so request goes through server.js proxy (port 3000)
+            // This ensures the session cookie is set for localhost:3000
+            const response = await fetch(`${CONFIG.getApiBaseUrl()}/users/verify`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: pendingEmail,
+                code: code,
+              }),
+              credentials: "include",
+            });
 
-        const btn = document.getElementById("verifyBtn");
-        const msgBox = document.getElementById("verifyMessage");
-        const code = document.getElementById("verificationCode").value;
+            if (response.ok) {
+              const user = await response.json(); // Get user object
 
-        btn.textContent = "Verifying...";
-        btn.disabled = true;
-        msgBox.style.display = "none";
-
-        try {
-          // Use relative path so request goes through server.js proxy (port 3000)
-          // This ensures the session cookie is set for localhost:3000
-          const response = await fetch(`${CONFIG.getApiBaseUrl()}/users/verify`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              email: pendingEmail,
-              code: code
-            }),
-            credentials: "include",
-          });
-
-          if (response.ok) {
-            const user = await response.json(); // Get user object
-
-            msgBox.textContent = "Success! Account verified. Logging you in...";
-            msgBox.className = "message-box success";
-            msgBox.style.display = "block";
-
-            // Cleanup & Save User
-            localStorage.removeItem("pendingEmail");
-            localStorage.setItem("user", JSON.stringify(user));
-
-            setTimeout(() => {
-              window.location.href = "dashboard.html";
-            }, 1500);
-          } else {
-            const errorText = await response.text();
-            if (errorText.includes("already verified")) {
-              msgBox.textContent = "Account already verified! Redirecting to login...";
-              msgBox.className = "message-box success";
+              msgBox.textContent = "Success! Account verified. Logging you in...";
+              msgBox.className = messageSuccessClass;
               msgBox.style.display = "block";
-              setTimeout(() => {
-                window.location.href = "signin.html";
-              }, 1500);
-              return;
-            }
-            throw new Error("Invalid code. Please try again.");
-          }
-        } catch (error) {
-          msgBox.textContent = error.message;
-          msgBox.className = "message-box error";
-          msgBox.style.display = "block";
-          btn.textContent = "Verify & Login";
-          btn.disabled = false;
-        }
-      });
-  </script>
-  <script is:inline src="scripts/config.js"></script>
-  <script is:inline src="scripts/navbar.js"></script>
-  <script is:inline src="scripts/hamburger.js"></script>
-</body>
 
+              // Cleanup & Save User
+              localStorage.removeItem("pendingEmail");
+              localStorage.setItem("user", JSON.stringify(user));
+
+              setTimeout(() => {
+                window.location.href = "dashboard.html";
+              }, 1500);
+            } else {
+              const errorText = await response.text();
+              if (errorText.includes("already verified")) {
+                msgBox.textContent = "Account already verified! Redirecting to login...";
+                msgBox.className = messageSuccessClass;
+                msgBox.style.display = "block";
+                setTimeout(() => {
+                  window.location.href = "signin.html";
+                }, 1500);
+                return;
+              }
+              throw new Error("Invalid code. Please try again.");
+            }
+          } catch (error) {
+            msgBox.textContent = error.message;
+            msgBox.className = messageErrorClass;
+            msgBox.style.display = "block";
+            btn.textContent = "Verify & Login";
+            btn.disabled = false;
+          }
+        });
+    </script>
+    <script is:inline src="scripts/config.js"></script>
+    <script is:inline src="scripts/navbar.js"></script>
+    <script is:inline src="scripts/hamburger.js"></script>
+  </body>
 </html>

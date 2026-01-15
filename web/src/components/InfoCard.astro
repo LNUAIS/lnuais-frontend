@@ -2,9 +2,10 @@
 const { icon, title, description, alt = '' } = Astro.props;
 ---
 
-<div class="info-cards">
-  <h3>
-    <img src={icon} alt={alt} class="card-icon" /> {title}
+<div class="info-cards flex-1 min-w-[10rem] rounded-xl border border-[#404040] bg-[#2a2a2e] p-6 leading-relaxed text-[#fcfbf8]">
+  <h3 class="mb-2 flex items-center gap-2 text-lg font-semibold text-[#fcfbf8]">
+    <img src={icon} alt={alt} class="card-icon h-5 w-5 brightness-0 invert" />
+    {title}
   </h3>
-  <p>{description}</p>
+  <p class="text-sm text-[#fcfbf8] md:text-base">{description}</p>
 </div>

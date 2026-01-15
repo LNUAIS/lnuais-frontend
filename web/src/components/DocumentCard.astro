@@ -2,20 +2,20 @@
 const { headerTitle, bodyTitle, description, dateText, filePath } = Astro.props;
 ---
 
-<div class="document-card">
-  <div class="document-header">
-    <img src="images/file.svg" alt="" class="document-icon" />
+<div class="document-card flex flex-col gap-6 rounded-xl border border-[#404040] bg-[#2a2a2e] p-8 text-[#fcfbf8]">
+  <div class="document-header flex items-center gap-4">
+    <img src="images/file.svg" alt="" class="document-icon h-8 w-8 brightness-0 invert" />
     <div>
-      <h3>{headerTitle}</h3>
+      <h3 class="text-lg font-semibold text-[#fcfbf8]">{headerTitle}</h3>
     </div>
   </div>
-  <div class="document-body">
-    <h4>{bodyTitle}</h4>
-    {description ? <p>{description}</p> : null}
-    <p class="document-date">{dateText}</p>
+  <div class="document-body space-y-2">
+    <h4 class="text-base font-semibold text-[#ffe000]">{bodyTitle}</h4>
+    {description ? <p class="text-sm text-[#b0b0b0]">{description}</p> : null}
+    <p class="document-date text-xs italic text-[#808080]">{dateText}</p>
   </div>
   <button
-    class="download-button"
+    class="download-button w-fit rounded-md border border-[#404040] px-4 py-3 text-sm font-medium text-[#fcfbf8] transition hover:border-[#ffe000] hover:bg-[#ffe000] hover:text-[#232326]"
     onclick={`window.open('${filePath}', '_blank')`}
     target="_blank"
   >

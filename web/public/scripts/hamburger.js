@@ -1,25 +1,37 @@
 const hamburger = document.querySelector(".hamburger");
 const menu = document.querySelector(".menu");
 
+const closeMenu = () => {
+  if (!hamburger || !menu) return;
+  hamburger.dataset.open = "false";
+  menu.dataset.open = "false";
+  hamburger.setAttribute("aria-expanded", "false");
+};
+
+const toggleMenu = () => {
+  if (!hamburger || !menu) return;
+  const isOpen = hamburger.dataset.open === "true";
+  const nextState = (!isOpen).toString();
+  hamburger.dataset.open = nextState;
+  menu.dataset.open = nextState;
+  hamburger.setAttribute("aria-expanded", nextState);
+};
+
 if (hamburger && menu) {
-  hamburger.addEventListener("click", () => {
-    hamburger.classList.toggle("active");
-    menu.classList.toggle("active");
+  hamburger.addEventListener("click", (event) => {
+    event.stopPropagation();
+    toggleMenu();
   });
 
   // Close menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
-      hamburger.classList.remove("active");
-      menu.classList.remove("active");
+  document.addEventListener("click", (event) => {
+    if (!hamburger.contains(event.target) && !menu.contains(event.target)) {
+      closeMenu();
     }
   });
 
   // Close menu when clicking a link
   menu.querySelectorAll(".item a").forEach((link) => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      menu.classList.remove("active");
-    });
+    link.addEventListener("click", closeMenu);
   });
 }

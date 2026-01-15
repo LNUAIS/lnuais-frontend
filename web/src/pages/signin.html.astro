@@ -1,237 +1,253 @@
 ---
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="h-full">
+    <head>
+        <script is:inline>
+            // Clear any stale data on load
+            localStorage.removeItem("user");
+        </script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+        <script is:inline src="scripts/config.js"></script>
 
-<head>
-  <script is:inline>
-    // Clear any stale data on load
-    localStorage.removeItem("user");
-  </script>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles/styles.css" />
-  <link rel="stylesheet" href="styles/responsive.css" />
-  <link rel="icon" type="image/x-icon" href="/images/logo.png" />
-  <script is:inline src="scripts/config.js"></script>
+        <title>Sign In - LNU AI Society</title>
+    </head>
 
-  <style is:global>
-    @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+    <body
+        class="flex min-h-screen flex-col bg-[#ffe000] font-sans text-[#232326]"
+    >
+        <Nav />
 
-    /* Google Button Styles */
-    .google-btn {
-      background-color: #4285f4;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      text-decoration: none;
-      padding: 12px;
-      border-radius: 4px;
-      font-weight: bold;
-      margin-bottom: 15px;
-      border: none;
-      width: 100%;
-      box-sizing: border-box;
-      transition: background-color 0.2s;
-    }
+        <div class="container mx-auto flex-1 px-6 pb-32 pt-28 md:px-10">
+            <div class="hero text-center">
+                <h1 class="text-4xl font-bold md:text-5xl">Welcome Back</h1>
+                <p
+                    class="mx-auto mt-4 max-w-[85ch] text-base font-medium md:text-lg"
+                >
+                    Sign in to access your dashboard and continue your journey
+                    with the
+                    <span class="highlight font-semibold">LNU AI Society</span>.
+                </p>
+            </div>
 
-    .google-btn:hover {
-      background-color: #357ae8;
-    }
+            <div
+                class="card signup-card mx-auto mt-10 max-w-[720px] rounded-2xl border border-white/5 bg-gradient-to-b from-[#1f1f23] to-[#222226] p-9 text-[#fcfbf8] shadow-[0_12px_40px_rgba(0,0,0,0.45)]"
+            >
+                <h2 class="text-xl font-semibold text-[#ffe000]">
+                    Sign in to Your Account
+                </h2>
 
-    .divider {
-      text-align: center;
-      margin: 10px 0 20px 0;
-      color: #666;
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-    }
+                <a
+                    href="#"
+                    id="googleLoginBtn"
+                    class="google-btn mt-4 flex w-full items-center justify-center gap-2 rounded-xl bg-[#4285f4] px-4 py-3 text-sm font-bold text-white shadow-[0_8px_20px_rgba(42,102,230,0.18)] transition hover:bg-[#357ae8]"
+                >
+                    Sign in with Google
+                </a>
 
-    .divider::before,
-    .divider::after {
-      content: "";
-      flex: 1;
-      border-bottom: 1px solid #666;
-    }
+                <div
+                    class="divider my-4 flex items-center gap-3 text-xs uppercase tracking-widest text-[#9aa0a6]"
+                >
+                    <span class="h-px flex-1 bg-white/10"></span>
+                    OR
+                    <span class="h-px flex-1 bg-white/10"></span>
+                </div>
 
-    .message-box {
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 4px;
-      font-size: 0.9rem;
-      display: none;
-      text-align: center;
-      border-left: 4px solid;
-    }
+                <div id="signinMessage" class="message-box hidden"></div>
 
-    .message-box.error {
-      background-color: #3a1f1f;
-      color: #fc8181;
-      border-left-color: #fc8181;
-    }
+                <form class="signup-form" id="signinForm">
+                    <div class="form-group">
+                        <label
+                            class="mb-2 block text-sm font-semibold text-[#cfcfcf]"
+                            for="email"
+                        >
+                            Email Address
+                        </label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            class="w-full rounded-xl border border-white/10 bg-[#151518] px-4 py-3 text-sm text-[#f7f7f7] transition focus:border-[#ffe000] focus:outline-none focus:ring-2 focus:ring-[#ffe000]/20"
+                        />
+                        <small class="mt-2 block text-xs text-[#9aa0a6]">
+                            The email address you entered when registering.
+                        </small>
+                    </div>
 
-    .message-box.success {
-      background-color: #1f3a26;
-      color: #68d391;
-      border-left-color: #68d391;
-    }
-  </style>
+                    <div class="form-group mt-4">
+                        <label
+                            class="mb-2 block text-sm font-semibold text-[#cfcfcf]"
+                            for="password"
+                        >
+                            Password
+                        </label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            required
+                            class="w-full rounded-xl border border-white/10 bg-[#151518] px-4 py-3 text-sm text-[#f7f7f7] transition focus:border-[#ffe000] focus:outline-none focus:ring-2 focus:ring-[#ffe000]/20"
+                        />
+                        <small class="mt-2 block text-xs text-[#9aa0a6]">
+                            The password you entered when registering.
+                        </small>
+                    </div>
 
-  <title>Sign In - LNU AI Society</title>
-</head>
+                    <button
+                        type="submit"
+                        class="primary full-width mt-6 w-full rounded-xl bg-gradient-to-br from-[#ffe000] to-[#ffc700] px-4 py-3 text-sm font-bold text-[#232326] shadow-[0_12px_30px_rgba(255,224,0,0.12)] transition hover:-translate-y-0.5"
+                        >Sign In</button
+                    >
+                </form>
 
-<body>
-  <Nav />
-
-  <div class="container">
-    <div class="hero">
-      <h1>Welcome Back</h1>
-      <p>
-        Sign in to access your dashboard and continue your journey with the
-        <span class="highlight">LNU AI Society</span>.
-      </p>
-    </div>
-
-    <div class="card signup-card">
-      <h2>Sign in to Your Account</h2>
-
-      <a href="#" id="googleLoginBtn" class="google-btn">
-        Sign in with Google
-      </a>
-
-      <div class="divider">OR</div>
-
-      <div id="signinMessage" class="message-box"></div>
-
-      <form class="signup-form" id="signinForm">
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" required />
-          <small>The email address you entered when registering.</small>
+                <div
+                    class="signup-footer mt-4 text-center text-sm text-[#cfcfcf]"
+                >
+                    <p>
+                        Forgot your password?
+                        <a
+                            href="reset_password.html"
+                            class="link font-semibold text-[#ffe000]"
+                        >
+                            Reset it here
+                        </a>
+                    </p>
+                </div>
+            </div>
         </div>
 
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" name="password" required />
-          <small>The password you entered when registering.</small>
-        </div>
+        <Footer />
 
-        <button type="submit" class="primary full-width">Sign In</button>
-      </form>
+        <script is:inline>
+            const messageBaseClass =
+                "message-box mt-4 rounded-lg border px-4 py-3 text-sm";
+            const messageSuccessClass = `${messageBaseClass} border-[#68d391] bg-[#1f3a26] text-[#68d391]`;
+            const messageErrorClass = `${messageBaseClass} border-[#fc8181] bg-[#3a1f1f] text-[#fc8181]`;
 
-      <div class="signup-footer">
-        <p>
-          Forgot your password?
-          <a href="reset_password.html" class="link">Reset it here</a>
-        </p>
-      </div>
-    </div>
-  </div>
+            // Set Google Login URL dynamically
+            document.getElementById("googleLoginBtn").href =
+                `${CONFIG.getApiBaseUrl()}/oauth2/authorization/google`;
 
-  <Footer />
+            document
+                .getElementById("signinForm")
+                .addEventListener("submit", async function (e) {
+                    e.preventDefault();
 
-  <script is:inline>
-    // Set Google Login URL dynamically
-    document.getElementById("googleLoginBtn").href = `${CONFIG.getApiBaseUrl()}/oauth2/authorization/google`;
+                    const submitBtn = this.querySelector(
+                        'button[type="submit"]',
+                    );
+                    const msgBox = document.getElementById("signinMessage");
 
-    document
-      .getElementById("signinForm")
-      .addEventListener("submit", async function (e) {
-        e.preventDefault();
+                    submitBtn.textContent = "Signing in...";
+                    submitBtn.disabled = true;
+                    msgBox.style.display = "none";
 
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const msgBox = document.getElementById("signinMessage");
+                    const email = document.getElementById("email").value;
+                    const password = document.getElementById("password").value;
 
-        submitBtn.textContent = "Signing in...";
-        submitBtn.disabled = true;
-        msgBox.style.display = "none";
+                    try {
+                        // 1. Attempt Login
+                        const response = await fetch(
+                            `${CONFIG.getApiBaseUrl()}/users/login`,
+                            {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    email: email,
+                                    password: password,
+                                }),
+                                credentials: "include", // IMPORTANT: Include cookies
+                            },
+                        );
 
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
+                        if (response.ok) {
+                            const user = await response.json();
 
-        try {
-          // 1. Attempt Login
-          const response = await fetch(`${CONFIG.getApiBaseUrl()}/users/login`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email: email, password: password }),
-            credentials: "include", // IMPORTANT: Include cookies
-          });
+                            // 2. VERIFY SESSION IMMEDIATELY
+                            // Before redirecting, we check if the cookie actually works
+                            msgBox.textContent =
+                                "Login successful. Verifying session...";
+                            msgBox.className = messageSuccessClass;
+                            msgBox.style.display = "block";
 
-          if (response.ok) {
-            const user = await response.json();
+                            try {
+                                const profileResp = await fetch(
+                                    `${CONFIG.getApiBaseUrl()}/users/profile`,
+                                    {
+                                        method: "GET",
+                                        credentials: "include",
+                                    },
+                                );
 
-            // 2. VERIFY SESSION IMMEDIATELY
-            // Before redirecting, we check if the cookie actually works
-            msgBox.textContent = "Login successful. Verifying session...";
-            msgBox.className = "message-box success";
-            msgBox.style.display = "block";
+                                if (profileResp.ok) {
+                                    // Session is valid!
+                                    localStorage.setItem(
+                                        "user",
+                                        JSON.stringify(user),
+                                    );
+                                    msgBox.textContent =
+                                        "Session verified! Redirecting...";
+                                    setTimeout(() => {
+                                        window.location.href = "dashboard.html";
+                                    }, 500);
+                                } else {
+                                    throw new Error(
+                                        "Session verification failed. Cookie not set?",
+                                    );
+                                }
+                            } catch (sessionErr) {
+                                console.error(
+                                    "Session verification error:",
+                                    sessionErr,
+                                );
+                                msgBox.textContent =
+                                    "Login succeeded but session failed. Please enable cookies and try again.";
+                                msgBox.className = messageErrorClass;
+                                submitBtn.textContent = "Sign In";
+                                submitBtn.disabled = false;
+                            }
+                        } else {
+                            // ERROR HANDLING
+                            const errorData = await response.json();
+                            const errorMessage =
+                                errorData.message || "Login failed";
 
-            try {
-              const profileResp = await fetch(`${CONFIG.getApiBaseUrl()}/users/profile`, {
-                method: "GET",
-                credentials: "include"
-              });
-
-              if (profileResp.ok) {
-                // Session is valid!
-                localStorage.setItem("user", JSON.stringify(user));
-                msgBox.textContent = "Session verified! Redirecting...";
-                setTimeout(() => {
-                  window.location.href = "dashboard.html";
-                }, 500);
-              } else {
-                throw new Error("Session verification failed. Cookie not set?");
-              }
-            } catch (sessionErr) {
-              console.error("Session verification error:", sessionErr);
-              msgBox.textContent = "Login succeeded but session failed. Please enable cookies and try again.";
-              msgBox.className = "message-box error";
-              submitBtn.textContent = "Sign In";
-              submitBtn.disabled = false;
-            }
-
-          } else {
-            // ERROR HANDLING
-            const errorData = await response.json();
-            const errorMessage = errorData.message || "Login failed";
-
-            if (errorMessage.includes("UNVERIFIED_ACCOUNT")) {
-              msgBox.textContent = "Your account is not verified yet. Sending verification code...";
-              msgBox.className = "message-box success";
-              msgBox.style.display = "block";
-              localStorage.setItem("pendingEmail", email);
-              setTimeout(() => {
-                window.location.href = "verify.html";
-              }, 1500);
-            } else {
-              msgBox.textContent = errorMessage;
-              msgBox.className = "message-box error";
-              msgBox.style.display = "block";
-              submitBtn.textContent = "Sign In";
-              submitBtn.disabled = false;
-            }
-          }
-        } catch (error) {
-          console.error("Error:", error);
-          msgBox.textContent = "Could not connect to server. Please check your connection.";
-          msgBox.className = "message-box error";
-          msgBox.style.display = "block";
-          submitBtn.textContent = "Sign In";
-          submitBtn.disabled = false;
-        }
-      });
-  </script>
-  <script is:inline src="scripts/navbar.js"></script>
-  <script is:inline src="scripts/hamburger.js"></script>
-</body>
-
+                            if (errorMessage.includes("UNVERIFIED_ACCOUNT")) {
+                                msgBox.textContent =
+                                    "Your account is not verified yet. Sending verification code...";
+                                msgBox.className = messageSuccessClass;
+                                msgBox.style.display = "block";
+                                localStorage.setItem("pendingEmail", email);
+                                setTimeout(() => {
+                                    window.location.href = "verify.html";
+                                }, 1500);
+                            } else {
+                                msgBox.textContent = errorMessage;
+                                msgBox.className = messageErrorClass;
+                                msgBox.style.display = "block";
+                                submitBtn.textContent = "Sign In";
+                                submitBtn.disabled = false;
+                            }
+                        }
+                    } catch (error) {
+                        console.error("Error:", error);
+                        msgBox.textContent =
+                            "Could not connect to server. Please check your connection.";
+                        msgBox.className = messageErrorClass;
+                        msgBox.style.display = "block";
+                        submitBtn.textContent = "Sign In";
+                        submitBtn.disabled = false;
+                    }
+                });
+        </script>
+        <script is:inline src="scripts/navbar.js"></script>
+        <script is:inline src="scripts/hamburger.js"></script>
+    </body>
 </html>

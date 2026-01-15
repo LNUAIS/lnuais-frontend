@@ -1,139 +1,150 @@
 ---
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
-import InfoCard from '../components/InfoCard.astro';
-import LinkCard from '../components/LinkCard.astro';
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+import InfoCard from "../components/InfoCard.astro";
+import LinkCard from "../components/LinkCard.astro";
 
 const infoCards = [
-  {
-    icon: 'images/brain.svg',
-    title: 'Learn',
-    description:
-      'Workshops, seminars, and hands-on sessions covering machine learning, deep learning, and AI applications.',
-  },
-  {
-    icon: 'images/users.svg',
-    title: 'Connect',
-    description:
-      'Network with like-minded students, researchers, and industry professionals in the AI field.',
-  },
-  {
-    icon: 'images/bolt.svg',
-    title: 'Innovate',
-    description:
-      'Participate in hackathons, research projects, and collaborative initiatives to push AI boundaries.',
-  },
-  {
-    icon: 'images/calendar.svg',
-    title: 'Engage',
-    description:
-      'Regular meetups, guest lectures, and various social events to build lasting connections in the AI community.',
-  },
+    {
+        icon: "images/brain.svg",
+        title: "Learn",
+        description:
+            "Workshops, seminars, and hands-on sessions covering machine learning, deep learning, and AI applications.",
+    },
+    {
+        icon: "images/users.svg",
+        title: "Connect",
+        description:
+            "Network with like-minded students, researchers, and industry professionals in the AI field.",
+    },
+    {
+        icon: "images/bolt.svg",
+        title: "Innovate",
+        description:
+            "Participate in hackathons, research projects, and collaborative initiatives to push AI boundaries.",
+    },
+    {
+        icon: "images/calendar.svg",
+        title: "Engage",
+        description:
+            "Regular meetups, guest lectures, and various social events to build lasting connections in the AI community.",
+    },
 ];
 
 const linkCards = [
-  {
-    className: 'link-cards-1',
-    href: 'courses.html',
-    icon: 'images/book.svg',
-    title: 'Courses',
-    description:
-      'Explore our comprehensive AI and Machine Learning courses designed for all skill levels.',
-  },
-  {
-    className: 'link-cards-2',
-    href: 'events.html',
-    icon: 'images/calendar.svg',
-    title: 'Events',
-    description:
-      'Join our workshops, hackathons, guest lectures, and networking events throughout the year.',
-  },
-  {
-    className: 'link-cards-3',
-    href: 'news.html',
-    icon: 'images/news.svg',
-    title: 'News',
-    description:
-      'Stay updated with the latest AI developments, research breakthroughs, and announcements.',
-  },
+    {
+        className: "link-cards-1",
+        href: "courses.html",
+        icon: "images/book.svg",
+        title: "Courses",
+        description:
+            "Explore our comprehensive AI and Machine Learning courses designed for all skill levels.",
+    },
+    {
+        className: "link-cards-2",
+        href: "events.html",
+        icon: "images/calendar.svg",
+        title: "Events",
+        description:
+            "Join our workshops, hackathons, guest lectures, and networking events throughout the year.",
+    },
+    {
+        className: "link-cards-3",
+        href: "news.html",
+        icon: "images/news.svg",
+        title: "News",
+        description:
+            "Stay updated with the latest AI developments, research breakthroughs, and announcements.",
+    },
 ];
 ---
 
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/styles.css" />
-    <link rel="stylesheet" href="styles/responsive.css" />
-    <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+<html lang="en" class="h-full">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/x-icon" href="/images/logo.png" />
+        <title>Home - LNU AI Society</title>
+    </head>
 
-    <style is:global>
-      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
-    </style>
+    <body
+        class="flex min-h-screen flex-col bg-[#ffe000] font-sans text-[#232326]"
+    >
+        <Nav />
 
-    <title>Home - LNU AI Society</title>
-  </head>
+        <div class="container mx-auto flex-1 px-6 pb-40 pt-28 md:px-10">
+            <div class="hero text-center">
+                <h1 class="text-4xl font-bold md:text-5xl xl:text-6xl">
+                    Build the future of AI at Linnaeus University
+                </h1>
+                <p
+                    class="mx-auto mt-4 max-w-[85ch] text-base font-medium md:text-lg"
+                >
+                    Join a community of students passionate about
+                    <span class="highlight font-semibold">
+                        artificial intelligence</span
+                    >. Learn, collaborate, and create together through
+                    workshops, hackathons, and real-world projects.
+                </p>
+            </div>
 
-  <body>
-    <Nav />
+            <div
+                class="cta mt-10 flex flex-col items-center justify-center gap-4 md:flex-row"
+            >
+                <button
+                    class="primary w-full max-w-xs rounded-2xl bg-[#232326] px-6 py-4 text-base font-medium text-[#fcfbf8] transition hover:translate-y-[-2px] hover:bg-[#111111] md:w-auto"
+                    onclick="window.location.href = 'signup.html'"
+                >
+                    Join The Community
+                </button>
+                <button
+                    class="secondary w-full max-w-xs rounded-2xl border-4 border-[#232326] px-6 py-4 text-base font-medium text-[#232326] transition hover:bg-[#232326] hover:text-[#fcfbf8] md:w-auto"
+                    onclick="window.location.href = 'about.html'"
+                >
+                    Meet The Team
+                </button>
+            </div>
 
-    <div class="container">
-      <div class="hero">
-        <h1>Build the future of AI at Linnaeus University</h1>
-        <p>
-          Join a community of students passionate about
-          <span class="highlight"> artificial intelligence</span>. Learn,
-          collaborate, and create together through workshops, hackathons, and
-          real-world projects.
-        </p>
-      </div>
+            <div
+                class="card mx-auto mt-16 max-w-[83rem] rounded-3xl bg-[#232326] px-6 py-8 text-[#fcfbf8] shadow-[0_0_1rem_#181818aa] md:px-10 md:py-10"
+            >
+                <h2 class="text-2xl font-semibold text-[#fcfbf8]">
+                    What We're About
+                </h2>
+                <p class="mt-3 text-sm text-[#fcfbf8] md:text-base">
+                    A student-driven organization at Linnaeus University focused
+                    on
+                    <span class="text font-semibold text-[#ffe000]"></span>
+                </p>
+                <div class="info-card mt-8 flex flex-wrap gap-6 pb-4">
+                    {infoCards.map((card) => <InfoCard {...card} />)}
+                </div>
 
-      <div class="cta">
-        <button class="primary" onclick="window.location.href = 'signup.html'">
-          Join The Community
-        </button>
-        <button class="secondary" onclick="window.location.href = 'about.html'">
-          Meet The Team
-        </button>
-      </div>
-
-      <div class="card">
-        <h2>What We're About</h2>
-        <p>
-          A student-driven organization at Linnaeus University focused on
-          <span class="text"></span>
-        </p>
-        <div class="info-card">
-          {infoCards.map((card) => (
-            <InfoCard {...card} />
-          ))}
+                <h2 class="mt-10 text-2xl font-semibold text-[#fcfbf8]">
+                    Explore Our Community
+                </h2>
+                <p class="mt-3 text-sm text-[#fcfbf8] md:text-base">
+                    Discover everything we have to offer — from courses and
+                    events, to the latest AI news and updates.
+                </p>
+                <div class="link-card mt-8 flex flex-wrap gap-6">
+                    {linkCards.map((card) => <LinkCard {...card} />)}
+                </div>
+            </div>
         </div>
 
-        <h2>Explore Our Community</h2>
-        <p>
-          Discover everything we have to offer — from courses and events, to the
-          latest AI news and updates.
-        </p>
-        <div class="link-card">
-          {linkCards.map((card) => (
-            <LinkCard {...card} />
-          ))}
-        </div>
-      </div>
-    </div>
+        <Footer />
 
-    <Footer />
-
-    <!--This is a script I'm using that makes the typing effect possible-->
-    <script
-      is:inline
-      src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"
-      integrity="sha512-BdHyGtczsUoFcEma+MfXc71KJLv/cd+sUsUaYYf2mXpfG/PtBjNXsPo78+rxWjscxUYN2Qr2+DbeGGiJx81ifg=="
-      crossorigin="anonymous"
-    ></script>
-    <script is:inline src="scripts/typed.js"></script>
-    <script is:inline src="scripts/navbar.js"></script>
-    <script is:inline src="scripts/hamburger.js"></script>
-  </body>
+        <!--This is a script I'm using that makes the typing effect possible-->
+        <script
+            is:inline
+            src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"
+            integrity="sha512-BdHyGtczsUoFcEma+MfXc71KJLv/cd+sUsUaYYf2mXpfG/PtBjNXsPo78+rxWjscxUYN2Qr2+DbeGGiJx81ifg=="
+            crossorigin="anonymous"></script>
+        <script is:inline src="scripts/typed.js"></script>
+        <script is:inline src="scripts/navbar.js"></script>
+        <script is:inline src="scripts/hamburger.js"></script>
+    </body>
 </html>

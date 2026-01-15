@@ -10,25 +10,48 @@ const {
   applicationInfo,
   link,
 } = Astro.props;
+
+const levelStyles =
+  {
+    bachelor: 'bg-[#5d4fb1] text-[#fcfbf8]',
+    master: 'bg-[#007340] text-[#fcfbf8]',
+  }[levelClass] ?? 'bg-[#35353a] text-[#fcfbf8]';
 ---
 
-<div class="course-card">
-  <div class="course-header">
-    <div class={`course-level ${levelClass}`}>{level}</div>
-    <div class="course-language">{language}</div>
+<div class="course-card flex flex-col rounded-xl border border-[#404040] bg-[#2a2a2e] p-8 text-[#fcfbf8] shadow-[0_0_1rem_#181818aa]">
+  <div class="course-header mb-4 flex items-center justify-between">
+    <div
+      class:list={[
+        'course-level w-fit rounded-md px-3 py-1 text-xs font-semibold uppercase tracking-wide',
+        levelStyles,
+      ]}
+    >
+      {level}
+    </div>
+    <div class="course-language text-xs font-medium text-[#b0b0b0]">
+      {language}
+    </div>
   </div>
-  <h3>{title}</h3>
-  <p class="course-description">{description}</p>
-  <div class="course-details">
-    <p class="course-info">
-      <img src="images/calendar.svg" alt="" class="course-icon" /> {dateInfo}
+  <h3 class="text-lg font-semibold text-[#fcfbf8]">{title}</h3>
+  <p class="course-description mt-3 text-sm text-[#b0b0b0]">{description}</p>
+  <div class="course-details mt-4 py-6 space-y-2 mt-auto">
+    <p class="course-info flex items-center gap-2 text-sm text-[#808080]">
+      <img src="images/calendar.svg" alt="" class="course-icon h-4 w-4 brightness-0 invert opacity-50" />
+      {dateInfo}
     </p>
-    <p class="course-info">
-      <img src="images/map-pin.svg" alt="" class="course-icon" /> {locationInfo}
+    <p class="course-info flex items-center gap-2 text-sm text-[#808080]">
+      <img src="images/map-pin.svg" alt="" class="course-icon h-4 w-4 brightness-0 invert opacity-50" />
+      {locationInfo}
     </p>
-    <p class="course-info">
-      <img src="images/book.svg" alt="" class="course-icon" /> {applicationInfo}
+    <p class="course-info flex items-center gap-2 text-sm text-[#808080]">
+      <img src="images/book.svg" alt="" class="course-icon h-4 w-4 brightness-0 invert opacity-50" />
+      {applicationInfo}
     </p>
   </div>
-  <a href={link} target="_blank" class="course-button">Course Info</a>
+    <a
+        href={link}
+        target="_blank"
+        class="course-button inline-flex items-center justify-center rounded-md border border-[#404040] px-4 py-3 text-sm font-medium text-[#fcfbf8] transition hover:border-[#ffe000] hover:bg-[#ffe000] hover:text-[#232326]"
+    >Course Info</a
+    >
 </div>

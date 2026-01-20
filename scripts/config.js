@@ -2,7 +2,7 @@
 // BACKEND CONFIGURATION
 // Change BACKEND_IP to your backend server IP
 // ============================================
-const BACKEND_URL_PROD = 'http://lnuais-backend-env.eba-p9nw9zdb.eu-central-1.elasticbeanstalk.com';
+const BACKEND_URL_PROD = 'http://lnuais-backend-env.eba-4mp5tntm.eu-north-1.elasticbeanstalk.com';
 const BACKEND_PORT_LOCAL = '3000';
 
 const CONFIG = {

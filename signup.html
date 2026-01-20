@@ -330,8 +330,7 @@
   </footer>
 
   <script>
-    // Set Google Signup URL dynamically
-    document.getElementById("googleSignupBtn").href = `${CONFIG.getApiBaseUrl()}/oauth2/authorization/google`;
+    document.getElementById("googleSignupBtn").href = `${CONFIG.getApiBaseUrl()}/api/auth/google`;
 
     document
       .getElementById("signupForm")
@@ -359,7 +358,7 @@
 
         try {
           const response = await fetch(
-            `${CONFIG.getApiBaseUrl()}/users/new_member`,
+            `${CONFIG.getApiBaseUrl()}/api/users/register`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },

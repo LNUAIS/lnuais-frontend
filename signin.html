@@ -167,7 +167,7 @@
 
   <script>
     // Set Google Login URL dynamically
-    document.getElementById("googleLoginBtn").href = `${CONFIG.getApiBaseUrl()}/oauth2/authorization/google`;
+    document.getElementById("googleLoginBtn").href = `${CONFIG.getApiBaseUrl()}/api/auth/google`;
 
     document
       .getElementById("signinForm")
@@ -186,7 +186,7 @@
 
         try {
           // 1. Attempt Login
-          const response = await fetch(`${CONFIG.getApiBaseUrl()}/users/login`, {
+          const response = await fetch(`${CONFIG.getApiBaseUrl()}/api/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email: email, password: password }),
@@ -203,7 +203,7 @@
             msgBox.style.display = "block";
 
             try {
-              const profileResp = await fetch(`${CONFIG.getApiBaseUrl()}/users/profile`, {
+              const profileResp = await fetch(`${CONFIG.getApiBaseUrl()}/api/auth/current-user`, {
                 method: "GET",
                 credentials: "include"
               });

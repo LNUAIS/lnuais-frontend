@@ -330,7 +330,9 @@
   </footer>
 
   <script>
-    document.getElementById("googleSignupBtn").href = `${CONFIG.getApiBaseUrl()}/api/auth/google`;
+    // Set Google Signup URL dynamically with return_to parameter
+    const returnTo = encodeURIComponent(window.location.origin);
+    document.getElementById("googleSignupBtn").href = `${CONFIG.getApiBaseUrl()}/api/auth/google?return_to=${returnTo}`;
 
     document
       .getElementById("signupForm")

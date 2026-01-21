@@ -166,8 +166,9 @@
   </footer>
 
   <script>
-    // Set Google Login URL dynamically
-    document.getElementById("googleLoginBtn").href = `${CONFIG.getApiBaseUrl()}/api/auth/google`;
+    // Set Google Login URL dynamically with return_to parameter
+    const returnTo = encodeURIComponent(window.location.origin);
+    document.getElementById("googleLoginBtn").href = `${CONFIG.getApiBaseUrl()}/api/auth/google?return_to=${returnTo}`;
 
     document
       .getElementById("signinForm")

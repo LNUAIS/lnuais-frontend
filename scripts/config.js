@@ -10,8 +10,8 @@ const BACKEND_PORT_LOCAL = '3000';
 const CONFIG = {
     // Helper to get the backend URL
     getApiBaseUrl: function () {
-        // If we are clearly on the production domain (e.g. Amplify), use Prod Backend
-        if (window.location.hostname.includes('amplifyapp.com')) {
+        // If we are clearly on the production domain (e.g. Amplify or Custom Domain), use Prod Backend
+        if (window.location.hostname.includes('amplifyapp.com') || window.location.hostname.includes('lnuais.com')) {
             return ''; // Use relative path so requests are proxied by Amplify Rewrites to CloudFront
         }
         // Otherwise (localhost, 127.0.0.1, or local IP), default to Local Backend

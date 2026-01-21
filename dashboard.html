@@ -528,7 +528,7 @@
 
       // 2. Always validate with Backend to ensure account still exists
       try {
-        const response = await fetch(`${CONFIG.getApiBaseUrl()}/users/profile`, {
+        const response = await fetch(`${CONFIG.getApiBaseUrl()}/api/auth/current-user`, {
           method: "GET",
           credentials: "include",
         });

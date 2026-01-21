@@ -10,7 +10,7 @@ const CONFIG = {
     getApiBaseUrl: function () {
         // If we are clearly on the production domain (e.g. Amplify), use Prod Backend
         if (window.location.hostname.includes('amplifyapp.com')) {
-            return ''; // Use relative path so requests are proxied by Amplify Rewrites
+            return BACKEND_URL_PROD;
         }
         // Otherwise (localhost, 127.0.0.1, or local IP), default to Local Backend
         return `http://localhost:${BACKEND_PORT_LOCAL}`;

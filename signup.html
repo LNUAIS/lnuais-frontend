@@ -352,9 +352,9 @@
           'input[name="experience"]:checked',
         ).value;
 
-        let backendLevel = "LOW";
-        if (experienceInput === "intermediate") backendLevel = "MID";
-        if (experienceInput === "advanced") backendLevel = "HIGH";
+        let backendLevel = "Beginner";
+        if (experienceInput === "intermediate") backendLevel = "Intermediate";
+        if (experienceInput === "advanced") backendLevel = "Advanced";
 
         try {
           const response = await fetch(
@@ -363,11 +363,11 @@
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({
-                name: firstName + " " + lastName,
+                full_name: firstName + " " + lastName,
                 email: email,
                 password: password,
-                program: programme,
-                level: backendLevel,
+                programme: programme,
+                experience_level: backendLevel,
               }),
             },
           );

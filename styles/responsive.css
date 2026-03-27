@@ -514,4 +514,20 @@
   .item a:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
+
+  /* Reset nav CTA pill in mobile dropdown */
+  .menu .item:last-child > a[href="signup.html"] {
+    background: transparent;
+    color: #ffe000;
+    padding: 1rem 1.5rem;
+    border-radius: 0;
+    font-weight: 600;
+    margin-left: 0;
+  }
+
+  .menu .item:last-child > a[href="signup.html"]:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    color: #ffe000;
+  }
 }

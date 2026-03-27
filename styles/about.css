@@ -39,6 +39,12 @@ body {
   padding: 2rem;
   text-align: center;
   filter: drop-shadow(0 0 1rem #181818aa);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.board-card:hover {
+  transform: translateY(-3px);
+  border-color: #505050;
 }
 
 .board-avatar {
@@ -268,6 +274,12 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.document-card:hover {
+  transform: translateY(-2px);
+  border-color: #505050;
 }
 
 .document-header {

@@ -38,8 +38,13 @@ body {
   padding: 2rem;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease;
   filter: drop-shadow(0 0 1rem #181818aa);
+}
+
+.course-card:hover {
+  transform: translateY(-3px);
+  border-color: #505050;
 }
 
 .course-header {

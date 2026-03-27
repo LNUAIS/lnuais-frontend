@@ -57,6 +57,12 @@ p {
   display: flex;
   gap: 1.5rem;
   filter: drop-shadow(0 0 1rem #111111aa);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-2px);
+  border-color: #505050;
 }
 
 .event-date {
@@ -208,6 +214,12 @@ p {
   gap: 0.5rem;
   align-items: start;
   filter: drop-shadow(0 0 1rem #181818aa);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.events-card:hover {
+  transform: translateY(-2px);
+  border-color: #505050;
 }
 
 .events-card img {

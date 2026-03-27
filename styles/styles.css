@@ -2,6 +2,7 @@ html {
   margin: 0;
   padding: 0;
   width: 100%;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -112,31 +113,40 @@ p {
   margin: 0;
 }
 
+.info-cards {
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.info-cards:hover {
+  transform: translateY(-3px);
+  border-color: #ffe000;
+}
+
 .link-cards-1,
 .link-cards-2,
 .link-cards-3 {
-  transition: 0.3s ease;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .link-cards-1:hover {
   cursor: pointer;
-  transform: scale(1.002);
-  filter: drop-shadow(0 0 1rem #181818aa);
+  transform: translateY(-4px);
   border-color: #5d4fb1;
+  box-shadow: 0 8px 20px rgba(93, 79, 177, 0.15);
 }
 
 .link-cards-2:hover {
   cursor: pointer;
-  transform: scale(1.002);
-  filter: drop-shadow(0 0 1rem #181818aa);
+  transform: translateY(-4px);
   border-color: #007340;
+  box-shadow: 0 8px 20px rgba(0, 115, 64, 0.15);
 }
 
 .link-cards-3:hover {
   cursor: pointer;
-  transform: scale(1.002);
-  filter: drop-shadow(0 0 1rem #181818aa);
+  transform: translateY(-4px);
   border-color: #a62186;
+  box-shadow: 0 8px 20px rgba(166, 33, 134, 0.15);
 }
 
 .card-icon {
@@ -196,7 +206,7 @@ p {
   color: #232326;
   border-color: #232326;
   border-style: solid;
-  border-width: 5px;
+  border-width: 2px;
   transition: 0.3s ease;
 }
 
@@ -271,6 +281,22 @@ p {
 
 .item a:hover {
   color: #d0d0d0;
+}
+
+/* Nav CTA — "Join Us" pill */
+.menu .item:last-child > a[href="signup.html"] {
+  background: #ffe000;
+  color: #232326;
+  padding: 0.5rem 1.2rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.menu .item:last-child > a[href="signup.html"]:hover {
+  background: #fff;
+  color: #232326;
+  box-shadow: 0 4px 16px rgba(255, 224, 0, 0.35);
 }
 
 .highlight {
@@ -501,7 +527,12 @@ input[type="password"]:focus {
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #ddd;
+  border: 2px solid rgba(255, 224, 0, 0.55);
+  transition: border-color 0.2s ease;
+}
+
+.nav-profile-link:hover .nav-avatar {
+  border-color: #ffe000;
 }
 
 .nav-username {
